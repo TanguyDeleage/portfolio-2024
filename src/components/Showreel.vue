@@ -1,0 +1,79 @@
+<template>
+    <section>
+        <div class="grid-container">
+            <div v-for="(column, columnIndex) in columns" :key="columnIndex" class="column">
+                <div v-for="(project, projectIndex) in column" :key="projectIndex" class="cell" :style="{ backgroundImage: 'url(' + project.imageUrl + ')' }">
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
+  
+<script>
+  export default {
+    name: 'Showreel',
+    data() {
+      return {
+        projects: [
+          { name: 'Project 1', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
+          { name: 'Project 2', imageUrl: 'path/to/image2.jpg' },
+          { name: 'Project 3', imageUrl: 'path/to/image3.jpg' },
+          { name: 'Project 4', imageUrl: 'path/to/image4.jpg' },
+          { name: 'Project 5', imageUrl: 'path/to/image5.jpg' },
+          { name: 'Project 6', imageUrl: 'path/to/image6.jpg' },
+          { name: 'Project 7', imageUrl: 'path/to/image6.jpg' },
+          // Add more projects as needed
+        ],
+        columnProjectCounts: [3, 3, 1], // Adjust the number of projects for each column
+        columns: [],
+      };
+    },
+    mounted() {
+      this.setColumns();
+    },
+    methods: {
+      setColumns() {
+        let startIndex = 0;
+  
+        this.columnProjectCounts.forEach((count) => {
+          const endIndex = startIndex + count;
+          this.columns.push(this.projects.slice(startIndex, endIndex));
+          startIndex = endIndex;
+        });
+      },
+    },
+  };
+  </script>
+  
+  <style scoped>
+  /* Your styles go here */
+
+  section {
+    overflow: hidden;
+  }
+  .grid-container {
+    display: flex;
+    gap: 1.25rem;
+    background-color: var(--primary-brand-highest);
+  }
+  
+  .column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .column:nth-child(odd) {
+    margin-top: 20px;
+  }
+  
+  .cell {
+    width: 100%;
+    padding-bottom: 66.666%;
+    background-size: cover; /* Ensure the background image covers the entire cell */
+    background-position: center; /* Center the background image within the cell */
+    /* background-color: bisque; */
+  }
+  </style>
+  

@@ -1,16 +1,18 @@
 <script setup>
 // import Header from './components/Header.vue'
 import Hero from './components/Hero.vue'
+import Showreel from './components/Showreel.vue'
 </script>
 
 <template>
 
   <header>
-    <Header />
+    <!-- <Header /> -->
   </header>
 
   <main>
     <Hero />
+    <Showreel />
   </main>
 
   <footer>
