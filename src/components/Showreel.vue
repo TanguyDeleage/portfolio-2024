@@ -16,12 +16,12 @@
       return {
         projects: [
           { name: 'Project 1', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
-          { name: 'Project 2', imageUrl: 'path/to/image2.jpg' },
-          { name: 'Project 3', imageUrl: 'path/to/image3.jpg' },
-          { name: 'Project 4', imageUrl: 'path/to/image4.jpg' },
-          { name: 'Project 5', imageUrl: 'path/to/image5.jpg' },
-          { name: 'Project 6', imageUrl: 'path/to/image6.jpg' },
-          { name: 'Project 7', imageUrl: 'path/to/image6.jpg' },
+          { name: 'Project 2', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
+          { name: 'Project 3', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
+          { name: 'Project 4', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
+          { name: 'Project 5', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
+          { name: 'Project 6', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
+          { name: 'Project 7', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
           // Add more projects as needed
         ],
         columnProjectCounts: [3, 3, 1], // Adjust the number of projects for each column
@@ -50,6 +50,7 @@
 
   section {
     overflow: hidden;
+    max-height: 714px;
   }
   .grid-container {
     display: flex;
@@ -66,6 +67,10 @@
 
   .column:nth-child(odd) {
     margin-top: 20px;
+  }
+
+  .column:nth-child(even) {
+    transform: translateY(-6rem);
   }
   
   .cell {
