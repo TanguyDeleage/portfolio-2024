@@ -2,6 +2,7 @@
 // import Header from './components/Header.vue'
 import Hero from './components/Hero.vue'
 import Showreel from './components/Showreel.vue'
+import Work from './components/Work.vue'
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import Showreel from './components/Showreel.vue'
   <main>
     <Hero />
     <Showreel />
+    <Work />
   </main>
 
   <footer>
