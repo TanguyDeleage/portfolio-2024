@@ -5,6 +5,7 @@ import Showreel from './components/Showreel.vue'
 import Work from './components/Work.vue'
 import Testimonials from './components/Testimonials.vue'
 import About from './components/About.vue'
+import Contact from './components/Contact.vue'
 </script>
 
 <template>
@@ -19,6 +20,7 @@ import About from './components/About.vue'
     <Work />
     <Testimonials />
     <About />
+    <Contact />
   </main>
 
   <footer>
