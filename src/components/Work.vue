@@ -11,7 +11,7 @@
             <p class="index">0{{ index + 1}}</p>
             <p class="title">{{ service.title }}</p>
           </div>
-          <ul>
+          <ul class="items">
             <li class="item" v-for="item in service.items" :key="item"> {{ item }}</li>
           </ul>
         </div>
@@ -21,16 +21,18 @@
     <div class="projects">
       <div class="project" v-for="project in projects" :key="project">
         <div class="thumbnail">
-          <div class="index"></div>
-          <div class="mockup"></div>
+          <div class="project-index"><img src="../assets/images/work/index.png" alt=""></div>
+          <div class="mockup"><img src="../assets/images/work/cover.png" alt=""></div>
         </div>
         <div class="content">
           <div class="information">
-            <ul class="tags">
-              <li v-for="tag in project.tags" :key="tag">{{ tag }}</li>
+            <ul class="project-tags">
+              <li v-for="tag in project.tags" :key="tag" class="project-tag">{{ tag }}</li>
             </ul>
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
+            <div>
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-description">{{ project.description }}</p>
+            </div>
           </div>
           <div class="button">
 
@@ -68,8 +70,29 @@ export default {
           title: 'Canal+',
           description : 'Allowing Mac users to download offline content',
           tags: ["Product Design", "Responsive", "Streaming Platform"],
-          mockup: '',
-          index: ''
+          // mockup: '../..src/assets/images/work/cover.png',
+          // index: '../..src/assets/images/work/index.png',
+        },
+        {
+          title: 'Kuartz',
+          description : 'Transforming energy contracts : from paperwork to digital efficiency',
+          tags: ["UX Design", "Desktop", "SaaS"],
+          // mockup: '../..src/assets/images/work/cover.png',
+          // index: '../..src/assets/images/work/index.png',
+        },
+        {
+          title: 'Matematch',
+          description : '10 days to help foreign students live a deeper exchange experience',
+          tags: ["Product Design", "Mobile", "WebApp"],
+          // mockup: '../..src/assets/images/work/cover.png',
+          // index: '../..src/assets/images/work/index.png',
+        },
+        {
+          title: 'Aisty',
+          description : 'Lorem ipsum dolor sit amet',
+          tags: ["UI Design", "Responsive", "WebApp"],
+          // mockup: '../..src/assets/images/work/cover.png',
+          // index: '../..src/assets/images/work/index.png',
         }
       ]
     };
@@ -129,6 +152,13 @@ export default {
     justify-content: space-between;
   }
 
+  .service {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
   .title {
     color: #000;
     /* font-family: Inter; */
@@ -140,6 +170,23 @@ export default {
 
   ul {
     list-style: none;
+    padding-inline-start: 0;
+  }
+
+  .services > .service:nth-child(3) .items {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 0.5rem;
+    align-self: stretch;
+    flex-wrap: wrap;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .item {
@@ -149,12 +196,92 @@ export default {
     line-height: 140%;
   }
 
+  .services > .service:last-child .items li {
+    display: flex;
+    padding: 0.25rem 1rem;
+    align-items: flex-start;
+    border-radius: 1.5rem;
+    border: 1px solid #000;
+  }
+
+
   .projects {
     background-color: #000;
     width: calc( 100vw - (100vw - 2.5rem)/3 - 5px);
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 12rem;
     color: white;
+    padding: 4rem 1rem;
+  }
+
+  .project{
+    width: 100%;
+  }
+
+  .thumbnail {
+    display: flex;
+    height: 45rem;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+  .project-index {
+    width: 46.82569rem;
+    height: 34.80225rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .mockup {
+    width: 49.375rem;
+    height: 41.875rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 140%; /* 2.1rem */
+    text-transform: uppercase;
+  }
+
+  .project-description {
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 150%; /* 1.3125rem */
+  }
+
+  .project-tags {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .project-tag {
+    color: #CFCFCF;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 150%; /* 1.3125rem */
+    display: flex;
+    padding: 0.25rem 0.5rem;
+    align-items: flex-start;
+    border-radius: 2rem;
+    border: 1px solid #D1D1D1;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .information {
+    display: flex;
+    flex-direction: Column;
+    gap: 1.5rem;
   }
 </style>
