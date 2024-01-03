@@ -4,6 +4,7 @@ import Hero from './components/Hero.vue'
 import Showreel from './components/Showreel.vue'
 import Work from './components/Work.vue'
 import Testimonials from './components/Testimonials.vue'
+import About from './components/About.vue'
 </script>
 
 <template>
@@ -17,6 +18,7 @@ import Testimonials from './components/Testimonials.vue'
     <Showreel />
     <Work />
     <Testimonials />
+    <About />
   </main>
 
   <footer>
