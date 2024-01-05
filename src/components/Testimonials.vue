@@ -4,8 +4,8 @@
       <h3>Tested and approuved</h3>
       <p>Chaque fin de mission est l'occasion de vous demander ce que vous avez pensé de notre collaboration et de comment améliorer les choses</p>
       <div class="cta">
-        <button class="btn primary">Book a free 30' call</button>
-        <button class="btn secondary">Send an email</button>
+        <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn primary">Book a free call</a>
+        <a href="mailto:contact@tanguydeleage.com" class="btn secondary">Send an email</a>
       </div>
       
 

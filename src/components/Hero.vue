@@ -64,8 +64,8 @@
           <p>I'm a Product passionnate with a holistic perspective from business to development. I have diverse experiences, in Big Groups, Digital agency and startup.</p>
         </div>
         <div class="cta">
-          <button class="btn primary">Discover projects</button>
-          <button class="btn secondary">About me</button>
+          <a href="" target="_blank" class="btn primary">Discover projects</a>
+        <a href="" class="btn secondary">About me</a>
         </div>
       </div>
     </div>
@@ -118,6 +118,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
 }
 .display-text {
   font-family: 'Eklektyk';
