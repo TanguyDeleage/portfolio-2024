@@ -2,13 +2,22 @@
   <section>
     <div class="bento-container">
       <div class="div1 box">About</div>
-      <div class="div2 box"> </div>
-      <div class="div3 box"> </div>
+      <div class="div2 box"><div class="avatar"></div></div>
+      <div class="div3 box">
+        <p>I'm Tanguy</p>
+        <p class="intro">A blend of business knowledge and technical skills that I combine to create unique experiences. I’m also a musician, I always have a lot of travel story to share. I love peanut butter and backpacks.</p>
+      </div>
       <div class="div4 box"> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
       <div class="div5 box">CV</div>
-      <div class="div6 box">PDF Portfolio</div>
+      <div class="div6 box">PDF <span class="small-display">Portfolio</span></div>
       <div class="div7 box"> </div>
-      <div class="div8 box"> </div>
+      <div class="div8 box">
+        <p>Random facts</p>
+        <div class="stories" v-for="story in stories" :key="story">
+          <p>{{ story.description }}</p>
+          <p>{{story.index}}/</p>
+        </div>
+      </div>
       <div class="div9 box"> </div>
     </div>
   </section>
@@ -17,6 +26,15 @@
 <script>
 export default {
   name: 'About',
+  data() {
+    return {
+      stories: [
+        {
+          description: "I hitchhicked +2000km in Australia, 2020, It’s equivalent to Paris-Kiev. I was helped by 24 drivers over 3 weeks. For a car to stop I waited between 4 seconds and 4 hours."
+        }
+      ]
+    }
+  }
 }
 </script>
   
@@ -53,5 +71,56 @@ section {
   border-radius: 1.5rem;
   background: #0A0A0A;
   height: calc((100vw - 40px - 8rem)/4);
+}
+
+.div1 {
+  font-family: "Eklektyk";
+  font-size: 6rem;
+  color: var(--primary-brand-lowest);
+}
+
+.avatar {
+  /* background-image: none; */
+  background-color: var(--primary-brand-lowest);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%
+}
+
+.div3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  color: var(--primary-brand-lowest);
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 600;
+  /* inverser intro (en dessoius) et le mettre sur le title, comme ça je peux grouper la couleur du texte avec une classe que j'attribue aussi sur la 8ème box */
+}
+
+.intro {
+  color: #818181;
+  font-weight: 300;
+}
+
+.div5, .div6 {
+  color: #606060;
+  font-size: 6.5rem;
+  font-weight: 800;
+  line-height: 140%; /* 9.1rem */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.small-display {
+  color: #606060;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 140%; /* 3.5rem */
 }
 </style>

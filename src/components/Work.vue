@@ -34,10 +34,7 @@
               <p class="project-description">{{ project.description }}</p>
             </div>
           </div>
-          <div class="button">
-
-          </div>
-          
+          <a :href=project.link target="_blank" class="button">View project</a>
         </div>
       </div>
     </div>
@@ -72,6 +69,7 @@ export default {
           tags: ["Product Design", "Responsive", "Streaming Platform"],
           // mockup: '../..src/assets/images/work/cover.png',
           // index: '../..src/assets/images/work/index.png',
+          link: "https://www.behance.net/gallery/179911807/Download-Offline-Content-MyCANAL"
         },
         {
           title: 'Kuartz',
@@ -79,6 +77,7 @@ export default {
           tags: ["UX Design", "Desktop", "SaaS"],
           // mockup: '../..src/assets/images/work/cover.png',
           // index: '../..src/assets/images/work/index.png',
+          link: "https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector?tracking_source=project_owner_other_projects"
         },
         {
           title: 'Matematch',
@@ -86,6 +85,7 @@ export default {
           tags: ["Product Design", "Mobile", "WebApp"],
           // mockup: '../..src/assets/images/work/cover.png',
           // index: '../..src/assets/images/work/index.png',
+          link: "https://www.behance.net/gallery/175709177/Matematch-Mobile-App-for-foreign-students-Le-Wagon?tracking_source=project_owner_other_projects"
         },
         {
           title: 'Aisty',
@@ -93,6 +93,7 @@ export default {
           tags: ["UI Design", "Responsive", "WebApp"],
           // mockup: '../..src/assets/images/work/cover.png',
           // index: '../..src/assets/images/work/index.png',
+          link: ""
         }
       ]
     };
@@ -277,11 +278,19 @@ export default {
   .content {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
   }
 
   .information {
     display: flex;
     flex-direction: Column;
     gap: 1.5rem;
+  }
+
+  .button {
+    color: var(--primary-brand-lowest);
+    text-decoration: none;
   }
 </style>
