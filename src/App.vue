@@ -1,5 +1,5 @@
 <script setup>
-// import Header from './components/Header.vue'
+import Header from './components/Header.vue'
 import Hero from './components/Hero.vue'
 import Showreel from './components/Showreel.vue'
 import Work from './components/Work.vue'
@@ -11,7 +11,7 @@ import Contact from './components/Contact.vue'
 <template>
 
   <header>
-    <!-- <Header /> -->
+    <Header />
   </header>
 
   <main>
