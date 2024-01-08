@@ -2,9 +2,9 @@
   <section>
     <div class="container">
       <div class="social-links">
-        <div class="social-link" v-for="link in links" :key="link">
-          <a :href=link.url><img :src=link.logo :alt=link.name></a>
-        </div>
+        <a class="social-link" v-for="link in links" :key="link" :href="link.url">
+          <div><img :src=link.logo :alt=link.name></div>
+        </a>
       </div>
       <div class="main">
         <h3 class="text-display">Contact</h3>

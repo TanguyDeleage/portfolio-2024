@@ -21,8 +21,8 @@
     <div class="projects">
       <div class="project" v-for="project in projects" :key="project">
         <div class="thumbnail">
-          <div class="project-index"><img src="../assets/images/work/index.png" alt=""></div>
-          <div class="mockup"><img src="../assets/images/work/cover.png" alt=""></div>
+          <div class="project-index"><img :src=project.index alt=""></div>
+          <div class="mockup"><img :src=project.mockup alt=""></div>
         </div>
         <div class="content">
           <div class="information">
@@ -67,32 +67,32 @@ export default {
           title: 'Canal+',
           description : 'Allowing Mac users to download offline content',
           tags: ["Product Design", "Responsive", "Streaming Platform"],
-          // mockup: '../..src/assets/images/work/cover.png',
-          // index: '../..src/assets/images/work/index.png',
+          mockup: '../src/assets/images/work/canal.png',
+          index: '../src/assets/images/work/index-1.svg',
           link: "https://www.behance.net/gallery/179911807/Download-Offline-Content-MyCANAL"
         },
         {
           title: 'Kuartz',
           description : 'Transforming energy contracts : from paperwork to digital efficiency',
           tags: ["UX Design", "Desktop", "SaaS"],
-          // mockup: '../..src/assets/images/work/cover.png',
-          // index: '../..src/assets/images/work/index.png',
+          mockup: '../src/assets/images/work/kuartz.png',
+          index: '../src/assets/images/work/index-2.svg',
           link: "https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector?tracking_source=project_owner_other_projects"
         },
         {
           title: 'Matematch',
           description : '10 days to help foreign students live a deeper exchange experience',
           tags: ["Product Design", "Mobile", "WebApp"],
-          // mockup: '../..src/assets/images/work/cover.png',
-          // index: '../..src/assets/images/work/index.png',
+          mockup: '../src/assets/images/work/matematch.png',
+          index: '../src/assets/images/work/index-3.svg',
           link: "https://www.behance.net/gallery/175709177/Matematch-Mobile-App-for-foreign-students-Le-Wagon?tracking_source=project_owner_other_projects"
         },
         {
           title: 'Aisty',
           description : 'Lorem ipsum dolor sit amet',
           tags: ["UI Design", "Responsive", "WebApp"],
-          // mockup: '../..src/assets/images/work/cover.png',
-          // index: '../..src/assets/images/work/index.png',
+          mockup: '../src/assets/images/work/aisty.png',
+          index: '../src/assets/images/work/index-4.svg',
           link: ""
         }
       ]
@@ -138,6 +138,10 @@ export default {
     font-weight: 400;
     line-height: 140%;
     text-transform: uppercase;
+  }
+
+  .mockup img{
+    width: 100%
   }
 
   .divider {
