@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="about">
     <div class="bento-container">
       <div class="div1 box">About</div>
       <div class="div2 box"><div class="avatar"></div></div>

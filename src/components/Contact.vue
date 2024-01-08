@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container">
+    <div class="container" id="contact">
       <div class="social-links">
         <a class="social-link" v-for="link in links" :key="link" :href="link.url">
           <div><img :src=link.logo :alt=link.name></div>
@@ -107,7 +107,7 @@
     gap: 1.25rem;
   }
 
-  .social-link a {
+  .social-links div {
     display: flex;
   }
 

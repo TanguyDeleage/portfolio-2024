@@ -6,7 +6,7 @@
             </svg>
        </a>
        <nav class="nav-links">
-            <a href="#hero" class="nav-link">
+            <a href="/" class="nav-link">
                 <p class="nav-title slide-left">Home</p>
             </a>
             <a href="#work" class="nav-link">

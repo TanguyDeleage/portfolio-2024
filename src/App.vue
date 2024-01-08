@@ -28,9 +28,10 @@ import Contact from './components/Contact.vue'
 
 </template>
 
-<style scoped>
+<style>
 
-@media (min-width: 1024px) {
-
-}
+  html {
+  scroll-behavior: smooth;
+  }
+  
 </style>

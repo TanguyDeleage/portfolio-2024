@@ -16,12 +16,12 @@
       return {
         projects: [
           { name: 'Project 1', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
-          { name: 'Project 2', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
-          { name: 'Project 3', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
+          { name: 'Project 2', imageUrl: '../src/assets/images/showreel/project_2.jpg' },
+          { name: 'Project 3', imageUrl: '../src/assets/images/showreel/project_3.jpg' },
           { name: 'Project 4', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
-          { name: 'Project 5', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
+          { name: 'Project 5', imageUrl: '../src/assets/images/showreel/project_5.jpg' },
           { name: 'Project 6', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
-          { name: 'Project 7', imageUrl: '../src/assets/images/showreel/project_1.jpg' },
+          { name: 'Project 7', imageUrl: '../src/assets/images/showreel/project_3.jpg' },
           // Add more projects as needed
         ],
         columnProjectCounts: [3, 3, 1], // Adjust the number of projects for each column
