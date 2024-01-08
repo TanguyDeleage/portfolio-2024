@@ -4,15 +4,15 @@
       <div class="div1 box">About</div>
       <div class="div2 box"><div class="avatar"></div></div>
       <div class="div3 box">
-        <p>I'm Tanguy</p>
-        <p class="intro">A blend of business knowledge and technical skills that I combine to create unique experiences. I’m also a musician, I always have a lot of travel story to share. I love peanut butter and backpacks.</p>
+        <p class="box-title">I'm Tanguy</p>
+        <p>A blend of business knowledge and technical skills that I combine to create unique experiences. I’m also a musician, I always have a lot of travel story to share. I love peanut butter and backpacks.</p>
       </div>
       <div class="div4 box"> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
       <div class="div5 box">CV</div>
       <div class="div6 box">PDF <span class="small-display">Portfolio</span></div>
-      <div class="div7 box"> </div>
+      <div class="div7 box"></div>
       <div class="div8 box">
-        <p>Random facts</p>
+        <p class="box-title">Random facts</p>
         <div class="stories" v-for="story in stories" :key="story">
           <p>{{ story.description }}</p>
           <p>{{story.index}}/</p>
@@ -65,7 +65,7 @@ section {
 }
 .box {
   display: flex;
-  padding: 4.5rem 2.75rem 4.5rem 2.75rem;
+  padding: 4.5rem 2.75rem;
   justify-content: center;
   align-items: center;
   border-radius: 1.5rem;
@@ -79,30 +79,37 @@ section {
   color: var(--primary-brand-lowest);
 }
 
-.avatar {
-  /* background-image: none; */
-  background-color: var(--primary-brand-lowest);
-  border-radius: 50%;
-  width: 100%;
-  height: 100%
+.div2 {
+  padding: 2.75rem;
 }
 
-.div3 {
+.avatar {
+  background-image: url(../assets/images/hero-picture.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(1);
+}
+
+.div3, .div8 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 1rem;
-  color: var(--primary-brand-lowest);
+  color: #818181;
   text-align: left;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 300;
   /* inverser intro (en dessoius) et le mettre sur le title, comme ça je peux grouper la couleur du texte avec une classe que j'attribue aussi sur la 8ème box */
 }
 
-.intro {
-  color: #818181;
-  font-weight: 300;
+.box-title {
+  color: var(--primary-brand-lowest);
+  font-weight: 600;
 }
 
 .div5, .div6 {
@@ -122,5 +129,17 @@ section {
   font-size: 2.5rem;
   font-weight: 800;
   line-height: 140%; /* 3.5rem */
+}
+
+.div7 {
+  background-image: url(../assets/icons/figma.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.div9 {
+  background-image: url(../assets/icons/medium.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 </style>

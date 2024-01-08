@@ -20,9 +20,9 @@
             </a>
        </nav>
        <div class="quick-links">
-         <a class="header-box" href="mailto:contact@tanguydeleage.com"><img src="" alt="Mail icon"></a>
+         <a class="header-box" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon"></a>
          <a class="header-box" href="https://calendly.com/tdeleage/hello" target="_blank">
-            <img src="" alt="Google Drive icon ">
+            <img src="../assets/icons/google-meet.svg" alt="Google Drive icon ">
             Book a meeting
          </a>
        </div>
@@ -97,12 +97,14 @@
         font-size: 1rem;
         font-weight: 500;
         line-height: 1.5rem; /* 150% */
+        gap: 0.5rem;
     }
 
     .quick-links {
         display: flex;
         flex-direction: row;
         gap: 0.5rem;
+        width: 20%;
     }
 
     .nav-title{
@@ -116,6 +118,7 @@
     .brand  {
         cursor: pointer;
         scale: 0.8;
+        width: 20%;
     }
 
     a {

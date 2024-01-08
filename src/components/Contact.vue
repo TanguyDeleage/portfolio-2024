@@ -15,7 +15,11 @@
         </div>
       </div>
       <div class="arrow">
-
+        <a href="/" class="brand" title="Home">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="46" viewBox="0 0 40 46" fill="none" alt="Home">
+              <path v-for="path in paths" :key="path" :id="path.name" :d="path.path" class="icon-animation" :class="path.class" fill="black" :fill-rule="path.fillRule" :clip-rule="path.fillRule"/>
+          </svg>
+        </a>
       </div>
     </div>
     <a href="mailto:contact@tanguydeleage.com" class="last-link">contact@tanguydeleage.com</a>
@@ -30,34 +34,52 @@
         links: [
           {
             name: "linkedin",
-            logo: "",
+            logo: "src/assets/icons/linkedin.svg",
             url : "",
           },
-          // {
-          //   name: "Behance",
-          //   logo: "",
-          //   url : "",
-          // },
+          {
+            name: "Behance",
+            logo: "src/assets/icons/behance.svg",
+            url : "",
+          },
           {
             name: "Figma",
-            logo: "",
+            logo: "src/assets/icons/figma.svg",
             url : "",
           },
           {
             name: "Medium",
-            logo: "",
+            logo: "src/assets/icons/medium.svg",
             url : "",
           },
-          {
-            name: "Bento",
-            logo: "",
-            url : "",
-          },
+          // {
+          //   name: "Bento",
+          //   logo: "",
+          //   url : "",
+          // },
           {
             name: "Github",
-            logo: "",
+            logo: "src/assets/icons/github.svg",
             url : "",
           },
+        ],
+        paths: [
+          {
+              name: "left",
+              path: "M0 10.4006H17.1429V45.4545H11.4286C7.57576 41.8182 5.45455 40 0 33.8983V10.4006Z",
+              class:''
+          },
+          {
+              name: "top",
+              path: "M-6.31448e-06 3.70938C-6.31448e-06 1.66073 -3.05176e-05 -2.81334e-05 -3.05176e-05 -2.81334e-05H36.1905C38.2944 -2.81334e-05 40 -3.05176e-05 40 -3.05176e-05V5.00768H-6.31448e-06V3.70938Z",
+              class:'',
+          },
+          {
+              name: "right",
+              path: "M28.5714 14.8305H27.2381V41.0246H28.5714C31.2121 38.7879 32.4242 37.8788 35.6191 33.8983V21.9568C33.0303 18.4848 31.2121 16.9697 28.5714 14.8305ZM22.8571 10.4006V45.4545H28.5714C32.7272 41.8182 34.8484 40 40 33.8983V21.9568C35.4545 16.3636 32.4242 13.0303 28.5714 10.4006H22.8571Z",
+              class:'',
+              fillRule: "evenodd",
+          }
         ]
       }
     }
@@ -83,6 +105,10 @@
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  }
+
+  .social-link a {
+    display: flex;
   }
 
   .main {
@@ -119,6 +145,12 @@
     justify-content: right;
     color: var(--primary-brand-highest);
     text-decoration: none;
+  }
+
+  .arrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   </style>
   
