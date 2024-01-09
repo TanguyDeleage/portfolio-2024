@@ -70,7 +70,13 @@ section {
   align-items: center;
   border-radius: 1.5rem;
   background: #0A0A0A;
-  height: calc((100vw - 40px - 8rem)/4);
+  aspect-ratio: 1;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.div3, .div4, .div8 {
+  aspect-ratio: 2;
 }
 
 .div1 {
@@ -142,4 +148,10 @@ section {
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+/* @media (max-width: 768px) {
+  .box {
+    height: calc((100vw - 40px - 8rem) / 4);
+  }
+} */
 </style>
