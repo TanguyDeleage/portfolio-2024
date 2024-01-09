@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="arrow">
-        <a href="/" class="brand" title="Home">
+        <a href="#hero" class="brand" title="Home">
           <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="46" viewBox="0 0 40 46" fill="none" alt="Home">
               <path v-for="path in paths" :key="path" :id="path.name" :d="path.path" class="icon-animation" :class="path.class" fill="black" :fill-rule="path.fillRule" :clip-rule="path.fillRule"/>
           </svg>

@@ -11,8 +11,8 @@
               <h1 class="display-text">Designer</h1>
             </div>
             <div class="cta">
-              <button class="btn primary">Discover projects</button>
-              <button class="btn secondary">About me</button>
+              <a class="btn primary" href="#work">Discover projects</a>
+              <a class="btn secondary" href="#about">About me</a>
             </div>
           </div>
         </div>        

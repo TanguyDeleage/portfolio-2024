@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="reviews">
     <div class="description">
       <h3>Tested and approuved</h3>
       <p>Chaque fin de mission est l'occasion de vous demander ce que vous avez pensé de notre collaboration et de comment améliorer les choses</p>
@@ -13,7 +13,7 @@
     <div class="reviews">
       <div class="review" v-for="review in reviews" :key="review">
         <p>"{{ review.text }}"</p>
-        <div>
+        <div class="source">
           <img :src="review.avatar" alt="">
           <div>
             <p class="author">{{ review.author }}</p>
@@ -43,14 +43,14 @@
             text: "He acquired in-depth knowledge of the newly available Figma variables and brilliantly led his very first team workshop, applying these variables to prototypes projecting the full potential of this new feature on our product.",
             author:"Vanessa",
             job:"Head of Design@Canal+",
-            avatar: "",
+            avatar: "src/assets/images/testimonials/vanessa.jpg",
           },
           {
             text: "Tout s’est très bien passé, je recommande Tanguy qui nous a fournit un très bon travail tant sur la qualité de ses livrables que sur l’accompagnement lors de l’intégrations.",
             author:"Kévin",
             job:"Co-founder @Aisty",
             avatar: "",
-          }
+          },
         ]
       }
     }
@@ -68,6 +68,7 @@
     justify-content: center;
     align-items: center;
     gap: 4rem;
+    overflow-x: hidden;
   }
 
   .description {
@@ -99,14 +100,16 @@
 
   .reviews {
     display: flex;
+    width: 100%;
     /* height: 14.5185rem; */
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 3rem;
+    /* gap: 3rem; */
   }
   .review{
     display: flex;
-    width: 100%;
+    /* width: 100%; */
+    width: 24rem;
     height: 14.5185rem;
     padding: 1rem 2rem;
     flex-direction: column;
@@ -114,6 +117,19 @@
     align-items: flex-start;
     border-radius: 0.5rem;
     border: 1px solid #B1B1B1;
+    background-color: var(--primary-brand-lowest);
+  }
+
+  .review img {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+  }
+
+  .source {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .author {
@@ -130,10 +146,6 @@
   }
 
   .review p {
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%; /* 1.225rem */
     height: 100%;
     display: flex;
     align-items: center;

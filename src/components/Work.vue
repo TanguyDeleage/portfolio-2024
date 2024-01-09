@@ -34,7 +34,10 @@
               <p class="project-description">{{ project.description }}</p>
             </div>
           </div>
-          <a :href=project.link target="_blank" class="button">View project</a>
+          <a :href=project.link target="_blank" class="button">
+            <p>View project</p>
+            <img :src="('src/assets/icons/chevron-right.svg')">
+          </a>
         </div>
       </div>
     </div>
@@ -127,7 +130,8 @@ export default {
     flex-direction: column;
     gap: 2rem;
     height: 100vh;
-    width: calc((100vw - 2.5rem)/3 - 5px);
+    /* width: calc((100vw - 2.5rem)/3 - 5px); */
+    width: calc((100vw/3) - 17px);
     position: sticky;
     top: 0;
   }
@@ -296,5 +300,8 @@ export default {
   .button {
     color: var(--primary-brand-lowest);
     text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
   }
 </style>
