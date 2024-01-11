@@ -11,7 +11,7 @@
 
     </div>
     <div class="reviews">
-      <div class="review" v-for="review in reviews" :key="review">
+      <div class="review" v-for="review in displayedReviews" :key="review">
         <p>"{{ review.text }}"</p>
         <div class="source">
           <img :src="review.avatar" alt="">
@@ -32,6 +32,7 @@
     name: 'Testimonials',
     data() {
       return {
+        isMobile: window.innerWidth <= 768,
         reviews: [
           {
             text: "Tanguy a apporté une contribution significative à notre équipe en repensant notre approche en matière de conception et en améliorant notre façon de travailler.",
@@ -53,8 +54,33 @@
           },
         ]
       }
-    }
-  }
+    },
+    computed: {
+      displayedReviews() {
+        // Return only the first three reviews for mobile
+        return this.isMobile ? this.reviews.slice(0, 3) : this.reviews;
+      },
+    },
+
+    mounted() {
+      // Add event listener to check for resize and update isMobile accordingly
+      window.addEventListener('resize', this.updateIsMobile);
+      this.updateIsMobile();
+    },
+
+    methods: {
+      updateIsMobile() {
+        // Update isMobile property based on window width
+        this.isMobile = window.innerWidth <= 768;
+      },
+    },
+
+    beforeUnmount() {
+      // Remove event listener when the component is destroyed
+      window.removeEventListener('resize', this.updateIsMobile);
+    },
+  };
+
   </script>
   
   <style scoped>

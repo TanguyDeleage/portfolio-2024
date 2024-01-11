@@ -66,7 +66,7 @@ export default {
 
 
 section {
-  padding: 4rem;
+  padding: var(--padding-v) var(--padding-h);
   background: #000;
 }
 .box {
