@@ -101,16 +101,14 @@
   .reviews {
     display: flex;
     width: 100%;
-    /* height: 14.5185rem; */
-    justify-content: space-between;
-    align-items: flex-start;
-    /* gap: 3rem; */
+    justify-content: center;
+    align-items: stretch;
+    gap: 3rem;
   }
   .review{
     display: flex;
-    /* width: 100%; */
     width: 24rem;
-    height: 14.5185rem;
+    /* height: 14.5185rem; */
     padding: 1rem 2rem;
     flex-direction: column;
     justify-content: space-between;
@@ -118,6 +116,7 @@
     border-radius: 0.5rem;
     border: 1px solid #B1B1B1;
     background-color: var(--primary-brand-lowest);
+    gap: 1rem;
   }
 
   .review img {

@@ -2,7 +2,7 @@
   <section>
     <div class="container" id="contact">
       <div class="social-links">
-        <a class="social-link" v-for="link in links" :key="link" :href="link.url">
+        <a class="social-link" v-for="link in links" :key="link" :href="link.url" :title=link.name>
           <div><img :src=link.logo :alt=link.name></div>
         </a>
       </div>
@@ -33,7 +33,7 @@
       return {
         links: [
           {
-            name: "linkedin",
+            name: "Linkedin",
             logo: "src/assets/icons/linkedin.svg",
             url : "",
           },
@@ -105,6 +105,10 @@
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  }
+
+  .social-link {
+    border-radius: 0.5rem;
   }
 
   .social-links div {

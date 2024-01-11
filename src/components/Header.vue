@@ -104,7 +104,7 @@
         display: flex;
         flex-direction: row;
         gap: 0.5rem;
-        width: 20%;
+        width: 16rem;
     }
 
     .nav-title{
@@ -118,7 +118,7 @@
     .brand  {
         cursor: pointer;
         scale: 0.8;
-        width: 20%;
+        width: 16rem;
     }
 
     a {

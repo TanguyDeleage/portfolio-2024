@@ -119,6 +119,11 @@
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+  width: min-content;
+}
+
+.description p {
+  width: 100%;
 }
 .display-text {
   font-family: 'Eklektyk';
