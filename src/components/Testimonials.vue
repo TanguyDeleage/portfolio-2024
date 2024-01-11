@@ -63,11 +63,11 @@
     background-color: #F5F5F5;
     display: flex;
     width: 100%;
-    padding: 5rem 4rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 4rem;
+    padding: var(--padding-v) var(--padding-h);
     overflow-x: hidden;
   }
 
@@ -100,7 +100,6 @@
 
   .reviews {
     display: flex;
-    width: 100%;
     justify-content: center;
     align-items: stretch;
     gap: 3rem;
@@ -108,7 +107,6 @@
   .review{
     display: flex;
     width: 24rem;
-    /* height: 14.5185rem; */
     padding: 1rem 2rem;
     flex-direction: column;
     justify-content: space-between;
@@ -149,6 +147,41 @@
     display: flex;
     align-items: center;
   }
+
+  /* Desktop */
+  @media screen and (min-width: 1200px) {
+    .reviews {
+      width: 100%;
+    }
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 769px) and (max-width: 1199px) {
+
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+    .reviews {
+      flex-direction: column;
+      width: 100%;
+      gap: 2rem;
+    }
+
+    .review {
+      width: 100%;
+    }
+
+    .description {
+      width: 100%;
+      text-align: center;
+    }
+
+    .description h3 {
+      line-height: normal;
+    }
+  }
+
 
   </style>
   

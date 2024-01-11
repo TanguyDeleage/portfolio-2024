@@ -31,6 +31,32 @@
   --black : 900;
 }
 
+  /* Paddings */
+
+  /* Desktop */
+  @media screen and (min-width: 1200px) {
+    :root {
+        --padding-h: 4rem;
+        --padding-v: 4rem;
+    }
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 769px) and (max-width: 1199px) {
+      :root {
+          --padding-h: 2rem;
+          --padding-v: 2rem;
+      }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+      :root {
+          --padding-h: 1rem;
+          --padding-v: 4rem
+      }
+  }
+
 
 *,
 *::before,
