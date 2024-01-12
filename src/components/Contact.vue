@@ -91,19 +91,16 @@
   section {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding: 5rem 4rem 2.5rem 4rem;
+    gap: 4rem;
+    padding: var(--padding-v) var(--padding-h) calc(var(--padding-v) / 2) var(--padding-h);
   }
 
   .container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
   }
 
   .social-links {
     display: flex;
-    flex-direction: column;
     gap: 1.25rem;
   }
 
@@ -155,6 +152,123 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+
+  /* Desktop */
+  @media screen and (min-width: 1200px) {
+    .container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .social-links {
+      flex-direction: column;
+    }
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 769px) and (max-width: 1199px) {
+    
+    section {
+      gap: 6rem;
+      justify-content: center;
+    }
+    .container {
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .social-links {
+      flex-direction: row;
+      justify-content: center;
+      order: 3;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    .social-link img {
+      max-width: 2rem;
+      max-height: 2rem;
+    }
+
+    .main {
+      order: 1;
+    }
+
+    .arrow {
+      order: 2;
+    }
+
+    .text-display {
+      font-size: 6rem;
+    }
+
+    .last-link {
+      justify-content: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+    
+    section {
+      gap: 6rem;
+      justify-content: center;
+    }
+    .container {
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .social-links {
+      flex-direction: row;
+      justify-content: center;
+      order: 3;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    .social-link img {
+      max-width: 2rem;
+      max-height: 2rem;
+    }
+
+    .main {
+      order: 1;
+    }
+
+    .arrow {
+      order: 2;
+    }
+
+    .text-display {
+      font-size: 6rem;
+    }
+
+    .last-link {
+      justify-content: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1rem;
+    }
   }
   </style>
   
