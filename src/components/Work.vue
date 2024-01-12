@@ -29,7 +29,7 @@
             <ul class="project-tags">
               <li v-for="tag in project.tags" :key="tag" class="project-tag">{{ tag }}</li>
             </ul>
-            <div>
+            <div class="project-header">
               <h3 class="project-title">{{ project.title }}</h3>
               <p class="project-description">{{ project.description }}</p>
             </div>
@@ -129,8 +129,6 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    height: 100vh;
-    /* width: calc((100vw - 2.5rem)/3 - 5px); */
     width: calc((100vw/3) - 17px);
     position: sticky;
     top: 0;
@@ -230,22 +228,17 @@ export default {
 
   .thumbnail {
     display: flex;
-    height: 45rem;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
   }
   .project-index {
-    width: 46.82569rem;
-    height: 34.80225rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
   .mockup {
-    width: 49.375rem;
-    height: 41.875rem;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -303,5 +296,144 @@ export default {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+  }
+
+  /* desktop */
+  @media screen and (min-width: 1200px) {
+    aside {
+      height: 100vh;
+    }
+
+    .mockup {
+      width: 49.375rem;
+      height: 41.875rem;
+    }
+
+    .project-index {
+      width: 46.82569rem;
+      height: 34.80225rem;
+    }
+
+    .thumbnail {
+      height: 45rem;
+    }
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 769px) and (max-width: 1199px) {
+    .work {
+      flex-direction: column;
+    }
+
+    aside {
+      width: 100%;
+      z-index: 0;
+    }
+
+    .services {
+      flex-direction: row;
+      width: 100%;
+      gap: 4rem;
+      height: fit-content;
+    }
+
+    .service {
+      height: fit-content;
+    }
+
+    .projects {
+      width: 100%;
+      z-index: 1;
+    }
+
+    .project-index, .mockup {
+      width: 100%;
+    }
+
+    .project-index img {
+      width: 100%;
+    }
+
+    .mockup img {
+      width: 100%;
+    }
+
+    .project-tags {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .thumbnail {
+      height: calc(100vw);
+    }
+
+    .content {
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .project-header {
+      text-align: center;
+    }
+  }
+
+
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+    .work {
+      flex-direction: column;
+    }
+
+    aside {
+      width: 100%;
+      z-index: 0;
+    }
+
+    .services {
+      flex-direction: row;
+      width: 100%;
+      gap: 2rem;
+      flex-wrap: wrap;
+      height: fit-content;
+    }
+
+    .service {
+      height: fit-content;
+    }
+
+    .projects {
+      width: 100%;
+      z-index: 1;
+    }
+
+    .project-index, .mockup {
+      width: 100%;
+    }
+
+    .project-index img {
+      width: 100%;
+    }
+
+    .mockup img {
+      width: 100%;
+    }
+
+    .project-tags {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .thumbnail {
+      height: calc(100vw);
+    }
+
+    .content {
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .project-header {
+      text-align: center;
+    }
   }
 </style>

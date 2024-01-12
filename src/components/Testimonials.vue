@@ -110,7 +110,6 @@
     font-family: 'Eklektyk';
     font-size: 3rem;
     font-weight: 300;
-    line-height: 1.5rem; /* 50% */
   }
 
   .description p {
@@ -179,11 +178,14 @@
     .reviews {
       width: 100%;
     }
+
+    .description h3 {
+      line-height: 1.5rem; /* 50% */
+    }
   }
 
   /* Tablet */
   @media screen and (min-width: 769px) and (max-width: 1199px) {
-
   }
 
   /* Mobile */
