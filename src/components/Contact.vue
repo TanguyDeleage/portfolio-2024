@@ -2,7 +2,7 @@
   <section>
     <div class="container" id="contact">
       <div class="social-links">
-        <a class="social-link" v-for="link in links" :key="link" :href="link.url" :title=link.name>
+        <a class="social-link" v-for="link in links" :key="link" :href="link.url" :title=link.name target="_blank">
           <div><img :src=link.logo :alt=link.name></div>
         </a>
       </div>
@@ -35,17 +35,17 @@
           {
             name: "Linkedin",
             logo: "src/assets/icons/linkedin.svg",
-            url : "",
+            url : "https://www.linkedin.com/in/tanguy-deleage/",
           },
           {
             name: "Behance",
             logo: "src/assets/icons/behance.svg",
-            url : "",
+            url : "https://www.behance.net/tanguy-deleage",
           },
           {
             name: "Figma",
             logo: "src/assets/icons/figma.svg",
-            url : "",
+            url : "https://www.figma.com/@tanguydeleage",
           },
           {
             name: "Medium",
@@ -55,12 +55,12 @@
           // {
           //   name: "Bento",
           //   logo: "",
-          //   url : "",
+          //   url : "https://bento.me/tanguy-deleage",
           // },
           {
             name: "Github",
             logo: "src/assets/icons/github.svg",
-            url : "",
+            url : "https://github.com/TanguyDeleage",
           },
         ],
         paths: [
