@@ -393,6 +393,10 @@ export default {
       z-index: 0;
     }
 
+    .projects {
+      gap: 8rem;
+    }
+
     .services {
       flex-direction: row;
       width: 100%;

@@ -82,9 +82,9 @@
           }
         ],
         heightThreshold: {
-          mobile: 650,
-          tablet: 715,
-          desktop: 900,
+          mobile: 1000,
+          tablet: 800,
+          desktop: 600,
         },
       }
     },
@@ -96,6 +96,7 @@
           const arrow = document.querySelector('.arrow')
           const rect = arrow.getBoundingClientRect();
           const distanceToTop = rect.top;
+          console.log(distanceToTop);
 
           const leftPart = document.querySelector('.move-left-start')
           const rightPart = document.querySelector('.move-right-start')
