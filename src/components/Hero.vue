@@ -164,7 +164,7 @@
 }
 .cta {
   display: flex;
-
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -213,7 +213,7 @@
 @media screen and (min-width: 769px) and (max-width: 1199px) {
   .hero {
     padding: var(--padding-v) var(--padding-h);
-    width: 100vw;
+    width: 100%;
   }
   .hero-container {
     gap: 2rem;
@@ -265,7 +265,6 @@
 
   .hero-container {
     width: 100%;
-    padding: 0 1rem
   }
 
   .title {
@@ -290,6 +289,8 @@
   }
   .hero-picture {
     width: 100%;
+    aspect-ratio: 1/1;
+    height: auto;
   }
 
   .author {

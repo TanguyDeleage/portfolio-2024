@@ -1,11 +1,14 @@
 <template>
     <div class="header" id="hero">
-       <a href="/" class="brand" title="Home">
+        <!-- Il faut que je remette l'icon en dehors de la div, pour q'iil soit visible en mobile -->
+       
+        <a href="/" @mouseenter="iconHover(true)" @mouseleave=iconHover(false) class="brand" title="Home">
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="46" viewBox="0 0 40 46" fill="none" alt="Home">
                 <path v-for="path in paths" :key="path" :id="path.name" :d="path.path" class="icon-animation" :class="path.class" fill="black" :fill-rule="path.fillRule" :clip-rule="path.fillRule"/>
             </svg>
-       </a>
-       <nav class="nav-links">
+        </a>
+
+        <nav class="nav-links" @click="openMenu()">
             <a href="#work" class="nav-link">
                 <p class="nav-title slide-left">Work</p>
             </a>
@@ -18,13 +21,25 @@
             <a href="#contact" class="nav-link">
                 <p class="nav-title slide-left">Contact</p>
             </a>
-       </nav>
-       <div class="quick-links">
-         <a class="header-box" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon"></a>
-         <a class="header-box" href="https://calendly.com/tdeleage/hello" target="_blank">
-            <img src="../assets/icons/google-meet.svg" alt="Google Drive icon ">
-            Book a meeting
-         </a>
+        </nav>
+        <div class="quick-links" @click="openMenu()">
+            <a class="header-box" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon"></a>
+            <a class="header-box" href="https://calendly.com/tdeleage/hello" target="_blank">
+                <img src="../assets/icons/google-meet.svg" alt="Google Drive icon ">
+                Book a meeting
+            </a>
+        </div>
+
+       <div @click="openMenu()" class="burger">
+            <div class="line">
+                <div class="line1"></div>
+            </div>
+            <div class="line">
+                <div class="line2"></div>
+            </div>
+            <div class="line">
+                <div class="line3"></div>
+            </div>
        </div>
     </div>
 </template>
@@ -105,6 +120,7 @@
         flex-direction: row;
         gap: 0.5rem;
         width: 16rem;
+        justify-content: flex-end;
     }
 
     .nav-title{
@@ -130,7 +146,7 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        padding: 2rem 4rem 1rem 4rem;
+        padding: 2rem var(--padding-h) 1rem var(--padding-h);
     }
     
     .nav-link{
@@ -169,6 +185,117 @@
 
     .icon-top {
         transform: translateY(0.2rem) ;
+    }
+
+    .no-scroll {
+        overflow: hidden !important;
+        height: 100vh;
+    }
+
+    /* desktop */
+    @media screen and (min-width: 1200px) {
+        .burger {
+            display: none;
+        }
+    }
+
+    /* Tablet & Mobile*/
+    @media screen and (max-width: 1199px) {
+        .nav-links, .quick-links{
+        display: none;
+        }
+        .burger {
+            display: flex;
+            width: 3rem;
+            padding: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 0.75rem;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .nav-title {
+            font-size: 4rem;
+            font-family: 'Eklektyk';
+            transition: opacity 0.5s ease-out 0.5s, transform 0.5s ease-out 0.5s;
+        }
+
+        .burger .line {
+            display: flex;
+            align-items: flex-start;
+            align-self: stretch;
+            position: relative;
+        }
+        .line1 {
+            width: 2.5rem;
+            height: 0.25rem;
+            position: absolute;
+            background: #000;
+            transition: 0.5s ease-out;
+        }
+        .line2 {
+            width: 2.5rem;
+            height: 0.25rem;
+            position: absolute;
+            left: -0.25rem;
+            background: #000;
+            transition: 0.5s ease-out;
+        }
+        .line3 {
+            width: 2.5rem;
+            height: 0.25rem;
+            position: absolute;
+            left: -0.5rem;
+            background: #000;
+            transition: 0.5s ease-out;
+        }
+
+        /* ==== Animation menu burger ===== */
+
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-10px, 6px);
+        }
+
+        .toggle .line2 {
+            transform: translateX(10rem);
+        }
+
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5.5px, -11px);
+        }
+
+        .nav-links {
+            display: flex;
+            position: fixed;
+            right: 0px;
+            top: 0px;
+            height: 100vh;
+            background-color: var(--primary-brand-lowest);
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            z-index: 9998;
+            padding: 10rem 2rem;
+            transform: translateX(100%);
+            transition: all 0.7s ease-in;
+            justify-content: space-between;
+        }
+
+        .brand {
+            z-index: 9999;
+        }
+
+        .nav-active {
+            transform: translateX(0%) !important;
+            transition: all 0.5s ease-in;
+        }
+
+        .slide-left {
+            opacity: 0%;
+            transform: translateX(2rem);
+        }
     }
 
 </style>

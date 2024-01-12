@@ -15,8 +15,8 @@
         </div>
       </div>
       <div class="arrow">
-        <a href="#hero" class="brand" title="Home">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="46" viewBox="0 0 40 46" fill="none" alt="Home">
+        <a href="#hero" class="brand" title="Scroll to top">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="60" viewBox="0 0 40 46" fill="none" alt="Home">
               <path v-for="path in paths" :key="path" :id="path.name" :d="path.path" class="icon-animation" :class="path.class" fill="black" :fill-rule="path.fillRule" :clip-rule="path.fillRule"/>
           </svg>
         </a>
@@ -67,22 +67,56 @@
           {
               name: "left",
               path: "M0 10.4006H17.1429V45.4545H11.4286C7.57576 41.8182 5.45455 40 0 33.8983V10.4006Z",
-              class:''
+              class:'move-left-start'
           },
           {
               name: "top",
               path: "M-6.31448e-06 3.70938C-6.31448e-06 1.66073 -3.05176e-05 -2.81334e-05 -3.05176e-05 -2.81334e-05H36.1905C38.2944 -2.81334e-05 40 -3.05176e-05 40 -3.05176e-05V5.00768H-6.31448e-06V3.70938Z",
-              class:'',
+              class:'move-top-start',
           },
           {
               name: "right",
               path: "M28.5714 14.8305H27.2381V41.0246H28.5714C31.2121 38.7879 32.4242 37.8788 35.6191 33.8983V21.9568C33.0303 18.4848 31.2121 16.9697 28.5714 14.8305ZM22.8571 10.4006V45.4545H28.5714C32.7272 41.8182 34.8484 40 40 33.8983V21.9568C35.4545 16.3636 32.4242 13.0303 28.5714 10.4006H22.8571Z",
-              class:'',
+              class:'move-right-start',
               fillRule: "evenodd",
           }
-        ]
+        ],
+        heightThreshold: {
+          mobile: 650,
+          tablet: 715,
+          desktop: 900,
+        },
       }
-    }
+    },
+    mounted() {
+      window.addEventListener('scroll', this.logoArrow);
+    },
+    methods: {
+      logoArrow() {
+          const arrow = document.querySelector('.arrow')
+          const rect = arrow.getBoundingClientRect();
+          const distanceToTop = rect.top;
+
+          const leftPart = document.querySelector('.move-left-start')
+          const rightPart = document.querySelector('.move-right-start')
+          const topPart = document.querySelector('.move-top-start')
+
+          let threshold;
+          if (window.innerWidth < 640) {
+              threshold = this.heightThreshold.mobile;
+          } else if (window.innerWidth < 980) {
+              threshold = this.heightThreshold.tablet;
+          } else {
+              threshold = this.heightThreshold.desktop;
+          }
+
+          if (distanceToTop < threshold) {
+              leftPart.classList.add('move-left');
+              rightPart.classList.add('move-right');
+              topPart.classList.add('move-top');
+          }
+        }
+      }
   }
   </script>
   
@@ -97,6 +131,10 @@
 
   .container {
     display: flex;
+  }
+
+  .icon {
+    scale: 1.5;
   }
 
   .social-links {
@@ -117,7 +155,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
     /* gap: 2rem; */
   }
 
@@ -155,6 +192,54 @@
   }
 
 
+  .moving-icon {
+      overflow: initial;
+      cursor: pointer;
+  }
+
+  .move-left {
+      animation: 1.3s moveArrowLeft 2.2s ease-out forwards;
+  }
+
+  .move-right {
+      animation: 1.3s moveArrowRight 2.2s ease-out forwards;
+  }
+
+  .move-top {
+      animation: 1.3s moveArrowTop 2.2s ease-out forwards;
+  }
+
+  @keyframes moveArrowLeft {
+      0% {
+          transform: translateY(0) translateX(0) rotate(0);
+      }
+
+      100% {
+          transform: translateY(-0.6rem) translateX(1.7rem) rotate(45deg);
+      }
+  }
+
+  @keyframes moveArrowRight {
+      0% {
+          transform: translateY(0) translateX(0) rotate(0);
+      }
+
+      100% {
+          transform: translateY(1.25rem) translateX(-0.9rem) rotate(-45deg);
+      }
+  }
+
+  @keyframes moveArrowTop {
+      0% {
+          transform: translateY(0) translateX(0) rotate(0);
+      }
+
+      100% {
+          transform: rotate(90deg) translateY(-1.45rem) translateX(1.35rem);
+      }
+  }
+
+
   /* Desktop */
   @media screen and (min-width: 1200px) {
     .container {
@@ -164,6 +249,10 @@
 
     .social-links {
       flex-direction: column;
+    }
+
+    .main {
+      width: 100%;
     }
   }
 
@@ -175,16 +264,15 @@
       justify-content: center;
     }
     .container {
-      flex-direction: column;
+      flex-direction: row;
       gap: 4rem;
+      justify-content: space-between;
     }
 
     .social-links {
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
-      order: 3;
       gap: 0.5rem;
-      flex-wrap: wrap;
     }
 
     .social-link {
@@ -197,20 +285,12 @@
       max-height: 2rem;
     }
 
-    .main {
-      order: 1;
-    }
-
-    .arrow {
-      order: 2;
-    }
-
     .text-display {
       font-size: 6rem;
     }
 
     .last-link {
-      justify-content: center;
+      justify-content: right;
     }
 
     .subtitle {

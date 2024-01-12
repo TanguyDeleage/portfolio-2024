@@ -125,11 +125,10 @@ export default {
   }
 
   aside {
-    padding: 4rem;
+    padding: var(--padding-v) var(--padding-h);
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: calc((100vw/3) - 17px);
     position: sticky;
     top: 0;
   }
@@ -144,6 +143,10 @@ export default {
 
   .mockup img{
     width: 100%
+  }
+
+  .project-index img {
+    width: 100%;
   }
 
   .divider {
@@ -302,6 +305,7 @@ export default {
   @media screen and (min-width: 1200px) {
     aside {
       height: 100vh;
+      width: calc((100vw - 40px)/ 3);
     }
 
     .mockup {
@@ -364,7 +368,7 @@ export default {
     }
 
     .thumbnail {
-      height: calc(100vw);
+      height: calc(100vw - 10rem);
     }
 
     .content {
