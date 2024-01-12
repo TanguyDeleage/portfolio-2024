@@ -212,7 +212,7 @@
 /* Tablet */
 @media screen and (min-width: 769px) and (max-width: 1199px) {
   .hero {
-    padding: 0rem 2rem;
+    padding: var(--padding-v) var(--padding-h);
     width: 100vw;
   }
   .hero-container {
@@ -260,6 +260,7 @@
 
   .hero {
     width: 100%;
+    padding: calc(var(--padding-v)) var(--padding-h);
   }
 
   .hero-container {
