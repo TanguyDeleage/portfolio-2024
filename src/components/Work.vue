@@ -217,7 +217,6 @@ export default {
 
   .projects {
     background-color: #000;
-    width: calc( 100vw - (100vw - 2.5rem)/3 - 5px);
     display: flex;
     flex-direction: column;
     gap: 12rem;
@@ -305,7 +304,11 @@ export default {
   @media screen and (min-width: 1200px) {
     aside {
       height: 100vh;
-      width: calc((100vw - 40px)/ 3);
+      width: calc((100% - 2.5rem)/ 3)
+    }
+
+    .projects {
+      width: calc(100% - ((100% - 2.5rem)/ 3))
     }
 
     .mockup {
