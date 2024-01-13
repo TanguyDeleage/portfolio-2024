@@ -2,8 +2,8 @@
     <div class="header" id="hero">
         <!-- Il faut que je remette l'icon en dehors de la div, pour q'iil soit visible en mobile -->
        
-        <a href="/" @mouseenter="iconHover(true)" @mouseleave=iconHover(false) class="brand" title="Home">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="46" viewBox="0 0 40 46" fill="none" alt="Home">
+        <a href="/" class="brand" title="Home">
+            <svg @mouseenter="iconHover(true)" @mouseleave=iconHover(false) class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="46" viewBox="0 0 40 46" fill="none" alt="Home">
                 <path v-for="path in paths" :key="path" :id="path.name" :d="path.path" class="icon-animation" :class="path.class" fill="black" :fill-rule="path.fillRule" :clip-rule="path.fillRule"/>
             </svg>
         </a>
@@ -196,6 +196,28 @@
     @media screen and (min-width: 1200px) {
         .burger {
             display: none;
+        }
+
+        .nav-title::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-brand-highest);
+            bottom: -5px;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-title:hover:after {
+            transform: scaleX(1);
+        }
+
+        .nav-title{
+            position: relative;
+            display: inline-block;
         }
     }
 
