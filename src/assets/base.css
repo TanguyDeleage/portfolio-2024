@@ -10,13 +10,18 @@
 
 --body-background: var(--primary-brand-lowest);
 
---button-primary-background: var(--primary-brand-highest);
---button-primary-text: var(--primary-brand-lowest);
---button-primary-border: var(--primary-brand-highest);
+--button-primary-background: var(--primary-brand-lowest);
+--button-primary-background-hover: var(--primary-brand-lowest);
+--button-primary-text: var(--primary-brand-highest);
+--button-primary-border: var(--primary-brand-lowest);
 
---button-secondary-background: var(--primary-brand-lowest);
---button-secondary-text: var(--primary-brand-highest);
---button-secondary-border: var(--primary-brand-highest);
+--button-secondary-background: var(--primary-brand-highest);
+--button-secondary-background-hover: var(--primary-brand-lowest);
+--button-secondary-text: var(--primary-brand-lowest);
+--button-secondary-border: var(--primary-brand-lowest);
+
+--box-background: var(--primary-brand-lowest);
+--box-border: var(--primary-brand-highest);
 
 
   /* Fonts */

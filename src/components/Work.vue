@@ -298,6 +298,7 @@ export default {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+    justify-content: center;
   }
 
   /* desktop */
@@ -323,6 +324,28 @@ export default {
 
     .thumbnail {
       height: 45rem;
+    }
+
+    .button p::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: var(--primary-brand-lowest);
+      bottom: -5px;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .button p:hover:after {
+        transform: scaleX(1);
+    }
+
+    .button p{
+        position: relative;
+        display: inline-block;
     }
   }
 

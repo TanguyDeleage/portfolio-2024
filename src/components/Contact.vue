@@ -22,7 +22,9 @@
         </a>
       </div>
     </div>
-    <a href="mailto:contact@tanguydeleage.com" class="last-link">contact@tanguydeleage.com</a>
+    <div class="flex">
+      <a href="mailto:contact@tanguydeleage.com" class="last-link">contact@tanguydeleage.com</a>
+    </div>
   </section>
 </template>
   
@@ -209,6 +211,12 @@
       animation: 1.3s moveArrowTop 2.2s ease-out forwards;
   }
 
+  .flex {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+  }
+
   @keyframes moveArrowLeft {
       0% {
           transform: translateY(0) translateX(0) rotate(0);
@@ -253,6 +261,29 @@
 
     .main {
       width: 100%;
+    }
+
+    .last-link::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: var(--primary-brand-highest);
+      bottom: -5px;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .last-link:hover:after {
+        transform: scaleX(1);
+    }
+
+    .last-link{
+        position: relative;
+        display: flex;
+        width: fit-content;
     }
   }
 
