@@ -187,11 +187,6 @@
         transform: translateY(0.2rem) ;
     }
 
-    .no-scroll {
-        overflow: hidden !important;
-        height: 100vh;
-    }
-
     /* desktop */
     @media screen and (min-width: 1200px) {
         .burger {

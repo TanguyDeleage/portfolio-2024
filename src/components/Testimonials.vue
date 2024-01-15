@@ -43,7 +43,7 @@
           {
             text: "He acquired in-depth knowledge of the newly available Figma variables and brilliantly led his very first team workshop, applying these variables to prototypes projecting the full potential of this new feature on our product.",
             author:"Vanessa",
-            job:"Head of Design@Canal+",
+            job:"Head of Design @Canal+",
             avatar: "src/assets/images/testimonials/vanessa.jpg",
           },
           {

@@ -33,5 +33,10 @@ import Contact from './components/Contact.vue'
   html {
   scroll-behavior: smooth;
   }
+
+  .no-scroll {
+        overflow: hidden;
+        height: 100vh;
+    }
   
 </style>
