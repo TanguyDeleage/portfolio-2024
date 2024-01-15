@@ -186,6 +186,9 @@
 
   /* Tablet */
   @media screen and (min-width: 769px) and (max-width: 1199px) {
+    .review {
+      font-size: 0.875rem;
+    }
   }
 
   /* Mobile */
@@ -194,10 +197,12 @@
       flex-direction: column;
       width: 100%;
       gap: 2rem;
+      max-width: 380px;
     }
 
     .review {
       width: 100%;
+      font-size: 0.875rem;
     }
 
     .description {
