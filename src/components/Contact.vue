@@ -152,6 +152,17 @@
     display: flex;
   }
 
+  .social-link div {
+    width: 100%;
+    height: 100%;
+  }
+
+  .social-link div img{
+    width: 100%;
+    height: 100%;
+    filter: grayscale(1);
+  }
+
   .main {
     display: flex;
     flex-direction: column;

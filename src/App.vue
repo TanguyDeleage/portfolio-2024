@@ -34,9 +34,12 @@ import Contact from './components/Contact.vue'
   scroll-behavior: smooth;
   }
 
+  /* Tablet & Mobile*/
+@media screen and (max-width: 1199px) {
   .no-scroll {
         overflow: hidden;
         height: 100vh;
-    }
+  }
+}
   
 </style>

@@ -5,24 +5,38 @@
       <div class="div2 box"><div class="avatar"></div></div>
       <div class="div3 box">
         <p class="box-title">I'm Tanguy</p>
-        <p>A blend of business knowledge and technical skills that I combine to create unique experiences. I’m also a musician, I always have a lot of travel story to share. I love peanut butter and backpacks.</p>
+        <p>A blend of business knowledge and technical skills that I combine to create unique experiences. I'm also a musician, I always have a lot of travel stories to share. I love peanut butter and backpacks.</p>
       </div>
-      <div class="div4 box"> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-      <div class="div5 box">CV</div>
-      <div class="div6 box">PDF <span class="small-display">Portfolio</span></div>
-      <div class="div7 box">
+      <div class="div4 box icon-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <p class="icon">I also play some</p>
+      </div>
+      <a href="" download class="div5 box icon-container" @mouseenter="cvHover" @mouseleave="resetHover">
+        <p class="text">CV</p>
+        <img class="document" src="../assets/images/about/cv.jpg" alt="">
+        <span class="icon"><img src="../assets/icons/download.svg" alt=""></span>
+      </a>
+      <a href="" download class="div6 box icon-container" @mouseenter="pdfHover" @mouseleave="resetHover2">
+        <p class="text2">PDF</p>
+        <img class="document2" src="../assets/images/about/cv.jpg" alt="">
+        <span class="small-display">Portfolio</span>
+        <span class="icon"><img src="../assets/icons/download.svg" alt=""></span>
+      </a>
+      <a href="https://www.figma.com/@tanguydeleage" target="_blank" class="div7 box icon-container">
         <img src="../assets/icons/figma.svg" alt="" class="box-picture">
-      </div>
-      <div class="div8 box">
+        <img class="icon" src="../assets/icons/external-link.svg" alt="">
+      </a>
+      <div class="div8 box icon-container">
         <p class="box-title">Random facts</p>
-        <div class="stories" v-for="(story, index) in stories" :key="story">
-          <p>{{ story.description }}</p>
-          <p>{{index + 1}} / {{ totalStories }}</p>
+        <div class="stories">
+          <p>{{ currentStory.description }}</p>
+          <p class="icon">{{currentStoryIndex + 1}} / {{ totalStories }}</p>
         </div>
       </div>
-      <div class="div9 box">
+      <a href="" target="_blank" class="div9 box icon-container">
         <img src="../assets/icons/medium-big.svg" alt="" class="box-picture">
-      </div>
+        <img class="icon" src="../assets/icons/external-link.svg" alt="">
+      </a>
     </div>
   </section>
 </template>
@@ -36,27 +50,84 @@ export default {
         {
           description: "I hitchhicked +2000km in Australia, 2020, It’s equivalent to Paris-Kiev. I was helped by 24 drivers over 3 weeks. For a car to stop I waited between 4 seconds and 4 hours.",
         },
-        // {
-        //   description: "I traveled +40000km by train in 2023. It’s more than a world tour. I did a lot of travels for jobs and holidays including day and night train mainly through France but also through Europe (Germany, Austria).",
-        //   state: "hidden"
-        // },
-        // {
-        //   description: "I had 2 skate injury making me go to the hospital in only 1 week. The nurse recognised me and asked me if it was again because of skating... I guess I’m just getting old.",
-        //   state: "hidden"
-        // }
-      ]
+        {
+          description: "I traveled +40000km by train in 2023. It’s more than a world tour. I did a lot of travels for jobs and holidays including day and night train mainly through France but also through Europe (Germany, Austria).",
+        },
+        {
+          description: "I had 2 skate injury making me go to the hospital in only 1 week. The nurse recognised me and asked me if it was again because of skating... I guess I’m just getting old.",
+        },
+      ],
+      currentStoryIndex: 0,
     }
   },
   computed: {
     totalStories() {
       return this.stories.length;
     },
+    currentStory() {
+      return this.stories[this.currentStoryIndex];
+    },
+  },
+  methods: {
+    cvHover() {
+      const text = document.querySelector('.text');
+      const doc = document.querySelector('.document');
+
+      text.style.transform = 'translateY(200%)';
+      doc.style.transform = 'translateX(0)';
+    },
+
+    pdfHover() {
+      const text = document.querySelector('.text2');
+      const textBig = document.querySelector('.small-display');
+      const doc = document.querySelector('.document2');
+
+      text.style.transform = 'translateY(200%)';
+      textBig.style.transform = 'translateY(350%)';
+      doc.style.transform = 'translateX(0)';
+    },
+
+    resetHover() {
+      const text = document.querySelector('.text');
+      const doc = document.querySelector('.document');
+
+      text.style.transform = 'translateY(0)';
+      doc.style.transform = 'translateX(-200%) skew(-30deg, 20deg)';
+    },
+
+    resetHover2() {
+      const text = document.querySelector('.text2');
+      const textBig = document.querySelector('.small-display');
+      const doc = document.querySelector('.document2');
+
+      text.style.transform = 'translateY(0)';
+      textBig.style.transform = 'translateY(0)';
+      doc.style.transform = 'translateX(-200%) skew(-30deg, 20deg)';
+    },
+
+    switchStory() {
+      this.currentStoryIndex = (this.currentStoryIndex + 1) % this.totalStories;
+    },
+  },
+  mounted() {
+    // Start the interval when the component is mounted
+    this.storyInterval = setInterval(() => {
+      this.switchStory();
+    }, 6000); // Switch story every 6 seconds
+  },
+  beforeUnmount() {
+    // Clear the interval when the component is about to be destroyed
+    clearInterval(this.storyInterval);
   },
 }
 </script>
   
 <style scoped>
 /* Your styles go here */
+
+a {
+  text-decoration: none;
+}
 .bento-container {
   display: grid;
   grid-column-gap: 20px;
@@ -97,8 +168,8 @@ section {
   background-position: center;
   border-radius: 50%;
   width: 100%;
-  height: 100%;
-  filter: grayscale(1);
+  aspect-ratio: 1/1;
+  height: auto;
 }
 
 .div3, .div8 {
@@ -119,14 +190,17 @@ section {
 }
 
 .div5, .div6 {
-  color: #606060;
-  font-size: 6.5rem;
-  font-weight: 800;
-  line-height: 140%; /* 9.1rem */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.div5 p, .div6 p{
+  color: #606060;
+  font-size: 6.5rem;
+  font-weight: 800;
+  line-height: 140%; /* 9.1rem */
 }
 
 .small-display {
@@ -135,6 +209,7 @@ section {
   font-size: 2.5rem;
   font-weight: 800;
   line-height: 140%; /* 3.5rem */
+  margin-top: -1rem;
 }
 
 .div7, .div9 {
@@ -144,6 +219,18 @@ section {
 
 .box-picture {
   height: 8rem;
+}
+
+.icon-container {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  display: flex;
+  bottom: 1rem;
+  right: 1rem;
+  color: #606060;
 }
 
 @media screen and (min-width: 1211px) {
@@ -174,6 +261,27 @@ section {
     aspect-ratio: 2/1;
   }
   .div9 { grid-area: 3 / 4 / 4 / 5; }
+
+
+  .div7, .div9, .div2, .div4, .div9 {
+    filter: grayscale(1);
+    transition: 0.3s ease-out;
+  }
+  .div7:hover, .div2:hover, .div9:hover, .div4:hover, .div9:hover {
+    filter: grayscale(0);
+  }
+
+  .document, .document2 {
+    width: 50%;
+    position: absolute;
+    transition: 0.5s ease-out;
+    transform: translateX(-200%);
+  }
+
+  .text, .text2, .small-display {
+    transition: 0.5s ease-out;
+  }
+
 }
 
 @media screen and (min-width: 769px) and (max-width: 1210px) {
@@ -203,11 +311,27 @@ section {
     aspect-ratio: 2/1;
   }
   .div9 { grid-area: 6 / 2 / 6 / 2; }
+
+  .document, .document2 {
+    display: none;
+  }
+
+  .icon-container {
+    padding-bottom: 4rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .div2 {
     aspect-ratio: 1/1;
+  }
+
+  .icon-container {
+    padding-bottom: 4rem;
+  }
+
+  .document, .document2 {
+    display: none;
   }
 }
 </style>
