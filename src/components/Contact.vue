@@ -285,6 +285,14 @@
         display: flex;
         width: fit-content;
     }
+
+    .icon {
+      transition: 0.5s ease-out;
+    }
+
+    .icon:hover {
+      transform: translateY(-0.5rem);
+    }
   }
 
   /* Tablet */
