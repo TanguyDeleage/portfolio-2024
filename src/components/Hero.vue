@@ -273,7 +273,8 @@
   }
 
   .hero-wrapper {
-    width: 100%;
+    width: 270px;
+    margin: 0 auto;
   }
 
   .second-line {
@@ -286,6 +287,7 @@
   }
   .description {
     width: 100%;
+    text-align: center;
   }
   .hero-picture {
     width: 100%;
@@ -303,6 +305,10 @@
   .hero-pill {
     font-size: 1rem;
     padding: 0.25rem 0.5rem;
+  }
+
+  .cta {
+    justify-content: center;
   }
 }
 </style>
