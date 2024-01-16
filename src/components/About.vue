@@ -11,7 +11,7 @@
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <p class="icon">I also play some music</p>
       </div>
-      <a href="" download class="div5 box icon-container" @mouseenter="cvHover" @mouseleave="resetHover">
+      <a href="src/assets/documents/CV Tanguy DELEAGE - EN.pdf" download class="div5 box icon-container" @mouseenter="cvHover" @mouseleave="resetHover">
         <p class="text">CV</p>
         <img class="document" src="../assets/images/about/cv.jpg" alt="">
         <span class="icon"><img src="../assets/icons/download.svg" alt=""></span>
@@ -33,8 +33,8 @@
           <p class="icon">{{currentStoryIndex + 1}} / {{ totalStories }}</p>
         </div>
       </div>
-      <a href="" target="_blank" class="div9 box icon-container">
-        <img src="../assets/icons/medium-big.svg" alt="" class="box-picture">
+      <a href="https://www.linkedin.com/in/tanguy-deleage/" target="_blank" class="div9 box icon-container">
+        <img src="../assets/icons/linkedin-big.svg" alt="" class="box-picture">
         <img class="icon" src="../assets/icons/external-link.svg" alt="">
       </a>
     </div>

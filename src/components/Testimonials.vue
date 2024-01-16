@@ -49,7 +49,7 @@
             avatar: "src/assets/images/testimonials/vanessa.jpg",
           },
           {
-            text: "Tout s’est très bien passé, je recommande Tanguy qui nous a fournit un très bon travail tant sur la qualité de ses livrables que sur l’accompagnement lors de l’intégrations.",
+            text: "Tout s'est très bien passé, je recommande Tanguy qui nous a fournit un très bon travail tant sur la qualité de ses livrables que sur l’accompagnement lors de l’intégrations.",
             author:"Kévin",
             job:"Co-founder @Aisty",
             avatar: "",
@@ -201,7 +201,7 @@
       width: 24rem;
       margin-right: 3rem; /* gap between cards */
       box-sizing: content-box; /* Ensure that the margin is included within the defined width */
-      animation: translateinfinite 25s linear infinite;
+      animation: translateinfinite 25s linear infinite; /* Adapt the duration to the number of cards */
     }
 
     .description h3 {
