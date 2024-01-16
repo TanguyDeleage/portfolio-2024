@@ -220,7 +220,7 @@
             transform: scale(1.2);
         }
         .calendly:hover img{
-            transform: rotate(35deg);
+            transform: scale(1.2);
         }
         .mail img {
             transition: 0.3s ease-in;

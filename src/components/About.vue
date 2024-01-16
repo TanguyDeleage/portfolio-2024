@@ -18,7 +18,7 @@
       </a>
       <a href="" download class="div6 box icon-container" @mouseenter="pdfHover" @mouseleave="resetHover2">
         <p class="text2">PDF</p>
-        <img class="document2" src="../assets/images/about/cv.jpg" alt="">
+        <img class="document2" src="../assets/images/about/portfolio.png" alt="">
         <span class="small-display">Portfolio</span>
         <span class="icon"><img src="../assets/icons/download.svg" alt=""></span>
       </a>
@@ -48,13 +48,19 @@ export default {
     return {
       stories: [
         {
-          description: "I hitchhicked +2000km in Australia, 2020, It’s equivalent to Paris-Kiev. I was helped by 24 drivers over 3 weeks. For a car to stop I waited between 4 seconds and 4 hours.",
+          description: "In 2020, I hitchhicked +2000km in Australia. It's equivalent to Paris-Kiev. It required the help of 24 drivers over 3 weeks. In average a car stopped after 30min, 4 seconds was the minimum, 4 hours the maximum."
         },
         {
-          description: "I traveled +40000km by train in 2023. It’s more than a world tour. I did a lot of travels for jobs and holidays including day and night train mainly through France but also through Europe (Germany, Austria).",
+          description: "I know how to do a backflip on the ground, a spin on a trampoline, a 180° in skateboard, I can boulder 7A+ routes, and I already surfed in Nazaré."
         },
         {
-          description: "I had 2 skate injuries making me go to the hospital in only 1 week. The nurse recognised me and asked me if it was again because of skating... I guess I’m just getting old.",
+          description: "In 2023, I traveled +40000km by train, It's more than a world tour. I now know every western train company and became a specialist of night trains.",
+        },
+        {
+          description: "During summer 2023, I had 2 skateboard injuries (the same week) and went to the hospital. The nurse recognized me."
+        },
+        {
+          description: "When I'm bored I make music, playing the piano, bass, ukulele and Computer Assisted Music. At the moment I have over 100 instrumentals sitting in my computer waiting for me to do something with them."
         },
       ],
       currentStoryIndex: 0,
@@ -180,7 +186,7 @@ section {
   gap: 1rem;
   color: #818181;
   text-align: left;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 300;
 }
 
@@ -233,6 +239,12 @@ section {
   color: #606060;
 }
 
+.stories {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
 @media screen and (min-width: 1211px) {
 
   .bento-container {
@@ -272,10 +284,18 @@ section {
   }
 
   .document, .document2 {
-    width: 50%;
+    /* width: 50%; */
     position: absolute;
     transition: 0.5s ease-out;
     transform: translateX(-200%);
+  }
+
+  .document2 {
+    width: 100%;
+  }
+
+  .document {
+    width: 60%;
   }
 
   .text, .text2, .small-display {
@@ -289,6 +309,7 @@ section {
 
   .div7 .box-picture, .div9 .box-picture {
     transition: 0.3s ease-out;
+    height: auto;
   } 
 
 }

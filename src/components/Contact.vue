@@ -49,16 +49,16 @@
             logo: "src/assets/icons/figma.svg",
             url : "https://www.figma.com/@tanguydeleage",
           },
-          {
-            name: "Medium",
-            logo: "src/assets/icons/medium.svg",
-            url : "",
-          },
           // {
-          //   name: "Bento",
-          //   logo: "",
-          //   url : "https://bento.me/tanguy-deleage",
+          //   name: "Medium",
+          //   logo: "src/assets/icons/medium.svg",
+          //   url : "",
           // },
+          {
+            name: "Bento",
+            logo: "src/assets/icons/bento.svg",
+            url : "https://bento.me/tanguy-deleage",
+          },
           {
             name: "Github",
             logo: "src/assets/icons/github.svg",
