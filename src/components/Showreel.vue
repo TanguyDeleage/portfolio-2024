@@ -1,12 +1,16 @@
 <template>
     <section>
-        <div class="grid-container">
-            <div v-for="(column, columnIndex) in columns" :key="columnIndex" class="column">
-                <div v-for="(project, projectIndex) in column" :key="projectIndex" class="cell" :style="{ backgroundImage: 'url(' + project.imageUrl + ')', backgroundPosition: project.position, height: '100%', backgroundSize: project.size}">
-                </div>
+      <div class="grid-container" v-if="isMobile">
+          <div v-for="project in projects" :key="projects" class="cell" :style="{ backgroundImage: 'url(' + project.imageUrl + ')', backgroundPosition: project.position, height: '100%', backgroundSize: project.size}">
+          </div>
+      </div>
+      <div class="grid-container" v-else>
+          <div v-for="(column, columnIndex) in columns" :key="columnIndex" class="column">
+            <div v-for="(project, projectIndex) in column" :key="projectIndex" class="cell" :style="{ backgroundImage: 'url(' + project.imageUrl + ')', backgroundPosition: project.position, height: '100%', backgroundSize: project.size}">
             </div>
-        </div>
-    </section>
+          </div>
+      </div>
+  </section>
 </template>
   
 <script>
@@ -26,6 +30,9 @@
         ],
         columnProjectCounts: [3, 3, 1], // Adjust the number of projects for each column
         columns: [],
+        isDesktop: window.innerWidth >= 1200,
+        isTablet: window.innerWidth >= 769 && window.innerWidth < 1200,
+        isMobile: window.innerWidth < 769,
       };
     },
     mounted() {
@@ -41,7 +48,20 @@
           startIndex = endIndex;
         });
       },
+      handleResize() {
+        this.isDesktop = window.innerWidth >= 1200;
+        this.isTablet = window.innerWidth >= 769 && window.innerWidth < 1200;
+        this.isMobile = window.innerWidth < 769;
+      },
     },
+    created() {
+    // Add resize event listener to update isDesktop and isTablet on window resize
+      window.addEventListener('resize', this.handleResize);
+    },
+    unmounted() {
+      // Remove resize event listener when component is destroyed
+      window.removeEventListener('resize', this.handleResize);
+    },  
   };
   </script>
   
@@ -79,6 +99,26 @@
     background-size: cover; /* Ensure the background image covers the entire cell */
     background-position: center; /* Center the background image within the cell */
     /* background-color: bisque; */
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 769px) and (max-width: 1199px) {
+    .grid-container {
+      scale: 1.5;
+      gap: 0.5rem;
+    }
+
+    .column {
+      gap: 0.5rem;
+    }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+    .grid-container {
+      flex-direction: column;
+      padding: 0 1rem;
+    }
   }
   </style>
   

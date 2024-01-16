@@ -23,8 +23,8 @@
             </a>
         </nav>
         <div class="quick-links" @click="openMenu()">
-            <a class="header-box" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon"></a>
-            <a class="header-box" href="https://calendly.com/tdeleage/hello" target="_blank">
+            <a class="header-box mail" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon"></a>
+            <a class="header-box calendly" href="https://calendly.com/tdeleage/hello" target="_blank">
                 <img src="../assets/icons/google-meet.svg" alt="Google Drive icon ">
                 Book a meeting
             </a>
@@ -113,6 +113,7 @@
         font-weight: 500;
         line-height: 1.5rem; /* 150% */
         gap: 0.5rem;
+        overflow: hidden;
     }
 
     .quick-links {
@@ -213,6 +214,19 @@
         .nav-title{
             position: relative;
             display: inline-block;
+        }
+
+        .mail:hover img {
+            transform: scale(1.2);
+        }
+        .calendly:hover img{
+            transform: rotate(35deg);
+        }
+        .mail img {
+            transition: 0.3s ease-in;
+        }
+        .calendly img {
+            transition: 0.3s ease-out;
         }
     }
 

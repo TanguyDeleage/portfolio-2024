@@ -9,7 +9,7 @@
       </div>
       <div class="div4 box icon-container">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        <p class="icon">I also play some</p>
+        <p class="icon">I also play some music</p>
       </div>
       <a href="" download class="div5 box icon-container" @mouseenter="cvHover" @mouseleave="resetHover">
         <p class="text">CV</p>
@@ -54,7 +54,7 @@ export default {
           description: "I traveled +40000km by train in 2023. It’s more than a world tour. I did a lot of travels for jobs and holidays including day and night train mainly through France but also through Europe (Germany, Austria).",
         },
         {
-          description: "I had 2 skate injury making me go to the hospital in only 1 week. The nurse recognised me and asked me if it was again because of skating... I guess I’m just getting old.",
+          description: "I had 2 skate injuries making me go to the hospital in only 1 week. The nurse recognised me and asked me if it was again because of skating... I guess I’m just getting old.",
         },
       ],
       currentStoryIndex: 0,
@@ -113,7 +113,7 @@ export default {
     // Start the interval when the component is mounted
     this.storyInterval = setInterval(() => {
       this.switchStory();
-    }, 6000); // Switch story every 6 seconds
+    }, 8000); // Switch story every 8 seconds
   },
   beforeUnmount() {
     // Clear the interval when the component is about to be destroyed
@@ -281,6 +281,15 @@ section {
   .text, .text2, .small-display {
     transition: 0.5s ease-out;
   }
+
+  .div7:hover .box-picture, .div9:hover .box-picture {
+    scale: 1.2;
+    transition: 0.3s ease-out;
+  } 
+
+  .div7 .box-picture, .div9 .box-picture {
+    transition: 0.3s ease-out;
+  } 
 
 }
 

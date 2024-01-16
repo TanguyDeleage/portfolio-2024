@@ -10,19 +10,21 @@
       
 
     </div>
-    <div class="reviews">
-      <div class="review" v-for="review in displayedReviews" :key="review">
-        <p>"{{ review.text }}"</p>
-        <div class="source">
-          <img :src="review.avatar" alt="">
-          <div>
-            <p class="author">{{ review.author }}</p>
-            <p class="job">{{ review.job }}</p>
+    <div class="reviews-container">
+      <ul class="reviews">
+        <li class="highway-car" v-for="(review, index) in displayedReviews" :key="index">
+          <div class="review">
+            <p>"{{ review.text }}"</p>
+            <div class="source">
+              <img :src="review.avatar" alt="">
+              <div>
+                <p class="author">{{ review.author }}</p>
+                <p class="job">{{ review.job }}</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
-      
+        </li>
+      </ul>
     </div>
   </section>
 </template>
@@ -58,7 +60,12 @@
     computed: {
       displayedReviews() {
         // Return only the first three reviews for mobile
-        return this.isMobile ? this.reviews.slice(0, 3) : this.reviews;
+        const reviewsToShow = this.isMobile ? this.reviews.slice(0, 3) : this.duplicatedReviews;
+        return reviewsToShow;
+      },
+      duplicatedReviews() {
+        const numberOfDuplicates = 2; // Adjust based on the number of times you want to repeat reviews
+        return Array.from({ length: numberOfDuplicates }, () => this.reviews).flat();
       },
     },
 
@@ -66,6 +73,7 @@
       // Add event listener to check for resize and update isMobile accordingly
       window.addEventListener('resize', this.updateIsMobile);
       this.updateIsMobile();
+
     },
 
     methods: {
@@ -123,12 +131,6 @@
     gap: 1rem;
   }
 
-  .reviews {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 3rem;
-  }
   .review{
     display: flex;
     width: 24rem;
@@ -140,6 +142,26 @@
     border: 1px solid #B1B1B1;
     background-color: var(--primary-brand-lowest);
     gap: 1rem;
+    height: 100%;
+  }
+
+  .reviews {
+    width: calc((24rem + 3rem) * 3); /* 24rem = width of 1 card | 3rem = gap between each cards | 3 the number of cards to adapt */
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    margin: 0; 
+    list-style: none;
+    align-items: stretch;
+  }
+
+  @keyframes translateinfinite {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc((-24rem - 3rem) * 3)); /* Should be the same value than the .reviews width mais en négatif */
+    }
   }
 
   .review img {
@@ -175,8 +197,11 @@
 
   /* Desktop */
   @media screen and (min-width: 1200px) {
-    .reviews {
-      width: 100%;
+    li.highway-car {
+      width: 24rem;
+      margin-right: 3rem; /* gap between cards */
+      box-sizing: content-box; /* Ensure that the margin is included within the defined width */
+      animation: translateinfinite 25s linear infinite;
     }
 
     .description h3 {
@@ -188,6 +213,13 @@
   @media screen and (min-width: 769px) and (max-width: 1199px) {
     .review {
       font-size: 0.875rem;
+    }
+
+    li.highway-car {
+      width: 24rem; /* Adjust the width based on your review card width */
+      margin-right: 3rem; /* Adjust the margin to create the gap between cards */
+      box-sizing: content-box; /* Ensure that the margin is included within the defined width */
+      animation: translateinfinite 25s linear infinite; /* Adjust the duration as needed */
     }
   }
 

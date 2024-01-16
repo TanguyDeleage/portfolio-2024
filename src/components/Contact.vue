@@ -95,30 +95,30 @@
     },
     methods: {
       logoArrow() {
-          const arrow = document.querySelector('.arrow')
-          const rect = arrow.getBoundingClientRect();
-          const distanceToTop = rect.top;
+        const arrow = document.querySelector('.arrow')
+        const rect = arrow.getBoundingClientRect();
+        const distanceToTop = rect.top;
 
-          const leftPart = document.querySelector('.move-left-start')
-          const rightPart = document.querySelector('.move-right-start')
-          const topPart = document.querySelector('.move-top-start')
+        const leftPart = document.querySelector('.move-left-start')
+        const rightPart = document.querySelector('.move-right-start')
+        const topPart = document.querySelector('.move-top-start')
 
-          let threshold;
-          if (window.innerWidth < 640) {
-              threshold = this.heightThreshold.mobile;
-          } else if (window.innerWidth < 980) {
-              threshold = this.heightThreshold.tablet;
-          } else {
-              threshold = this.heightThreshold.desktop;
-          }
-
-          if (distanceToTop < threshold) {
-              leftPart.classList.add('move-left');
-              rightPart.classList.add('move-right');
-              topPart.classList.add('move-top');
-          }
+        let threshold;
+        if (window.innerWidth < 640) {
+            threshold = this.heightThreshold.mobile;
+        } else if (window.innerWidth < 980) {
+            threshold = this.heightThreshold.tablet;
+        } else {
+            threshold = this.heightThreshold.desktop;
         }
-      }
+
+        if (distanceToTop < threshold) {
+            leftPart.classList.add('move-left');
+            rightPart.classList.add('move-right');
+            topPart.classList.add('move-top');
+        }
+      },
+    }
   }
   </script>
   
