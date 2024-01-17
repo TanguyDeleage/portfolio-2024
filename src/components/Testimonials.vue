@@ -2,7 +2,7 @@
   <section id="reviews">
     <div class="description">
       <h3>Tested and approuved</h3>
-      <p>Chaque fin de mission est l'occasion de vous demander ce que vous avez pensé de notre collaboration et de comment améliorer les choses</p>
+      <p>At the end of each assignment, we ask you what you thought of our collaboration and how we can improve things.</p>
       <div class="cta">
         <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn primary">Book a free call</a>
         <a href="mailto:contact@tanguydeleage.com" class="btn secondary">Send an email</a>
@@ -36,11 +36,17 @@
       return {
         isMobile: window.innerWidth <= 768,
         reviews: [
+          // {
+          //   text: "Tanguy a apporté une contribution significative à notre équipe en repensant notre approche en matière de conception et en améliorant notre façon de travailler.",
+          //   author:"Romain",
+          //   job:"COO @Kuartz",
+          //   avatar: "",
+          // },
           {
-            text: "Tanguy a apporté une contribution significative à notre équipe en repensant notre approche en matière de conception et en améliorant notre façon de travailler.",
-            author:"Romain",
-            job:"COO @Kuartz",
-            avatar: "",
+            text: "I really wanted to thank you for the 6 months you've spent working with the IA team. I really appreciated your human qualities, of course, but also your open-mindedness, agility, responsiveness, rigour and solidarity.",
+            author:"Patrice",
+            job:"Lead Product Owner AI @Orange",
+            avatar: "src/assets/images/testimonials/patrice.jpg",
           },
           {
             text: "He acquired in-depth knowledge of the newly available Figma variables and brilliantly led his very first team workshop, applying these variables to prototypes projecting the full potential of this new feature on our product.",
@@ -49,11 +55,17 @@
             avatar: "src/assets/images/testimonials/vanessa.jpg",
           },
           {
-            text: "Tout s'est très bien passé, je recommande Tanguy qui nous a fournit un très bon travail tant sur la qualité de ses livrables que sur l’accompagnement lors de l’intégrations.",
-            author:"Kévin",
-            job:"Co-founder @Aisty",
-            avatar: "",
+            text: "Extremely efficient and very helpful! Well done!",
+            author:"Olivier",
+            job:"Lead Developer @Orange",
+            avatar: "src/assets/images/testimonials/olivier.png",
           },
+          // {
+          //   text: "Tout s'est très bien passé, je recommande Tanguy qui nous a fournit un très bon travail tant sur la qualité de ses livrables que sur l’accompagnement lors de l’intégrations.",
+          //   author:"Kévin",
+          //   job:"Co-founder @Aisty",
+          //   avatar: "",
+          // },
         ]
       }
     },
