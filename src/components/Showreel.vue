@@ -19,13 +19,13 @@
     data() {
       return {
         projects: [
-          { name: 'Project 1', imageUrl: '/assets/images/showreel/project_1.jpg', position: "center", size: "cover", },
-          { name: 'Project 2', imageUrl: '/assets/images/showreel/project_2.jpg', position: "top", size: "cover", },
-          { name: 'Project 3', imageUrl: '/assets/images/showreel/project_3.jpg', position: "bottom", size: "cover", },
-          { name: 'Project 4', imageUrl: '/assets/images/showreel/project_4.jpg', position: "bottom", size: "cover", },
-          { name: 'Project 5', imageUrl: '/assets/images/showreel/project_5.jpg', position: "center", size: "cover", },
-          { name: 'Project 6', imageUrl: '/assets/images/showreel/project_4.jpg', position: "top", size: "cover", },
-          { name: 'Project 7', imageUrl: '/assets/images/showreel/project_3.jpg', position: "top", size: "contain", },
+          { name: 'Project 1', imageUrl: 'assets/images/showreel/project_1.jpg', position: "center", size: "cover", },
+          { name: 'Project 2', imageUrl: 'assets/images/showreel/project_2.jpg', position: "top", size: "cover", },
+          { name: 'Project 3', imageUrl: 'assets/images/showreel/project_3.jpg', position: "bottom", size: "cover", },
+          { name: 'Project 4', imageUrl: 'assets/images/showreel/project_4.jpg', position: "bottom", size: "cover", },
+          { name: 'Project 5', imageUrl: 'assets/images/showreel/project_5.jpg', position: "center", size: "cover", },
+          { name: 'Project 6', imageUrl: 'assets/images/showreel/project_4.jpg', position: "top", size: "cover", },
+          { name: 'Project 7', imageUrl: 'assets/images/showreel/project_3.jpg', position: "top", size: "contain", },
           // Add more projects as needed
         ],
         columnProjectCounts: [3, 3, 1], // Adjust the number of projects for each column
