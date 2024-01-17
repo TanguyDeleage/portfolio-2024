@@ -41,12 +41,12 @@
           },
           {
             name: "Behance",
-            logo: "@/assets/icons/behance.svg",
+            logo: "../assets/icons/behance.svg",
             url : "https://www.behance.net/tanguy-deleage",
           },
           {
             name: "Figma",
-            logo: "/src/assets/icons/figma.svg",
+            logo: "../assets/icons/figma.svg",
             url : "https://www.figma.com/@tanguydeleage",
           },
           // {
