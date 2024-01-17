@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "https://tanguydeleage.github.io/",
+  base: "https://tanguydeleage.github.io/portfolio-2024/",
   // Base à remplacer par "/" quand domaine perso
   plugins: [
     vue(),
