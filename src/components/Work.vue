@@ -79,24 +79,24 @@ export default {
           title: 'Kuartz',
           description : 'Transforming energy contracts : from paperwork to digital efficiency',
           tags: ["UX Design", "Desktop", "SaaS"],
-          mockup: '../assets/images/work/kuartz.png',
-          index: '../assets/images/work/index-2.svg',
+          mockup: 'assets/images/work/kuartz.png',
+          index: 'assets/images/work/index-2.svg',
           link: "https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector?tracking_source=project_owner_other_projects"
         },
         {
           title: 'Matematch',
           description : '10 days to help foreign students live a deeper exchange experience',
           tags: ["Product Design", "Mobile", "WebApp"],
-          mockup: '../assets/images/work/matematch.png',
-          index: '../assets/images/work/index-3.svg',
+          mockup: 'assets/images/work/matematch.png',
+          index: 'assets/images/work/index-3.svg',
           link: "https://www.behance.net/gallery/175709177/Matematch-Mobile-App-for-foreign-students-Le-Wagon?tracking_source=project_owner_other_projects"
         },
         {
           title: 'Aisty',
           description : 'Lorem ipsum dolor sit amet',
           tags: ["UI Design", "Responsive", "WebApp"],
-          mockup: '../assets/images/work/aisty.png',
-          index: '../assets/images/work/index-4.svg',
+          mockup: 'assets/images/work/aisty.png',
+          index: 'assets/images/work/index-4.svg',
           link: ""
         }
       ]
