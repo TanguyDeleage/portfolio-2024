@@ -58,7 +58,7 @@
             text: "Extremely efficient and very helpful! Well done!",
             author:"Olivier",
             job:"Lead Developer @Orange",
-            avatar: "src/assets/images/testimonials/olivier.png",
+            avatar: "assets/images/testimonials/olivier.png",
           }
           // {
           //   text: "Tout s'est très bien passé, je recommande Tanguy qui nous a fournit un très bon travail tant sur la qualité de ses livrables que sur l’accompagnement lors de l’intégrations.",
