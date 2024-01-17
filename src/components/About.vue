@@ -11,12 +11,12 @@
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <p class="icon">I also play some music</p>
       </div>
-      <a href="src/assets/documents/CV Tanguy DELEAGE - EN.pdf" download class="div5 box icon-container" @mouseenter="cvHover" @mouseleave="resetHover">
+      <a href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download class="div5 box icon-container" @mouseenter="cvHover" @mouseleave="resetHover">
         <p class="text">CV</p>
         <img class="document" src="../assets/images/about/cv.jpg" alt="">
         <span class="icon"><img src="../assets/icons/download.svg" alt=""></span>
       </a>
-      <a href="src/assets/documents/PDF Portfolio.pdf" download class="div6 box icon-container" @mouseenter="pdfHover" @mouseleave="resetHover2">
+      <a href="assets/documents/PDF Portfolio.pdf" download class="div6 box icon-container" @mouseenter="pdfHover" @mouseleave="resetHover2">
         <p class="text2">PDF</p>
         <img class="document2" src="../assets/images/about/portfolio.png" alt="">
         <span class="small-display">Portfolio</span>
