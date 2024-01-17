@@ -36,32 +36,32 @@
         links: [
           {
             name: "Linkedin",
-            logo: "../assets/icons/linkedin.svg",
+            logo: "assets/icons/linkedin.svg",
             url : "https://www.linkedin.com/in/tanguy-deleage/",
           },
           {
             name: "Behance",
-            logo: "../assets/icons/behance.svg",
+            logo: "assets/icons/behance.svg",
             url : "https://www.behance.net/tanguy-deleage",
           },
           {
             name: "Figma",
-            logo: "../assets/icons/figma.svg",
+            logo: "assets/icons/figma.svg",
             url : "https://www.figma.com/@tanguydeleage",
           },
           // {
           //   name: "Medium",
-          //   logo: "src/assets/icons/medium.svg",
+          //   logo: "assets/icons/medium.svg",
           //   url : "",
           // },
           {
             name: "Bento",
-            logo: "src/assets/icons/bento.svg",
+            logo: "assets/icons/bento.svg",
             url : "https://bento.me/tanguy-deleage",
           },
           {
             name: "Github",
-            logo: "src/assets/icons/github.svg",
+            logo: "assets/icons/github.svg",
             url : "https://github.com/TanguyDeleage",
           },
         ],
