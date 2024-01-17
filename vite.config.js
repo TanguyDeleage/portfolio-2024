@@ -5,8 +5,10 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/portfolio-2024/",
-  // Base à remplacer par "/" quand domaine perso
+  base: "/",
+  build: {
+    assetsDir: "portfolio-2024",
+  },
   plugins: [
     vue(),
   ],
