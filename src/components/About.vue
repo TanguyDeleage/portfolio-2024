@@ -16,7 +16,7 @@
         <img class="document" src="../assets/images/about/cv.jpg" alt="">
         <span class="icon"><img src="../assets/icons/download.svg" alt=""></span>
       </a>
-      <a href="" download class="div6 box icon-container" @mouseenter="pdfHover" @mouseleave="resetHover2">
+      <a href="src/assets/documents/PDF Portfolio.pdf" download class="div6 box icon-container" @mouseenter="pdfHover" @mouseleave="resetHover2">
         <p class="text2">PDF</p>
         <img class="document2" src="../assets/images/about/portfolio.png" alt="">
         <span class="small-display">Portfolio</span>
