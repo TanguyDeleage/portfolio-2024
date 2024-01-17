@@ -32,7 +32,7 @@ import Contact from './components/Contact.vue'
 
   @font-face {
     font-family: 'Eklektyk';
-    src: url(src/assets/fonts/Eklektyk-Stencil.otf);
+    src: url(@/assets/fonts/Eklektyk-Stencil.otf);
     font-display: swap;
   }
 
