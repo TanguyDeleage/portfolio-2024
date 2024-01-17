@@ -36,7 +36,7 @@
           </div>
           <a :href=project.link target="_blank" class="button">
             <p>View project</p>
-            <img :src="('/assets/icons/chevron-right.svg')">
+            <img :src="('public/assets/icons/chevron-right.svg')">
           </a>
         </div>
       </div>
