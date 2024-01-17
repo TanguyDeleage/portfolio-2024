@@ -71,8 +71,8 @@ export default {
           title: 'Canal+',
           description : 'Allowing Mac users to download offline content',
           tags: ["Product Design", "Responsive", "Streaming Platform"],
-          mockup: '../assets/images/work/canal.png',
-          index: '../assets/images/work/index-1.svg',
+          mockup: 'assets/images/work/canal.png',
+          index: 'assets/images/work/index-1.svg',
           link: "https://www.behance.net/gallery/179911807/Download-Offline-Content-MyCANAL"
         },
         {
