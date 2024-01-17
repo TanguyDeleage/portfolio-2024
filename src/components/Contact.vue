@@ -36,17 +36,17 @@
         links: [
           {
             name: "Linkedin",
-            logo: "src/assets/icons/linkedin.svg",
+            logo: "../assets/icons/linkedin.svg",
             url : "https://www.linkedin.com/in/tanguy-deleage/",
           },
           {
             name: "Behance",
-            logo: "src/assets/icons/behance.svg",
+            logo: "@/assets/icons/behance.svg",
             url : "https://www.behance.net/tanguy-deleage",
           },
           {
             name: "Figma",
-            logo: "src/assets/icons/figma.svg",
+            logo: "/src/assets/icons/figma.svg",
             url : "https://www.figma.com/@tanguydeleage",
           },
           // {
