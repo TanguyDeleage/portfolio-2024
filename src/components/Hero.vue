@@ -36,8 +36,8 @@
           </div>
         </div>  
         <div class="cta">
-          <button class="btn primary">Discover projects</button>
-          <button class="btn secondary">About me</button>
+          <a class="btn primary" href="#work">Discover projects</a>
+          <a class="btn secondary" href="#about">About me</a>
         </div>
       </div>
       <div class="description">
@@ -64,8 +64,8 @@
           <p>I'm a Product passionnate with a holistic perspective from business to development. I have diverse experiences, in Big Groups, Digital agency and startup.</p>
         </div>
         <div class="cta">
-          <a href="" target="_blank" class="btn primary">Discover projects</a>
-        <a href="" class="btn secondary">About me</a>
+          <a class="btn primary" href="#work">Discover projects</a>
+          <a class="btn secondary" href="#about">About me</a>
         </div>
       </div>
     </div>
