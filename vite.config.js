@@ -1,13 +1,11 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import path from 'path';
+import { fileURLToPath, URL } from 'node:url'
 
-// Get the directory name of the current module
-const __dirname = path.resolve();
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/portfolio-2024/',
+  base: "/portfolio-2024/",
   build: {
     assetsDir: 'assets',
   },
@@ -16,7 +14,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-  },
-});
+      '@': fileURLToPath(new URL('/src', import.meta.url)),
+    }
+  }
+})
