@@ -30,6 +30,15 @@ import Contact from './components/Contact.vue'
 
 <style>
 
+  @font-face {
+    font-family: 'Eklektyk';
+    src: url(src/assets/fonts/Eklektyk-Stencil.otf);
+    font-display: swap;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Sorts+Mill+Goudy:ital@1&display=swap');
+
+
   html {
   scroll-behavior: smooth;
   }
