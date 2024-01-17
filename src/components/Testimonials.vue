@@ -46,7 +46,7 @@
             text: "I really wanted to thank you for the 6 months you've spent working with the IA team. I really appreciated your human qualities, of course, but also your open-mindedness, agility, responsiveness, rigour and solidarity.",
             author:"Patrice",
             job:"Lead Product Owner AI @Orange",
-            avatar: "src/assets/images/testimonials/patrice.jpg",
+            avatar: "patrice.jpg",
           },
           {
             text: "He acquired in-depth knowledge of the newly available Figma variables and brilliantly led his very first team workshop, applying these variables to prototypes projecting the full potential of this new feature on our product.",
