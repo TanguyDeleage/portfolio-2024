@@ -35,8 +35,9 @@
             </div>
           </div>
           <a :href=project.link target="_blank" class="button">
-            <p>View project</p>
-            <img src="/assets/icons/chevron-right.svg" alt="">
+            <p>Read case study</p>
+            <!-- <img src="/assets/icons/chevron-right.svg" alt=""> -->
+            <img src="/assets/icons/external-link.svg" style="width: 24px;" alt="">
           </a>
         </div>
       </div>
@@ -301,6 +302,7 @@ export default {
     flex-direction: row;
     gap: 0.5rem;
     justify-content: center;
+    align-items: center;
   }
 
   /* desktop */
