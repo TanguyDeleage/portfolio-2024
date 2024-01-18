@@ -50,7 +50,7 @@ const Contact = defineAsyncComponent(() =>
   import('./components/Contact.vue')
 );
 
-import Header from'./components/Hero.vue';
+import Header from'./components/Header.vue';
 import Hero from'./components/Hero.vue';
 // import Showreel from'./components/Showreel.vue';
 // import Work from'./components/Work.vue';
