@@ -1,7 +1,7 @@
 <template>
   <section id="reviews">
     <div class="description">
-      <h3>Tested and approuved</h3>
+      <h3>Tested and approved</h3>
       <p>At the end of each assignment, we ask you what you thought of our collaboration and how we can improve things.</p>
       <div class="cta">
         <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn primary">Book a free call</a>
@@ -16,7 +16,7 @@
           <div class="review">
             <p>"{{ review.text }}"</p>
             <div class="source">
-              <img :src="review.avatar" alt="">
+              <img :src="review.avatar" :alt="review.author" loading="lazy">
               <div>
                 <p class="author">{{ review.author }}</p>
                 <p class="job">{{ review.job }}</p>
@@ -43,7 +43,7 @@
           //   avatar: "",
           // },
           {
-            text: "I really wanted to thank you for the 6 months you've spent working with the IA team. I really appreciated your human qualities, of course, but also your open-mindedness, agility, responsiveness, rigour and solidarity.",
+            text: "I really want to thank you for the 6 months you've spent working with the IA team. I truly appreciated not only your human qualities but also your open-mindedness, agility, responsiveness, rigor, and solidarity.",
             author:"Patrice",
             job:"Lead Product Owner AI @Orange",
             avatar: "assets/images/testimonials/patrice.jpg",

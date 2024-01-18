@@ -23,9 +23,9 @@
             </a>
         </nav>
         <div class="quick-links" @click="openMenu()">
-            <a class="header-box mail" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon"></a>
+            <a class="header-box mail" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon" loading="lazy"></a>
             <a class="header-box calendly" href="https://calendly.com/tdeleage/hello" target="_blank">
-                <img src="../assets/icons/google-meet.svg" alt="Google Drive icon ">
+                <img src="../assets/icons/google-meet.svg" alt="Google Drive icon " loading="lazy">
                 Book a meeting
             </a>
         </div>

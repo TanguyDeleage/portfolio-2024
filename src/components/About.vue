@@ -5,7 +5,7 @@
       <div class="div2 box"><div class="avatar"></div></div>
       <div class="div3 box">
         <p class="box-title">I'm Tanguy</p>
-        <p>A blend of business knowledge and technical skills that I combine to create unique experiences. I'm also a musician, I always have a lot of travel stories to share. I love peanut butter and backpacks.</p>
+        <p>I'm a blend of business knowledge and technical skills that I combine to create unique experiences. Additionally, I'm a musician, always armed with numerous travel stories to share. I love peanut butter and backpacks.</p>
       </div>
       <div class="div4 box icon-container">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -13,18 +13,18 @@
       </div>
       <a href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download class="div5 box icon-container" @mouseenter="cvHover" @mouseleave="resetHover">
         <p class="text">CV</p>
-        <img class="document" src="../assets/images/about/cv.jpg" alt="">
-        <span class="icon"><img src="../assets/icons/download.svg" alt=""></span>
+        <img class="document" src="../assets/images/about/cv.jpg" alt="CV Tanguy Deléage" loading="lazy">
+        <span class="icon"><img src="../assets/icons/download.svg" alt="Download icon" loading="lazy"></span>
       </a>
       <a href="assets/documents/PDF Portfolio - Tanguy DELEAGE.pdf" download class="div6 box icon-container" @mouseenter="pdfHover" @mouseleave="resetHover2">
         <p class="text2">PDF</p>
-        <img class="document2" src="../assets/images/about/portfolio.png" alt="">
+        <img class="document2" src="../assets/images/about/portfolio.png" alt="Portfolio Tanguy Deléage" loading="lazy">
         <span class="small-display">Portfolio</span>
-        <span class="icon"><img src="../assets/icons/download.svg" alt=""></span>
+        <span class="icon"><img src="../assets/icons/download.svg" alt="Download icon" loading="lazy"></span>
       </a>
       <a href="https://www.figma.com/@tanguydeleage" target="_blank" class="div7 box icon-container">
-        <img src="../assets/icons/figma.svg" alt="" class="box-picture">
-        <img class="icon" src="../assets/icons/external-link.svg" alt="">
+        <img src="../assets/icons/figma.svg" alt="Icon Figma" class="box-picture" loading="lazy">
+        <img class="icon" src="../assets/icons/external-link.svg" alt="External-link icon" loading="lazy">
       </a>
       <div class="div8 box icon-container">
         <p class="box-title">Random facts</p>
@@ -37,8 +37,8 @@
         </div>
       </div>
       <a href="https://www.linkedin.com/in/tanguy-deleage/" target="_blank" class="div9 box icon-container">
-        <img src="../assets/icons/linkedin-big.svg" alt="" class="box-picture">
-        <img class="icon" src="../assets/icons/external-link.svg" alt="">
+        <img src="../assets/icons/linkedin-big.svg" alt="Linkedin icon" class="box-picture" loading="lazy">
+        <img class="icon" src="../assets/icons/external-link.svg" alt="External link icon" loading="lazy">
       </a>
     </div>
   </section>
@@ -51,19 +51,19 @@ export default {
     return {
       stories: [
         {
-          description: "In 2020, I hitchhicked +2000km in Australia. It's equivalent to Paris-Kiev. It required the help of 24 drivers over 3 weeks. In average a car stopped after 30min, 4 seconds was the minimum, 4 hours the maximum."
+          description: "In 2020, I hitchhiked over 2000 km in Australia, equivalent to the distance between Paris and Kiev. It required the help of 24 drivers over 3 weeks. On average, a car stopped after 30 minutes, with 4 seconds being the minimum and 4 hours the maximum."
         },
         {
-          description: "I know how to do a backflip on the ground, a spin on a trampoline, a 180° in skateboard, I can boulder 7A+ routes, and I already surfed in Nazaré."
+          description: "I know how to do a backflip on the ground, execute a spin on a trampoline, perform a 180° on a skateboard, boulder 7A+ routes, and have surfed in Nazaré."
         },
         {
-          description: "In 2023, I traveled +40000km by train, It's more than a world tour. I now know every western train company and became a specialist of night trains.",
+          description: "In 2023, I traveled more than 40,000 km by train, surpassing the distance of a world tour. I now have knowledge of every western train company and have become a specialist in night trains.",
         },
         {
-          description: "During summer 2023, I had 2 skateboard injuries (the same week) and went to the hospital. The nurse recognized me."
+          description: "During the summer of 2023, I had two skateboard injuries in the same week and had to go to the hospital. Surprisingly, the nurse recognized me."
         },
         {
-          description: "When I'm bored I make music, playing the piano, bass, ukulele and Computer Assisted Music. At the moment I have over 100 instrumentals sitting in my computer waiting for me to do something with them."
+          description: "When I'm bored, I make music, playing the piano, bass, ukulele, and Computer Assisted Music. Currently, I have over 100 instrumentals sitting on my computer, waiting for me to do something with them."
         },
       ],
       currentStoryIndex: 0,

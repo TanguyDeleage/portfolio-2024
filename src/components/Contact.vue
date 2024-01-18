@@ -3,7 +3,7 @@
     <div class="container" id="contact">
       <div class="social-links">
         <a class="social-link" v-for="link in links" :key="link" :href="link.url" :title=link.name target="_blank">
-          <div><img :src=link.logo :alt=link.name></div>
+          <div><img :src=link.logo :alt=link.name loading="lazy"></div>
         </a>
       </div>
       <div class="main">
@@ -16,7 +16,7 @@
       </div>
       <div class="arrow">
         <a href="#hero" class="brand" title="Scroll to top">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="60" viewBox="0 0 40 46" fill="none" alt="Home">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="60" viewBox="0 0 40 46" fill="none" alt="Home" loading="lazy">
               <path v-for="path in paths" :key="path" :id="path.name" :d="path.path" class="icon-animation" :class="path.class" fill="black" :fill-rule="path.fillRule" :clip-rule="path.fillRule"/>
           </svg>
         </a>

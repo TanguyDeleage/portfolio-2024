@@ -43,7 +43,7 @@
       <div class="description">
         <div class="hero-picture"></div>
         <h1 class="author">Tanguy Deléage</h1>
-        <p>I'm a Product passionnate with a holistic perspective from business to development. I have diverse experiences, in Big Groups, Digital agency and startup.</p>
+        <p>I'm a Product passionate with a holistic perspective from business to development. I have diverse experiences, in Big Groups, Digital agency and startups.</p>
       </div>
     </div>
 

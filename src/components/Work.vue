@@ -21,8 +21,8 @@
     <div class="projects">
       <div class="project" v-for="project in projects" :key="project">
         <div class="thumbnail">
-          <div class="project-index"><img :src=project.index alt=""></div>
-          <div class="mockup"><img :src=project.mockup alt=""></div>
+          <div class="project-index"><img :src=project.index :alt="'Project n°' + project.index" loading="lazy"></div>
+          <div class="mockup"><img :src=project.mockup :alt="'Mockup' + project.title" loading="lazy"></div>
         </div>
         <div class="content">
           <div class="information">
@@ -36,8 +36,7 @@
           </div>
           <a :href=project.link target="_blank" class="button">
             <p>Read case study</p>
-            <!-- <img src="/assets/icons/chevron-right.svg" alt=""> -->
-            <img src="/assets/icons/external-link.svg" style="width: 24px;" alt="">
+            <img src="/assets/icons/external-link.svg" style="width: 24px;" alt="External link icon" loading="lazy">
           </a>
         </div>
       </div>
@@ -77,7 +76,7 @@ export default {
         },
         {
           title: 'Kuartz',
-          description : 'Transforming energy contracts : from paperwork to digital efficiency',
+          description : 'Transforming energy contracts: from paperwork to digital efficiency',
           tags: ["UX Design", "Desktop", "SaaS"],
           mockup: 'assets/images/work/kuartz.png',
           index: 'assets/images/work/index-2.svg',
