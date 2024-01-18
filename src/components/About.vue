@@ -28,6 +28,9 @@
       </a>
       <div class="div8 box icon-container">
         <p class="box-title">Random facts</p>
+        <div class="bar-container">
+          <div class="loading-bar" ref="loadingBar" :style="{ width: loadingBarWidth }"></div>
+        </div>
         <div class="stories">
           <p>{{ currentStory.description }}</p>
           <p class="icon">{{currentStoryIndex + 1}} / {{ totalStories }}</p>
@@ -64,6 +67,9 @@ export default {
         },
       ],
       currentStoryIndex: 0,
+      intervalStartTime: Date.now(),
+      loadingBarWidth: '0%',
+      storySwitchDuration: 9000, // 9sec before next story is displayed
     }
   },
   computed: {
@@ -113,23 +119,55 @@ export default {
 
     switchStory() {
       this.currentStoryIndex = (this.currentStoryIndex + 1) % this.totalStories;
+      this.intervalStartTime = Date.now(); // Update interval start time
+      this.loadingBarWidth = '0%'; // Reset loading bar width
+      this.updateLoadingBar(); // Call updateLoadingBar to start the next loading bar animation
+    },
+
+    updateLoadingBar() {
+      const duration = this.storySwitchDuration;
+      this.intervalStartTime = Date.now(); // Update interval start time
+
+      const animate = () => {
+        const currentTime = Date.now() - this.intervalStartTime;
+        const percentage = Math.min((currentTime / duration) * 100, 100);
+
+        this.loadingBarWidth = percentage + '%';
+
+        if (percentage < 100) {
+          requestAnimationFrame(animate);
+        } else {
+          this.switchStory();
+        }
+      };
+
+      animate();
+    },
+  },
+  watch: {
+    // Watch the intervalStartTime and update loading bar width accordingly
+    intervalStartTime: function () {
+      this.loadingBarWidth = '0%'; // Reset loading bar width
+      this.updateLoadingBar();
     },
   },
   mounted() {
-    // Start the interval when the component is mounted
-    this.storyInterval = setInterval(() => {
+    setInterval(() => {
       this.switchStory();
-    }, 8000); // Switch story every 8 seconds
+    }, this.storySwitchDuration);
+
+    // Update loading bar
+    this.updateLoadingBar();
   },
   beforeUnmount() {
     // Clear the interval when the component is about to be destroyed
     clearInterval(this.storyInterval);
   },
 }
+
 </script>
   
 <style scoped>
-/* Your styles go here */
 
 a {
   text-decoration: none;
@@ -245,6 +283,25 @@ section {
   align-items: center;
 }
 
+.loading-bar {
+  height: 100%;
+  background-color: #818181;
+  transition: width linear;
+  border-radius: 0.5rem;
+}
+
+.bar-container {
+  width: 50%;
+  background-color: #4d4d4d;
+  height: 0.5rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  display: flex;
+  bottom: calc(1rem + 6px); /* +6px to be center aligned with the index/story being 12px high */
+  left: 25%;
+}
+
+
 @media screen and (min-width: 1211px) {
 
   .bento-container {
@@ -349,6 +406,10 @@ section {
   .icon-container {
     padding-bottom: 4rem;
   }
+
+  .div2, .div4, .div7, .div9 {
+    filter: grayscale(1);
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -362,6 +423,10 @@ section {
 
   .document, .document2 {
     display: none;
+  }
+
+  .div2, .div4, .div7, .div9 {
+    filter: grayscale(1);
   }
 }
 </style>

@@ -36,7 +36,6 @@
           </div>
           <a :href=project.link target="_blank" class="button">
             <p>View project</p>
-            <!-- <img :src="('@/assets/icons/chevron-right.svg')"> -->
             <img src="/assets/icons/chevron-right.svg" alt="">
           </a>
         </div>
@@ -91,14 +90,14 @@ export default {
           index: 'assets/images/work/index-3.svg',
           link: "https://www.behance.net/gallery/175709177/Matematch-Mobile-App-for-foreign-students-Le-Wagon?tracking_source=project_owner_other_projects"
         },
-        {
-          title: 'Aisty',
-          description : 'Lorem ipsum dolor sit amet',
-          tags: ["UI Design", "Responsive", "WebApp"],
-          mockup: 'assets/images/work/aisty.png',
-          index: 'assets/images/work/index-4.svg',
-          link: ""
-        }
+        // {
+        //   title: 'Aisty',
+        //   description : 'Lorem ipsum dolor sit amet',
+        //   tags: ["UI Design", "Responsive", "WebApp"],
+        //   mockup: 'assets/images/work/aisty.png',
+        //   index: 'assets/images/work/index-4.svg',
+        //   link: ""
+        // }
       ]
     };
   }
@@ -132,6 +131,7 @@ export default {
     gap: 2rem;
     position: sticky;
     top: 0;
+    z-index: 0;
   }
 
   .index {
@@ -223,6 +223,7 @@ export default {
     gap: 12rem;
     color: white;
     padding: 4rem 1rem;
+    z-index: 1;
   }
 
   .project{
