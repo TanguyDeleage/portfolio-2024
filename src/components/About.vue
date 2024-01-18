@@ -8,7 +8,7 @@
         <p>I'm a blend of business knowledge and technical skills that I combine to create unique experiences. Additionally, I'm a musician, always armed with numerous travel stories to share. I love peanut butter and backpacks.</p>
       </div>
       <div class="div4 box icon-container">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist" loading="lazy"></iframe>
         <p class="icon">I also play some music</p>
       </div>
       <a href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download class="div5 box icon-container" @mouseenter="cvHover" @mouseleave="resetHover">
@@ -22,7 +22,7 @@
         <span class="small-display">Portfolio</span>
         <span class="icon"><img src="../assets/icons/download.svg" alt="Download icon" loading="lazy"></span>
       </a>
-      <a href="https://www.figma.com/@tanguydeleage" target="_blank" class="div7 box icon-container">
+      <a href="https://www.figma.com/@tanguydeleage" target="_blank" class="div7 box icon-container" title="Tanguy's Figma account">
         <img src="../assets/icons/figma.svg" alt="Icon Figma" class="box-picture" loading="lazy">
         <img class="icon" src="../assets/icons/external-link.svg" alt="External-link icon" loading="lazy">
       </a>
@@ -36,7 +36,7 @@
           <p class="icon">{{currentStoryIndex + 1}} / {{ totalStories }}</p>
         </div>
       </div>
-      <a href="https://www.linkedin.com/in/tanguy-deleage/" target="_blank" class="div9 box icon-container">
+      <a href="https://www.linkedin.com/in/tanguy-deleage/" target="_blank" class="div9 box icon-container" title="Tanguy's Linkedin account">
         <img src="../assets/icons/linkedin-big.svg" alt="Linkedin icon" class="box-picture" loading="lazy">
         <img class="icon" src="../assets/icons/external-link.svg" alt="External link icon" loading="lazy">
       </a>
