@@ -235,6 +235,11 @@
         .nav-links, .quick-links{
         display: none;
         }
+
+        .nav-link {
+            display: flex;
+            justify-content: center;
+        }
         .burger {
             display: flex;
             width: 3rem;
@@ -251,6 +256,7 @@
             font-size: 4rem;
             font-family: 'Eklektyk';
             transition: opacity 0.5s ease-out 0.5s, transform 0.5s ease-out 0.5s;
+            position: relative;
         }
 
         .burger .line {
@@ -319,13 +325,13 @@
         }
 
         .nav-active {
-            transform: translateX(0%) !important;
+            transform: translateX(0%);
             transition: all 0.5s ease-in;
         }
 
         .slide-left {
             opacity: 0%;
-            transform: translateX(2rem);
+            transform: translateX(2rem)!important;;
         }
     }
 
