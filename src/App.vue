@@ -22,13 +22,13 @@
 
 import { defineAsyncComponent } from 'vue'
 
-const Header = defineAsyncComponent(() =>
-  import ('./components/Header.vue')
-)
+// const Header = defineAsyncComponent(() =>
+//   import ('./components/Header.vue')
+// )
 
-const Hero = defineAsyncComponent(() =>
-  import('./components/Hero.vue')
-);
+// const Hero = defineAsyncComponent(() =>
+//   import('./components/Hero.vue')
+// );
 
 const Showreel = defineAsyncComponent(() =>
   import('./components/Showreel.vue')
@@ -50,7 +50,8 @@ const Contact = defineAsyncComponent(() =>
   import('./components/Contact.vue')
 );
 
-// import Hero from'./components/Hero.vue';
+import Header from'./components/Hero.vue';
+import Hero from'./components/Hero.vue';
 // import Showreel from'./components/Showreel.vue';
 // import Work from'./components/Work.vue';
 // import Testimonials from'./components/Testimonials.vue';
