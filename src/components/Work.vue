@@ -228,6 +228,7 @@ export default {
     z-index: 1;
     -webkit-transform: translateZ(1);
     transform: translateZ(1);
+    position: relative;
   }
 
   .project{
