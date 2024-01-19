@@ -132,7 +132,8 @@ export default {
     position: sticky;
     top: 0;
     z-index: 0;
-    -webkit-transform : translate3d ( 0,0,0 ) ;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   .index {
@@ -225,7 +226,8 @@ export default {
     color: white;
     padding: 4rem 1rem;
     z-index: 1;
-    -webkit-transform : translate3d ( 0,0,1 ) ;
+    -webkit-transform: translateZ(1);
+    transform: translateZ(1);
   }
 
   .project{
