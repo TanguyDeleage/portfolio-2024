@@ -260,7 +260,7 @@
 
   .hero {
     width: 100%;
-    padding: calc(var(--padding-v)) var(--padding-h);
+    padding: calc(var(--padding-v) * 0.25) var(--padding-h) var(--padding-v) var(--padding-h);
   }
 
   .hero-container {

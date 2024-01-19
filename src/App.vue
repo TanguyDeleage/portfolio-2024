@@ -72,6 +72,14 @@ import Hero from'./components/Hero.vue';
   scroll-behavior: smooth;
   }
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    display: none;
+  }
+
   /* Tablet & Mobile*/
 @media screen and (max-width: 1199px) {
   .no-scroll {
