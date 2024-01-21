@@ -34,7 +34,7 @@
           isTablet: window.innerWidth >= 769 && window.innerWidth < 1200,
           isMobile: window.innerWidth < 769,
           shouldAnimate: false,
-          scrollThreshold: 500,
+          scrollThreshold: 200,
         };
       },
       mounted() {
@@ -66,7 +66,7 @@
           }
 
           // Calculate the dynamic 'to' position based on the scroll position
-          const toPosition = 0.15 * (this.animationStart - scrollY);
+          const toPosition = 0.19 * (this.animationStart - scrollY);
 
           // Set shouldAnimate based on scroll position
           this.shouldAnimate = scrollY > this.scrollThreshold;
