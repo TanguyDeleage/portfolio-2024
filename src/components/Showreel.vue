@@ -125,16 +125,29 @@
       background-position: center; /* Center the background image within the cell */
     }
 
-    .scroll-animation {
-      animation: move linear forwards;
+    .column:nth-child(even) .scroll-animation {
+      animation: movedown linear forwards;
     }
 
-    @keyframes move {
+    .column:nth-child(odd) .scroll-animation {
+      animation: moveup linear forwards;
+    }
+
+    @keyframes moveup {
       from {
         transform: translateY(0);
       }
       to {
         transform: translateY(var(--to-position));
+      }
+    }
+
+    @keyframes movedown {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(calc(-1 * var(--to-position)));
       }
     }
 
@@ -158,6 +171,19 @@
       .grid-container {
         flex-direction: column;
         padding: 0 1rem;
+      }
+
+      .scroll-animation {
+        animation: move linear forwards;
+      }
+
+      @keyframes move {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(var(--to-position));
+        }
       }
     }
     </style>
