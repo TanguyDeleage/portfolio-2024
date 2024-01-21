@@ -1,5 +1,5 @@
 {
-  "homepage": "https://tanguydeleage.github.io/portfolio-2024/",
+  "homepage": "https://www.tanguydeleage.com",
   "name": "portfolio-2024",
   "version": "0.0.0",
   "private": true,
@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp CNAME dist /CNAME",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
