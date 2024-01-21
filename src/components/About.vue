@@ -8,7 +8,7 @@
         <p>Product Designer, graduated with a master's in management at Audencia and achieved a web developer bootcamp at LeWagon. My combined passions for entrepreneurship and tech brought me to this position where I can work on problems from their identification to their resolution.</p>
       </div>
       <div class="div4 box icon-container">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist" loading="lazy"></iframe>
         <p class="icon">I also play some music</p>
       </div>
       <a href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download class="div5 box icon-container" @mouseenter="cvHover" @mouseleave="resetHover">
