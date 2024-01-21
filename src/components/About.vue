@@ -22,7 +22,7 @@
         <span class="small-display">Portfolio</span>
         <span class="icon"><img src="../assets/icons/download.svg" alt="Download icon" loading="lazy"></span>
       </a>
-      <a href="https://www.figma.com/@tanguydeleage" target="_blank" class="div7 box icon-container" title="Tanguy's Figma account">
+      <a href="https://www.figma.com/@tanguydeleage" target="_blank" class="div7 box icon-container" title="Figma profile">
         <img src="../assets/icons/figma.svg" alt="Icon Figma" class="box-picture" loading="lazy">
         <img class="icon" src="../assets/icons/external-link.svg" alt="External-link icon" loading="lazy">
       </a>
@@ -36,7 +36,7 @@
           <p class="icon">{{currentStoryIndex + 1}} / {{ totalStories }}</p>
         </div>
       </div>
-      <a href="https://www.linkedin.com/in/tanguy-deleage/" target="_blank" class="div9 box icon-container" title="Tanguy's Linkedin account">
+      <a href="https://www.linkedin.com/in/tanguy-deleage/" target="_blank" class="div9 box icon-container" title="Linkedin profile">
         <img src="../assets/icons/linkedin-big.svg" alt="Linkedin icon" class="box-picture" loading="lazy">
         <img class="icon" src="../assets/icons/external-link.svg" alt="External link icon" loading="lazy">
       </a>
