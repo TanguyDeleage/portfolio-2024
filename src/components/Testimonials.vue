@@ -43,6 +43,12 @@
           //   avatar: "",
           // },
           {
+            text: "Tanguy was with us from start to finish as we redesigned our homepage, even helping us to refine our thinking and our customer pitch. As well as looking good, the final result is well argued, avoiding any grey areas or misunderstandings.",
+            author:"Kévin",
+            job:"Co-founder @Aisty",
+            avatar: "assets/images/testimonials/kevin.png",
+          },
+          {
             text: "I really want to thank you for the 6 months you've spent working with the IA team. I truly appreciated not only your human qualities but also your open-mindedness, agility, responsiveness, rigor, and solidarity.",
             author:"Patrice",
             job:"Lead Product Owner AI @Orange",
@@ -59,13 +65,7 @@
             author:"Olivier",
             job:"Lead Developer @Orange",
             avatar: "assets/images/testimonials/olivier.png",
-          }
-          // {
-          //   text: "Tout s'est très bien passé, je recommande Tanguy qui nous a fournit un très bon travail tant sur la qualité de ses livrables que sur l’accompagnement lors de l’intégrations.",
-          //   author:"Kévin",
-          //   job:"Co-founder @Aisty",
-          //   avatar: "",
-          // },
+          },
         ]
       }
     },
@@ -158,7 +158,7 @@
   }
 
   .reviews {
-    width: calc((24rem + 3rem) * 3); /* 24rem = width of 1 card | 3rem = gap between each cards | 3 the number of cards to adapt */
+    width: calc((24rem + 3rem) * 4); /* 24rem = width of 1 card | 3rem = gap between each cards | 3 the number of cards to adapt */
     display: flex;
     overflow: hidden;
     padding: 0;
@@ -172,7 +172,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc((-24rem - 3rem) * 3)); /* Should be the same value than the .reviews width mais en négatif */
+      transform: translateX(calc((-24rem - 3rem) * 4)); /* Should be the same value than the .reviews width mais en négatif */
     }
   }
 
