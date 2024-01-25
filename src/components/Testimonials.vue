@@ -213,7 +213,7 @@
       width: 24rem;
       margin-right: 3rem; /* gap between cards */
       box-sizing: content-box; /* Ensure that the margin is included within the defined width */
-      animation: translateinfinite 25s linear infinite; /* Adapt the duration to the number of cards */
+      animation: translateinfinite 36s linear infinite; /* Adapt the duration to the number of cards => 9s per card*/
     }
 
     .description h3 {
