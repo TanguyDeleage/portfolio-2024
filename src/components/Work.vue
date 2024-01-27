@@ -357,6 +357,19 @@ export default {
     }
   }
 
+  /* desktop with small length*/
+  @media screen and (min-width: 1200px) and (max-height: 780px){
+    
+    aside {
+      height: fit-content;
+    }
+    .services {
+      height: fit-content;
+      gap: 4rem;
+    }
+
+  }
+
   /* Tablet */
   @media screen and (min-width: 769px) and (max-width: 1199px) {
     .work {
