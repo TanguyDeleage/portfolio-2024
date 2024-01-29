@@ -49,7 +49,7 @@
             avatar: "assets/images/testimonials/kevin.png",
           },
           {
-            text: "I really want to thank you for the 6 months you've spent working with the IA team. I truly appreciated not only your human qualities but also your open-mindedness, agility, responsiveness, rigor, and solidarity.",
+            text: "Thanks to his qualities (user focus, rigour, open-mindedness, interpersonal skills) and his training, he quickly integrated the multidisciplinary team and took charge of functional areas independently.",
             author:"Patrice",
             job:"Lead Product Owner AI @Orange",
             avatar: "assets/images/testimonials/patrice.jpg",
