@@ -316,6 +316,10 @@ export default {
       width: calc((100% - 2.5rem)/ 3)
     }
 
+    .services {
+      height: 100%;
+    }
+
     .projects {
       width: calc(100% - ((100% - 2.5rem)/ 3))
     }
