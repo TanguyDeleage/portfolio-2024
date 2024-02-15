@@ -3,7 +3,7 @@
         <!-- Il faut que je remette l'icon en dehors de la div, pour q'iil soit visible en mobile -->
        
         <a href="/" class="brand" title="Home">
-            <svg @mouseenter="iconHover(true)" @mouseleave=iconHover(false) class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="46" viewBox="0 0 40 46" fill="none" alt="Home">
+            <svg @mouseenter="iconHover(true)" @mouseleave=iconHover(false) class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="36.8" viewBox="0 0 40 46" fill="none" alt="Home">
                 <path v-for="path in paths" :key="path" :id="path.name" :d="path.path" class="icon-animation" :class="path.class" fill="black" :fill-rule="path.fillRule" :clip-rule="path.fillRule"/>
             </svg>
         </a>
@@ -134,7 +134,6 @@
 
     .brand  {
         cursor: pointer;
-        scale: 0.8;
         width: 16rem;
     }
 
