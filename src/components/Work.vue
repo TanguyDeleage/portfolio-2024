@@ -114,6 +114,7 @@ export default {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    align-items: center;
   }
 
   .section-title {
