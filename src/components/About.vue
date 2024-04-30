@@ -54,7 +54,7 @@ export default {
           description: "In 2020, I hitchhiked over 2000 km in Australia, equivalent to the distance between Paris and Kiev. It required the help of 24 drivers over 3 weeks. On average, a car stopped after 30 minutes, with 4 seconds being the minimum and 4 hours the maximum."
         },
         {
-          description: "I know how to do a backflip on the ground, execute a spin on a trampoline, perform a 180° on a skateboard, boulder 7A+ routes, and ride evry kind of boards."
+          description: "I know how to do a backflip on the ground, execute a spin on a trampoline, perform a 180° on a skateboard, boulder 7A+ routes, and ride every kind of boards."
         },
         {
           description: "In 2023, I traveled more than 40,000 km by train, surpassing the distance of a world tour. I now have knowledge of every western train company and have become a specialist in night trains.",

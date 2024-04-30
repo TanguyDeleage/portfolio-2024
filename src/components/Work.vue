@@ -53,15 +53,15 @@ export default {
       services: [
         {
           title: 'Tools',
-          items: ["Figma", "Photoshop", "Html, CSS, JS", "Vue.js"]
+          items: ["Figma, Photoshop", "Html, CSS, JS, Vue.js", "Hotjar, Analytics"]
         },
         {
           title: 'Services',
-          items: ["Product Design", "UX Design", "UI Design", "Prototyping"]
+          items: ["Product Design", "Design system", "Prototyping"]
         },
         {
           title: 'Industry',
-          items: ["Tech", "Entertainment", "AI", "WebApp", "SaaS", "E-commerce"]
+          items: ["SaaS", "Fintech", "WebApp", "Consumer app", "Mobile app"]
         }
       ],
 
@@ -69,7 +69,7 @@ export default {
         {
           title: 'Canal+',
           description : 'Allowing Mac users to download offline content',
-          tags: ["Product Design", "Responsive", "Streaming Platform"],
+          tags: ["B2C", "Mobile", "Web Responsive"],
           mockup: 'assets/images/work/canal.png',
           index: 'assets/images/work/index-1.svg',
           link: "https://www.behance.net/gallery/179911807/Download-Offline-Content-MyCANAL"
@@ -77,7 +77,7 @@ export default {
         {
           title: 'Kuartz',
           description : 'Transforming energy contracts: from paperwork to digital efficiency',
-          tags: ["UX Design", "Desktop", "SaaS"],
+          tags: ["B2B", "SaaS", "Web Responsive"],
           mockup: 'assets/images/work/kuartz.png',
           index: 'assets/images/work/index-2.svg',
           link: "https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector?tracking_source=project_owner_other_projects"
@@ -85,7 +85,7 @@ export default {
         {
           title: 'Matematch',
           description : '10 days to help foreign students live a deeper exchange experience',
-          tags: ["Product Design", "Mobile", "WebApp"],
+          tags: ["B2C", "Mobile", "Web App"],
           mockup: 'assets/images/work/matematch.png',
           index: 'assets/images/work/index-3.svg',
           link: "https://www.behance.net/gallery/175709177/Matematch-Mobile-App-for-foreign-students-Le-Wagon?tracking_source=project_owner_other_projects"
