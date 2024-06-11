@@ -53,7 +53,7 @@ export default {
       services: [
         {
           title: 'Tools',
-          items: ["Figma, Photoshop", "Html, CSS, JS, Vue.js", "Hotjar, Analytics"]
+          items: ["Figma, Photoshop", "Html, CSS, JS, Vue.js", "Hotjar, Analytics, Modjo"]
         },
         {
           title: 'Services',
@@ -66,12 +66,20 @@ export default {
       ],
 
       projects: [
+      {
+          title: 'KLS',
+          description : 'Manage notification settings',
+          tags: ["B2B", "SaaS", "Web Responsive"],
+          mockup: 'assets/images/work/kls.png',
+          index: 'assets/images/work/index-1.svg',
+          link: "https://www.behance.net/gallery/200784759/KLS-Notification-settings"
+        },
         {
           title: 'Canal+',
           description : 'Allowing Mac users to download offline content',
           tags: ["B2C", "Mobile", "Web Responsive"],
           mockup: 'assets/images/work/canal.png',
-          index: 'assets/images/work/index-1.svg',
+          index: 'assets/images/work/index-2.svg',
           link: "https://www.behance.net/gallery/179911807/Download-Offline-Content-MyCANAL"
         },
         {
@@ -79,17 +87,17 @@ export default {
           description : 'Transforming energy contracts: from paperwork to digital efficiency',
           tags: ["B2B", "SaaS", "Web Responsive"],
           mockup: 'assets/images/work/kuartz.png',
-          index: 'assets/images/work/index-2.svg',
+          index: 'assets/images/work/index-3.svg',
           link: "https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector?tracking_source=project_owner_other_projects"
         },
-        {
-          title: 'Matematch',
-          description : '10 days to help foreign students live a deeper exchange experience',
-          tags: ["B2C", "Mobile", "Web App"],
-          mockup: 'assets/images/work/matematch.png',
-          index: 'assets/images/work/index-3.svg',
-          link: "https://www.behance.net/gallery/175709177/Matematch-Mobile-App-for-foreign-students-Le-Wagon?tracking_source=project_owner_other_projects"
-        },
+        // {
+        //   title: 'Matematch',
+        //   description : '10 days to help foreign students live a deeper exchange experience',
+        //   tags: ["B2C", "Mobile", "Web App"],
+        //   mockup: 'assets/images/work/matematch.png',
+        //   index: 'assets/images/work/index-3.svg',
+        //   link: "https://www.behance.net/gallery/175709177/Matematch-Mobile-App-for-foreign-students-Le-Wagon?tracking_source=project_owner_other_projects"
+        // },
         // {
         //   title: 'Aisty',
         //   description : 'Lorem ipsum dolor sit amet',

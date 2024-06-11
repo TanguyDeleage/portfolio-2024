@@ -59,8 +59,11 @@ export default {
         {
           description: "In 2023, I traveled more than 40,000 km by train, surpassing the distance of a world tour. I now have knowledge of every western train company and have become a specialist in night trains.",
         },
+        // {
+        //   description: "During the summer of 2023, I had two skateboard injuries in the same week and had to go to the hospital. Surprisingly, the nurse recognized me."
+        // },
         {
-          description: "During the summer of 2023, I had two skateboard injuries in the same week and had to go to the hospital. Surprisingly, the nurse recognized me."
+          description: "I went up to Lapland and back by train to see the northern lights. I'll never forget the feeling of falling asleep in Stockholm and waking up in the middle of nowhere, surrounded by snow."
         },
         {
           description: "When I'm bored, I make music, playing the piano, bass, ukulele, and Computer Assisted Music. Currently, I have over 100 instrumentals sitting on my computer, waiting for me to do something with them."
