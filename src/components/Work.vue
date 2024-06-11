@@ -68,7 +68,7 @@ export default {
       projects: [
       {
           title: 'KLS',
-          description : 'Manage notification settings',
+          description : 'Allowing Agents to manage notification settings',
           tags: ["B2B", "SaaS", "Web Responsive"],
           mockup: 'assets/images/work/kls.png',
           index: 'assets/images/work/index-1.svg',
