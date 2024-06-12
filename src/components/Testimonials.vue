@@ -43,16 +43,16 @@
           //   avatar: "",
           // },
           {
-            text: "Tanguy was with us from start to finish as we redesigned our homepage, even helping us to refine our thinking and our customer pitch. As well as looking good, the final result is well argued, avoiding any grey areas or misunderstandings.",
-            author:"Kévin",
-            job:"Co-founder @Aisty",
-            avatar: "assets/images/testimonials/kevin.png",
-          },
-          {
             text: "Thanks to his qualities (user focus, rigour, open-mindedness, interpersonal skills) and his training, he quickly integrated the multidisciplinary team and took charge of functional areas independently.",
             author:"Patrice",
             job:"Lead Product Owner AI @Orange",
             avatar: "assets/images/testimonials/patrice.jpg",
+          },
+          {
+            text: "His mastery of Figma enabled us to produce high-quality deliverables, his autonomy and pro-activity allowed us to quickly propose improvements in terms of user flows and processes, particularly regarding our Design System.",
+            author:"Romain",
+            job:"Head of Design @KLS",
+            avatar: "assets/images/testimonials/romain.jpg",
           },
           {
             text: "He acquired in-depth knowledge of the newly available Figma variables and brilliantly led his very first team workshop, applying these variables to prototypes projecting the full potential of this new feature on our product.",
@@ -65,6 +65,12 @@
             author:"Olivier",
             job:"Lead Developer @Orange",
             avatar: "assets/images/testimonials/olivier.png",
+          },
+          {
+            text: "Tanguy was with us from start to finish as we redesigned our homepage, even helping us to refine our thinking and our customer pitch. As well as looking good, the final result is well argued, avoiding any grey areas or misunderstandings.",
+            author:"Kévin",
+            job:"Co-founder @Aisty",
+            avatar: "assets/images/testimonials/kevin.png",
           },
         ]
       }
@@ -158,7 +164,7 @@
   }
 
   .reviews {
-    width: calc((24rem + 3rem) * 4); /* 24rem = width of 1 card | 3rem = gap between each cards | 3 the number of cards to adapt */
+    width: calc((24rem + 3rem) * 5); /* 24rem = width of 1 card | 3rem = gap between each cards | 3 the number of cards to adapt */
     display: flex;
     overflow: hidden;
     padding: 0;
@@ -172,7 +178,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc((-24rem - 3rem) * 4)); /* Should be the same value than the .reviews width mais en négatif */
+      transform: translateX(calc((-24rem - 3rem) * 5)); /* Should be the same value than the .reviews width mais en négatif */
     }
   }
 
