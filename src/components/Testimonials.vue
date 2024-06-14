@@ -43,12 +43,6 @@
           //   avatar: "",
           // },
           {
-            text: "Thanks to his qualities (user focus, rigour, open-mindedness, interpersonal skills) and his training, he quickly integrated the multidisciplinary team and took charge of functional areas independently.",
-            author:"Patrice",
-            job:"Lead Product Owner AI @Orange",
-            avatar: "assets/images/testimonials/patrice.jpg",
-          },
-          {
             text: "His mastery of Figma enabled us to produce high-quality deliverables, his autonomy and pro-activity allowed us to quickly propose improvements in terms of user flows and processes, particularly regarding our Design System.",
             author:"Romain",
             job:"Head of Design @KLS",
@@ -61,10 +55,10 @@
             avatar: "assets/images/testimonials/vanessa.jpg",
           },
           {
-            text: "Extremely efficient and very helpful! Well done!",
-            author:"Olivier",
-            job:"Lead Developer @Orange",
-            avatar: "assets/images/testimonials/olivier.png",
+            text: "Thanks to his qualities (user focus, rigour, open-mindedness, interpersonal skills) and his training, he quickly integrated the multidisciplinary team and took charge of functional areas independently.",
+            author:"Patrice",
+            job:"Lead Product Owner AI @Orange",
+            avatar: "assets/images/testimonials/patrice.jpg",
           },
           {
             text: "Tanguy is very professional, methodical, and applies a design thinking approach in all his projets. He is very proactive and offers new design methods, or ways to facilitate hand-offs, or adapt processes to ensure more effective work.",
@@ -77,6 +71,12 @@
             author:"Kévin",
             job:"Co-founder @Aisty",
             avatar: "assets/images/testimonials/kevin.png",
+          },
+          {
+            text: "Extremely efficient and very helpful! Well done!",
+            author:"Olivier",
+            job:"Lead Developer @Orange",
+            avatar: "assets/images/testimonials/olivier.png",
           },
         ]
       }
