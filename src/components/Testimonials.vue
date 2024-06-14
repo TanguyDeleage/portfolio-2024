@@ -67,6 +67,12 @@
             avatar: "assets/images/testimonials/olivier.png",
           },
           {
+            text: "Tanguy is very professional, methodical, and applies a design thinking approach in all his projets. He is very proactive and offers new design methods, or ways to facilitate hand-offs, or adapt processes to ensure more effective work.",
+            author:"Marie",
+            job:"Product Designer @KLS",
+            avatar: "assets/images/testimonials/marie.jpg",
+          },
+          {
             text: "Tanguy was with us from start to finish as we redesigned our homepage, even helping us to refine our thinking and our customer pitch. As well as looking good, the final result is well argued, avoiding any grey areas or misunderstandings.",
             author:"Kévin",
             job:"Co-founder @Aisty",
