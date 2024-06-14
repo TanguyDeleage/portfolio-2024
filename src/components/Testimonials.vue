@@ -170,7 +170,7 @@
   }
 
   .reviews {
-    width: calc((24rem + 3rem) * 5); /* 24rem = width of 1 card | 3rem = gap between each cards | 3 the number of cards to adapt */
+    width: calc((24rem + 3rem) * 6); /* 24rem = width of 1 card | 3rem = gap between each cards | 3 the number of cards to adapt */
     display: flex;
     overflow: hidden;
     padding: 0;
@@ -184,7 +184,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc((-24rem - 3rem) * 5)); /* Should be the same value than the .reviews width mais en négatif */
+      transform: translateX(calc((-24rem - 3rem) * 6)); /* Should be the same value than the .reviews width mais en négatif */
     }
   }
 
@@ -225,7 +225,7 @@
       width: 24rem;
       margin-right: 3rem; /* gap between cards */
       box-sizing: content-box; /* Ensure that the margin is included within the defined width */
-      animation: translateinfinite 36s linear infinite; /* Adapt the duration to the number of cards => 9s per card*/
+      animation: translateinfinite 54s linear infinite; /* Adapt the duration to the number of cards => 9s per card*/
     }
 
     .description h3 {
@@ -243,7 +243,7 @@
       width: 24rem; /* Adjust the width based on your review card width */
       margin-right: 3rem; /* Adjust the margin to create the gap between cards */
       box-sizing: content-box; /* Ensure that the margin is included within the defined width */
-      animation: translateinfinite 25s linear infinite; /* Adjust the duration as needed */
+      animation: translateinfinite 54s linear infinite; /* Adjust the duration as needed */
     }
   }
 
