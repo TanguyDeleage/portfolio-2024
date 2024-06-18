@@ -19,22 +19,27 @@
     </aside>
 
     <div class="projects">
-      <a class="project" :href=project.link target="_blank" v-for="project in projects" :key="project">
-        <div class="project-header">
-          <h3 class="project-title">{{ project.title }}</h3>
-          <ul class="project-tags">
-            <li v-for="tag in project.tags" :key="tag" class="project-tag">{{ tag }}</li>
-          </ul>
+      <div class="project" v-for="project in projects" :key="project">
+        <div class="thumbnail">
+          <div class="project-index"><img :src=project.index :alt="'Project n°' + project.index" loading="lazy"></div>
+          <div class="mockup"><img :src=project.mockup :alt="'Mockup' + project.title" loading="lazy"></div>
         </div>
-        <div class="mockup"><img :src=project.mockup :alt="'Mockup' + project.title" loading="lazy"></div>
         <div class="content">
-          <p class="project-description">{{ project.description }}</p>
+          <div class="information">
+            <ul class="project-tags">
+              <li v-for="tag in project.tags" :key="tag" class="project-tag">{{ tag }}</li>
+            </ul>
+            <div class="project-header">
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-description">{{ project.description }}</p>
+            </div>
+          </div>
           <a :href=project.link target="_blank" class="button">
             <p>Read case study</p>
             <img src="/assets/icons/external-link.svg" style="width: 24px;" alt="External link icon" loading="lazy">
           </a>
         </div>
-      </a>
+      </div>
     </div>
   </section>
   
@@ -66,6 +71,7 @@ export default {
           description : 'Allowing Agents to manage notification settings',
           tags: ["B2B", "SaaS", "Web Responsive"],
           mockup: 'assets/images/work/kls.png',
+          index: 'assets/images/work/index-1.svg',
           link: "https://www.behance.net/gallery/200784759/KLS-Notification-settings"
         },
         {
@@ -73,6 +79,7 @@ export default {
           description : 'Allowing Mac users to download offline content',
           tags: ["B2C", "Mobile", "Web Responsive"],
           mockup: 'assets/images/work/canal.png',
+          index: 'assets/images/work/index-2.svg',
           link: "https://www.behance.net/gallery/179911807/Download-Offline-Content-MyCANAL"
         },
         {
@@ -80,6 +87,7 @@ export default {
           description : 'Transforming energy contracts: from paperwork to digital efficiency',
           tags: ["B2B", "SaaS", "Web Responsive"],
           mockup: 'assets/images/work/kuartz.png',
+          index: 'assets/images/work/index-3.svg',
           link: "https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector?tracking_source=project_owner_other_projects"
         },
         // {
@@ -87,6 +95,7 @@ export default {
         //   description : '10 days to help foreign students live a deeper exchange experience',
         //   tags: ["B2C", "Mobile", "Web App"],
         //   mockup: 'assets/images/work/matematch.png',
+        //   index: 'assets/images/work/index-3.svg',
         //   link: "https://www.behance.net/gallery/175709177/Matematch-Mobile-App-for-foreign-students-Le-Wagon?tracking_source=project_owner_other_projects"
         // },
         // {
@@ -94,6 +103,7 @@ export default {
         //   description : 'Lorem ipsum dolor sit amet',
         //   tags: ["UI Design", "Responsive", "WebApp"],
         //   mockup: 'assets/images/work/aisty.png',
+        //   index: 'assets/images/work/index-4.svg',
         //   link: ""
         // }
       ]
@@ -143,12 +153,12 @@ export default {
     text-transform: uppercase;
   }
 
-  .project-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+  .mockup img{
+    width: 100%
+  }
+
+  .project-index img {
     width: 100%;
-    gap: 2rem;
   }
 
   .divider {
@@ -221,9 +231,9 @@ export default {
     background-color: #000;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 12rem;
     color: white;
-    padding: 4rem 2rem;
+    padding: 4rem 1rem;
     z-index: 1;
     -webkit-transform: translateZ(1);
     transform: translateZ(1);
@@ -232,24 +242,25 @@ export default {
 
   .project{
     width: 100%;
-    background-color: #0A0A0A;
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 3rem 2rem;
-    text-decoration: none;
-    color: var(--primary-brand-lowest);
-  }
-  
-  .mockup {
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
 
-  .mockup img {
-    max-width: 80%;
+  .thumbnail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+  .project-index {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .mockup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .project-title {
@@ -257,24 +268,20 @@ export default {
     font-weight: 700;
     line-height: 140%; /* 2.1rem */
     text-transform: uppercase;
-    text-wrap: nowrap;
   }
 
   .project-description {
     font-size: 0.875rem;
     font-weight: 300;
     line-height: 150%; /* 1.3125rem */
-    color: #CFCFCF;
   }
 
   .project-tags {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
     gap: 0.5rem;
   }
-
   .project-tag {
     color: #CFCFCF;
     font-size: 0.875rem;
@@ -291,8 +298,8 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
-    gap: 2rem;
+    align-items: center;
+    padding: 0 2rem;
   }
 
   .information {
@@ -311,10 +318,6 @@ export default {
     align-items: center;
   }
 
-  .button p {
-    text-wrap: nowrap;
-  }
-
   /* desktop */
   @media screen and (min-width: 1200px) {
     aside {
@@ -328,6 +331,20 @@ export default {
 
     .projects {
       width: calc(100% - ((100% - 2.5rem)/ 3))
+    }
+
+    .mockup {
+      width: 49.375rem;
+      height: 41.875rem;
+    }
+
+    .project-index {
+      width: 46.82569rem;
+      height: 34.80225rem;
+    }
+
+    .thumbnail {
+      height: 45rem;
     }
 
     .button p::after {
@@ -351,7 +368,6 @@ export default {
         position: relative;
         display: inline-block;
     }
-
   }
 
   /* desktop with small length*/
@@ -394,6 +410,35 @@ export default {
       z-index: 1;
     }
 
+    .project-index, .mockup {
+      width: 100%;
+    }
+
+    .project-index img {
+      width: 100%;
+    }
+
+    .mockup img {
+      width: 100%;
+    }
+
+    .project-tags {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .thumbnail {
+      height: calc(100vw - 10rem);
+    }
+
+    .content {
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .project-header {
+      text-align: center;
+    }
   }
 
 
@@ -406,6 +451,10 @@ export default {
     aside {
       width: 100%;
       z-index: 0;
+    }
+
+    .projects {
+      gap: 8rem;
     }
 
     .services {
@@ -421,35 +470,38 @@ export default {
     }
 
     .projects {
-      padding: 2rem 1rem;
+      width: 100%;
+      z-index: 1;
     }
 
-    .project {
-      gap: 4rem;
-      padding: 2rem 1rem;
+    .project-index, .mockup {
+      width: 100%;
     }
 
-    .project-header {
-      flex-direction: column;
-      gap: 1rem;
+    .project-index img {
+      width: 100%;
+    }
+
+    .mockup img {
+      width: 100%;
     }
 
     .project-tags {
-      justify-content: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .mockup img{
-      max-width: 100%;
+    .thumbnail {
+      height: calc(100vw);
     }
 
     .content {
       flex-direction: column;
-      gap: 2rem;
+      gap: 4rem;
     }
 
-    .project-description {
-      display: flex;
-      width: 100%;
+    .project-header {
+      text-align: center;
     }
   }
 </style>
