@@ -23,11 +23,12 @@
             </a>
         </nav>
         <div class="quick-links" @click="openMenu()">
-            <a class="header-box mail" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon" loading="lazy"></a>
-            <a class="header-box calendly" href="https://calendly.com/tdeleage/hello" target="_blank">
+            <!-- <a class="header-box mail" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon" loading="lazy"></a> -->
+            <!-- <a class="header-box calendly" href="https://calendly.com/tdeleage/hello" target="_blank">
                 <img src="../assets/icons/google-meet.svg" alt="Google Drive icon " loading="lazy">
                 Book a meeting
-            </a>
+            </a> -->
+            <a class="btn secondary" href="mailto:contact@tanguydeleage.com">Get in touch</a>
         </div>
 
        <div @click="openMenu()" class="burger">
@@ -129,7 +130,6 @@
         font-size: 1rem;
         font-weight: 500;
         line-height: 120%; /* 1.2rem */
-        text-transform: uppercase;
     }
 
     .brand  {
@@ -163,7 +163,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .icon {
