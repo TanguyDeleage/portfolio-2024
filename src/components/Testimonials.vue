@@ -2,7 +2,7 @@
   <section id="reviews">
     <div class="description">
       <h3>What they say</h3>
-      <p>Good prduct work is collaborative. Here is what former managers, product partners say about working with me.</p>
+      <p>Good product work is collaborative. Here is what former managers, product partners say about working with me.</p>
       <div class="cta">
         <!-- <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn primary">Book a free call</a> -->
         <a href="mailto:contact@tanguydeleage.com" class="btn primary">Get in touch</a>
