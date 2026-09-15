@@ -73,10 +73,10 @@
             avatar: "assets/images/testimonials/kevin.png",
           },
           {
-            text: "Extremely efficient and very helpful! Well done!",
-            author:"Olivier",
-            job:"Lead Developer @Orange",
-            avatar: "assets/images/testimonials/olivier.png",
+            text: "He throws himself wholeheartedly into every project, combining curiosity, dedication, and a genuine desire to create the best possible experience for users. He's a strong user advocate, an excellent communicator, and someone who always puts a great deal of care into his work.",
+            author:"Carolina",
+            job:"Senior Product Designer @Akur8",
+            avatar: "assets/images/testimonials/carolina.jpg",
           },
         ]
       }
