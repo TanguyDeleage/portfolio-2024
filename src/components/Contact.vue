@@ -10,8 +10,8 @@
         <h3 class="text-display">Contact</h3>
         <p class="subtitle">Interested in working together ?</p>
         <div class="cta">
-          <a href="mailto:contact@tanguydeleage.com" class="btn primary">Send an email</a>
-          <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn secondary">Book a free call</a>
+          <a href="mailto:contact@tanguydeleage.com" class="btn primary">Get in touch</a>
+          <!-- <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn secondary">Book a free call</a> -->
         </div>
       </div>
       <div class="arrow">
@@ -54,11 +54,11 @@
           //   logo: "assets/icons/medium.svg",
           //   url : "",
           // },
-          {
-            name: "Bento",
-            logo: "assets/icons/bento.svg",
-            url : "https://bento.me/tanguy-deleage",
-          },
+          // {
+          //   name: "Bento",
+          //   logo: "assets/icons/bento.svg",
+          //   url : "https://bento.me/tanguy-deleage",
+          // },
           {
             name: "Github",
             logo: "assets/icons/github.svg",
