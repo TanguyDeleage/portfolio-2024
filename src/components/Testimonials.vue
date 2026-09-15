@@ -1,11 +1,11 @@
 <template>
   <section id="reviews">
     <div class="description">
-      <h3>Tested and approved</h3>
-      <p>At the end of each assignment, we ask you what you thought of our collaboration and how we can improve things.</p>
+      <h3>What they say</h3>
+      <p>Good prduct work is collaborative. Here is what former managers, product partners say about working with me.</p>
       <div class="cta">
-        <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn primary">Book a free call</a>
-        <a href="mailto:contact@tanguydeleage.com" class="btn secondary">Send an email</a>
+        <!-- <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn primary">Book a free call</a> -->
+        <a href="mailto:contact@tanguydeleage.com" class="btn primary">Get in touch</a>
       </div>
       
 
