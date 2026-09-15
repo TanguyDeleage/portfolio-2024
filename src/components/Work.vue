@@ -48,15 +48,15 @@ export default {
       services: [
         {
           title: 'Tools',
-          items: ["Figma, Photoshop", "Html, CSS, JS, Vue.js", "Hotjar, Analytics, Modjo"]
+          items: ["Figma, Claude Code, Dust", "HTML, CSS, JS, Github", "Hotjar, Analytics, Modjo"]
         },
         {
-          title: 'Services',
-          items: ["Product Design", "Design system", "Prototyping"]
+          title: 'Capabilities',
+          items: ["Product Discovery & Research", "Interaction & Data visualization", "Prototyping, Design Systems"]
         },
         {
           title: 'Industry',
-          items: ["SaaS", "Fintech", "WebApp", "Consumer app", "Mobile app"]
+          items: ["SaaS", "B2B", "FinTech", "AI/ML", "InsurTech", ]
         }
       ],
 

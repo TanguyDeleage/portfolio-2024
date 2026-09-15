@@ -20,7 +20,7 @@
       <div class="description">
         <div class="hero-picture"></div>
         <h1 class="author">Tanguy Deléage</h1>
-        <p>I'm a Product passionnate with a holistic perspective from business to development. I have diverse experiences, in Big Groups, Digital agency and startup.</p>
+        <p>Specialising in complex B2B SaaS products across FinTech, InsurTech, and AI/ML. I turn data-heavy workflows and technical constraints into clear user experiences.</p>
       </div>
     </div>
 
