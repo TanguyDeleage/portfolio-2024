@@ -6,7 +6,7 @@
       <div class="div3 box">
         <p class="box-title">I'm Tanguy</p>
         <p>I came to Product Design through a business degree and a full-stack bootcamp. This combination gives me both a business and technical perspective when designing complex B2B products.</p>
-        <p>I believe good design emerges from collaboration so I like bringing people into the process early, making ideas tangible a scalable.</p>
+        <p>I believe good design emerges from collaboration so I like bringing people into the process early, making ideas tangible and scalable.</p>
       </div>
       <div class="div4 box icon-container">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1h9jfUmHvGBY8bT1IxP2iC?utm_source=generator" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist" loading="lazy"></iframe>
