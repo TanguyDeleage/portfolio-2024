@@ -19,13 +19,13 @@
       data() {
         return {
           projects: [
-            { name: 'Project 1', imageUrl: 'assets/images/showreel/project_1.webp', position: "center", size: "cover", },
-            { name: 'Project 2', imageUrl: 'assets/images/showreel/project_2.webp', position: "top", size: "cover", },
-            { name: 'Project 3', imageUrl: 'assets/images/showreel/project_3.webp', position: "bottom", size: "cover", },
-            { name: 'Project 4', imageUrl: 'assets/images/showreel/project_4.webp', position: "bottom", size: "cover", },
-            { name: 'Project 5', imageUrl: 'assets/images/showreel/project_5.webp', position: "center", size: "cover", },
-            { name: 'Project 6', imageUrl: 'assets/images/showreel/project_4.webp', position: "top", size: "cover", },
-            { name: 'Project 7', imageUrl: 'assets/images/showreel/project_3.webp', position: "top", size: "contain", },
+            { name: 'Project 1', imageUrl: 'assets/images/showreel/graph.webp', position: "center", size: "cover", },
+            { name: 'Project 2', imageUrl: 'assets/images/showreel/agent.webp', position: "top", size: "cover", },
+            { name: 'Project 3', imageUrl: 'assets/images/showreel/node.webp', position: "center", size: "cover", },
+            { name: 'Project 4', imageUrl: 'assets/images/showreel/table.webp', position: "bottom", size: "cover", },
+            { name: 'Project 5', imageUrl: 'assets/images/showreel/dashboard.webp', position: "center", size: "cover", },
+            { name: 'Project 6', imageUrl: 'assets/images/showreel/graph-bis.webp', position: "top", size: "cover", },
+            { name: 'Project 7', imageUrl: 'assets/images/showreel/components.webp', position: "top", size: "contain", },
             // Add more projects as needed
           ],
           columnProjectCounts: [3, 3, 1], // Adjust the number of projects for each column
