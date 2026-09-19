@@ -61,20 +61,34 @@ export default {
       ],
 
       projects: [
-      {
+        {
+          title: 'Confidential',
+          description : 'Rebuilding a product from scratch to enable an E2E workflow',
+          tags: ["B2B", "SaaS", "Machine Learning"],
+          mockup: 'assets/images/work/graph.png',
+          link: "https://www.behance.net/gallery/255945815/Confidential-Rebuilding-a-product-from-scratch"
+        },
+        // {
+        // title: 'Confidential',
+        // description : 'MVP: Demonstrating power of agentic workflows in 3 months',
+        // tags: ["SaaS", "Agentic", "AI/ML",],
+        // mockup: 'assets/images/work/node.png',
+        // link: ""
+        // },  
+        {
           title: 'KLS',
           description : 'Allowing Agents to manage notification settings',
           tags: ["B2B", "SaaS", "Web Responsive"],
           mockup: 'assets/images/work/kls.png',
           link: "https://www.behance.net/gallery/200784759/KLS-Notification-settings"
         },
-        {
-          title: 'Canal+',
-          description : 'Allowing Mac users to download offline content',
-          tags: ["B2C", "Mobile", "Web Responsive"],
-          mockup: 'assets/images/work/canal.png',
-          link: "https://www.behance.net/gallery/179911807/Download-Offline-Content-MyCANAL"
-        },
+        // {
+        //   title: 'Canal+',
+        //   description : 'Allowing Mac users to download offline content',
+        //   tags: ["B2C", "Mobile", "Web Responsive"],
+        //   mockup: 'assets/images/work/canal.png',
+        //   link: "https://www.behance.net/gallery/179911807/Download-Offline-Content-MyCANAL"
+        // },
         {
           title: 'Kuartz',
           description : 'Transforming energy contracts: from paperwork to digital efficiency',
