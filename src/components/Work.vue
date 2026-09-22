@@ -68,13 +68,13 @@ export default {
           mockup: 'assets/images/work/graph.png',
           link: "https://www.behance.net/gallery/255945815/Confidential-Rebuilding-a-product-from-scratch"
         },
-        // {
-        // title: 'Confidential',
-        // description : 'MVP: Demonstrating power of agentic workflows in 3 months',
-        // tags: ["SaaS", "Agentic", "AI/ML",],
-        // mockup: 'assets/images/work/node.png',
-        // link: ""
-        // },  
+        {
+         title: 'Confidential',
+        description : 'MVP: Demonstrating power of agentic workflows in 3 months',
+        tags: ["SaaS", "Agentic", "AI/ML",],
+        mockup: 'assets/images/work/node.png',
+        link: "https://www.behance.net/gallery/256089095/Building-Agentic-flows-in-3-months"
+        },  
         {
           title: 'KLS',
           description : 'Allowing Agents to manage notification settings',
