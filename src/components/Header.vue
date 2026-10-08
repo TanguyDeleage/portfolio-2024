@@ -19,14 +19,6 @@
                 <p class="nav-title slide-left">Contact</p>
             </a>
         </nav>
-        <div class="quick-links" @click="openMenu()">
-            <!-- <a class="header-box mail" href="mailto:contact@tanguydeleage.com"><img src="../assets/icons/mail.svg" alt="Mail icon" loading="lazy"></a> -->
-            <!-- <a class="header-box calendly" href="https://calendly.com/tdeleage/hello" target="_blank">
-                <img src="../assets/icons/google-meet.svg" alt="Google Drive icon " loading="lazy">
-                Book a meeting
-            </a> -->
-            <a class="btn secondary" href="mailto:contact@tanguydeleage.com">Get in touch</a>
-        </div>
 
        <div @click="openMenu()" class="burger">
             <div class="line">
@@ -99,29 +91,6 @@
 
 <style scoped>
 
-    .header-box {
-        display: flex;
-        padding: 0.75rem;
-        justify-content: center;
-        align-items: center;
-        border-radius: 0.5rem;
-        border: 1px solid var(--primary-brand-highest);
-        color: var(--primary-brand-highest);
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: 1.5rem; /* 150% */
-        gap: 0.5rem;
-        overflow: hidden;
-    }
-
-    .quick-links {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-        width: 16rem;
-        justify-content: flex-end;
-    }
-
     .nav-title{
         color: var(--primary-brand-highest);
         font-size: 1rem;
@@ -131,7 +100,6 @@
 
     .brand  {
         cursor: pointer;
-        width: 16rem;
     }
 
     a {
@@ -212,24 +180,12 @@
             display: inline-block;
         }
 
-        .mail:hover img {
-            transform: scale(1.2);
-        }
-        .calendly:hover img{
-            transform: scale(1.2);
-        }
-        .mail img {
-            transition: 0.3s ease-in;
-        }
-        .calendly img {
-            transition: 0.3s ease-out;
-        }
     }
 
     /* Tablet & Mobile*/
     @media screen and (max-width: 1199px) {
-        .nav-links, .quick-links{
-        display: none;
+        .nav-links {
+            display: none;
         }
 
         .nav-link {

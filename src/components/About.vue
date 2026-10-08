@@ -11,12 +11,12 @@
           <p class="box-text">I came to Product Design through a business degree and a full-stack bootcamp. This combination gives me both a business and technical perspective when designing complex B2B products.</p>
           <p class="box-text">I believe good design emerges from collaboration so I like bringing people into the process early, making ideas tangible and scalable.</p>
         </div>
-        <a class="btn primary" href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download>Download CV</a>
+        <a class="btn primary small" href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download>Download CV</a>
       </div>
 
       <div class="div4 box">
         <div class="box-content">
-          <p class="box-title">How I use AI</p>
+          <p class="box-title">Using AI</p>
           <p class="box-text">A hands-on design partner, from research to functional prototypes. It helps me move faster and explore more, while product strategy, UX judgment and validation stay human-led.</p>
         </div>
         <ol class="pipeline">
@@ -35,7 +35,7 @@
       </div>
 
       <div class="div5 box">
-        <p class="box-title">Designer shipping code</p>
+        <p class="box-title">Shipping code</p>
         <div class="terminal" ref="terminal" aria-hidden="true">
           <div class="terminal-dots"><span></span><span></span><span></span></div>
           <div v-for="(line, i) in terminal.done" :key="i" class="terminal-line">
@@ -70,7 +70,7 @@
         <p class="box-title">Random facts</p>
         <p class="box-text fact" aria-live="polite">{{ stories[currentStoryIndex].text }}</p>
         <div class="facts-footer">
-          <button type="button" class="btn secondary" @click="shuffleFact">Shuffle</button>
+          <button type="button" class="btn secondary small" @click="shuffleFact">Shuffle</button>
           <p class="mono-label fact-count">#{{ stories[currentStoryIndex].index }}</p>
         </div>
       </div>
@@ -356,6 +356,8 @@ section {
 .terminal {
   flex: 1;
   min-height: 0;
+  /* Content must not size the grid row, otherwise the tile grows as lines print */
+  contain: size;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -481,8 +483,6 @@ section {
 
 .facts-footer .btn {
   align-self: center;
-  font-family: inherit;
-  cursor: pointer;
 }
 
 .fact {

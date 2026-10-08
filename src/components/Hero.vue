@@ -19,7 +19,7 @@
               </div>
               <div class="cta">
                 <a class="btn primary" href="#work">Discover projects</a>
-                <a class="btn secondary" href="#about">About me</a>
+                <a class="btn secondary" href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download>Download CV</a>
               </div>
             </div>
           </div>
@@ -52,7 +52,7 @@
           </div>
           <div class="cta">
             <a class="btn primary" href="#work">Discover projects</a>
-            <a class="btn secondary" href="#about">About me</a>
+            <a class="btn secondary" href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download>Download CV</a>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@
           </div>
           <div class="cta">
             <a class="btn primary" href="#work">Discover projects</a>
-            <a class="btn secondary" href="#about">About me</a>
+            <a class="btn secondary" href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download>Download CV</a>
           </div>
         </div>
       </div>
