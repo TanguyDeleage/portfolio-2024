@@ -176,7 +176,7 @@
   section {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 7.5rem;
     padding: var(--padding-v) var(--padding-h) calc(var(--padding-v) / 2) var(--padding-h);
   }
 
