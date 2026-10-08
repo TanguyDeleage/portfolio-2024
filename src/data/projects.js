@@ -13,8 +13,8 @@
 //   testimonial: optional { quote, author, job, avatar }  (avatar optional)
 //   tags:        string[]
 //   cover:       { src, alt, width, height }
-//   access:      { locked: boolean }
-//   links:       { caseStudy?, overview? }
+//   access:      { locked: boolean }  (private: password-gated, see privateAccess.js)
+//   links:       { caseStudy?, overview?, page? }  (page: dedicated page of a private project, once unlocked)
 // }
 
 export const projects = [
@@ -46,6 +46,7 @@ export const projects = [
     access: { locked: true },
     links: {
       overview: 'https://www.behance.net/gallery/255945815/Confidential-Rebuilding-a-product-from-scratch',
+      page: '/work/akur8-core-redesign', // TODO: dedicated project page not built yet
     },
   },
   {
@@ -76,6 +77,7 @@ export const projects = [
     access: { locked: true },
     links: {
       overview: 'https://www.behance.net/gallery/256089095/Building-Agentic-flows-in-3-months',
+      page: '/work/akur8-agentic-mvp', // TODO: dedicated project page not built yet
     },
   },
   {

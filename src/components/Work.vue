@@ -5,7 +5,7 @@
 
       <!-- Desktop: one ProjectInfo, driven by the project currently in view -->
       <Transition v-if="isDesktop" name="project-swap" mode="out-in">
-        <ProjectInfo :key="activeProject.id" :project="activeProject" class="sidebar-info" />
+        <ProjectInfo :key="activeProject.id" :project="activeProject" class="sidebar-info" @unlock="openUnlockDialog" />
       </Transition>
     </aside>
 
@@ -19,10 +19,12 @@
         :aria-label="isDesktop ? `${project.title}: ${project.headline}` : null"
       >
         <!-- Tablet & Mobile: each project carries its own info -->
-        <ProjectInfo v-if="!isDesktop" :project="project" />
+        <ProjectInfo v-if="!isDesktop" :project="project" @unlock="openUnlockDialog" />
         <ProjectCover :project="project" />
       </article>
     </div>
+
+    <UnlockDialog ref="unlockDialog" />
   </section>
 </template>
 
@@ -30,13 +32,14 @@
 import { projects } from '../data/projects.js'
 import ProjectInfo from './ProjectInfo.vue'
 import ProjectCover from './ProjectCover.vue'
+import UnlockDialog from './UnlockDialog.vue'
 
 // Matches the global desktop breakpoint (see assets/base.css)
 const DESKTOP_QUERY = '(min-width: 1200px)'
 
 export default {
   name: 'Work',
-  components: { ProjectInfo, ProjectCover },
+  components: { ProjectInfo, ProjectCover, UnlockDialog },
   data() {
     return {
       projects,
@@ -66,6 +69,9 @@ export default {
     this.disconnectObserver()
   },
   methods: {
+    openUnlockDialog() {
+      this.$refs.unlockDialog.open()
+    },
     onBreakpointChange(event) {
       this.isDesktop = event.matches
     },

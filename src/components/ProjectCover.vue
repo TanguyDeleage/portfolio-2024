@@ -9,7 +9,7 @@
     <component
       :is="coverLink ? 'a' : 'div'"
       class="mockup"
-      v-bind="coverLink ? { href: coverLink, target: '_blank', rel: 'noopener', tabindex: -1, 'aria-hidden': 'true' } : {}"
+      v-bind="coverLink ? { href: coverLink, tabindex: -1, 'aria-hidden': 'true', ...(isExternal && { target: '_blank', rel: 'noopener' }) } : {}"
     >
       <img
         :src="project.cover.src"
@@ -29,6 +29,7 @@
 
 <script>
 import WorkIcon from './WorkIcon.vue'
+import { isPrivateProject, isProjectLocked } from '../data/privateAccess.js'
 
 export default {
   name: 'ProjectCover',
@@ -38,10 +39,15 @@ export default {
   },
   computed: {
     isLocked() {
-      return Boolean(this.project.access?.locked)
+      return isProjectLocked(this.project)
     },
+    // Mirrors the primary CTA: dedicated page for private work, case study otherwise
     coverLink() {
-      return this.isLocked ? null : this.project.links?.caseStudy
+      if (this.isLocked) return null
+      return isPrivateProject(this.project) ? this.project.links?.page : this.project.links?.caseStudy
+    },
+    isExternal() {
+      return !isPrivateProject(this.project)
     },
   },
 }

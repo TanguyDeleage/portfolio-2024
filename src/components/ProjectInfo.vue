@@ -39,18 +39,23 @@
       </figure>
     </div>
 
-    <div class="cta" :class="{ 'cta-locked': isLocked }">
-      <template v-if="isLocked">
+    <div class="cta" :class="{ 'cta-private': isPrivate }">
+      <template v-if="isPrivate">
         <a v-if="project.links?.overview" :href="project.links.overview" target="_blank" rel="noopener" class="btn secondary">
           Read overview
           <span class="visually-hidden">of {{ project.title }} (opens in a new tab)</span>
           <WorkIcon name="external-link" />
         </a>
-        <!-- Password flow not implemented yet: the parent can listen to `unlock` -->
-        <button type="button" class="btn primary" @click="$emit('unlock', project)">
+        <!-- The parent owns the password dialog -->
+        <button v-if="isLocked" type="button" class="btn primary" @click="$emit('unlock', project)">
           Unlock projects
           <WorkIcon name="lock-open" />
         </button>
+        <a v-else-if="project.links?.page" :href="project.links.page" class="btn primary">
+          View project
+          <span class="visually-hidden">: {{ project.title }}</span>
+          <WorkIcon name="arrow-right" />
+        </a>
       </template>
       <a v-else-if="project.links?.caseStudy" :href="project.links.caseStudy" target="_blank" rel="noopener" class="btn primary">
         Read case study
@@ -63,6 +68,7 @@
 
 <script>
 import WorkIcon from './WorkIcon.vue'
+import { isPrivateProject, isProjectLocked } from '../data/privateAccess.js'
 
 export default {
   name: 'ProjectInfo',
@@ -72,8 +78,11 @@ export default {
   },
   emits: ['unlock'],
   computed: {
+    isPrivate() {
+      return isPrivateProject(this.project)
+    },
     isLocked() {
-      return Boolean(this.project.access?.locked)
+      return isProjectLocked(this.project)
     },
     initials() {
       return this.project.testimonial.author
@@ -325,11 +334,11 @@ export default {
 
   /* Mobile */
   @media screen and (max-width: 768px) {
-    .cta-locked {
+    .cta-private {
       flex-direction: column;
     }
 
-    .cta-locked .btn {
+    .cta-private .btn {
       flex: none;
     }
   }

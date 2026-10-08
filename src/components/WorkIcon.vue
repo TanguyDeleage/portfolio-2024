@@ -14,6 +14,10 @@
       <path d="M15 3h6v6" />
       <path d="M10 14 21 3" />
     </template>
+    <template v-else-if="name === 'arrow-right'">
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </template>
   </svg>
 </template>
 
