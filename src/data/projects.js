@@ -25,17 +25,16 @@ export const projects = [
     year: '2025',
     headline: 'Rebuilding a product from scratch to enable an E2E workflow',
     description: 'Redesigned Akur8’s core product to establish a new ecosystem-based business model, coordinating work across 3 squads on overlapping topics to keep alignment and deliver at high speed in under 9 months.',
-    // TODO: confirm metrics (taken from the design mockup)
     metrics: [
-      { value: '+35%', label: 'users' },
-      { value: '+23%', label: 'acquisition' },
-      { value: '+$2M', label: 'CARR' },
+      { value: '10x', label: 'faster computations' },
+      { value: '+$10M', label: 'additional CARR unlocked (year 1)' },
+      { value: '+$50M', label: 'additional CARR targeted (over 3 year)' },
     ],
     testimonial: {
-      quote: 'He is always curious about new technologies and ways of working, and consistently looks for ways to improve both the product and the design process. He is a great collaborator, takes real ownership of his work and brings a high level of quality to everything he does.',
-      author: 'Piotr Kwiatkowski',
-      job: 'Head of Design',
-      avatar: null, // TODO: add assets/images/testimonials/piotr.jpg
+      quote: "He throws himself wholeheartedly into every project, combining curiosity, dedication, and a genuine desire to create the best possible experience for users. He's a strong user advocate, an excellent communicator, and someone who always puts a great deal of care into his work.",
+      author: 'Carolina Barbosa Russi',
+      job: 'Senior Product Designer',
+      avatar: 'assets/images/testimonials/carolina.jpg',
     },
     tags: ['B2B SaaS', 'Insurtech', 'Machine learning'],
     cover: {
@@ -56,7 +55,18 @@ export const projects = [
     year: '2026',
     headline: 'MVP: Demonstrating power of agentic workflows in 3 months',
     description: 'Delivered an embedded AI agent MVP by designing its foundational flows, layout, guardrails, and component system.',
-    tags: ['B2B SaaS', 'Insurtech', 'Artificial intelligence'],
+    metrics: [
+      { value: '3', label: 'agents built' },
+      { value: '+80', label: 'requests/user/day (during pilot)' },
+      { value: '+1.3K', label: 'requests sent/month (1st month)' },
+    ],
+    testimonial: {
+      quote: 'He is always curious about new technologies and ways of working, and consistently looks for ways to improve both the product and the design process. He is a great collaborator, takes real ownership of his work and brings a high level of quality to everything he does.',
+      author: 'Piotr Kwiatkowski',
+      job: 'Head of Design',
+      avatar: null, // TODO: add assets/images/testimonials/piotr.jpg
+    },
+    tags: ['B2B SaaS', 'Insurtech', 'Agentic'],
     cover: {
       src: 'assets/images/work/node.png',
       alt: 'Node-based canvas with an AI assistant panel proposing coefficient changes',
@@ -73,8 +83,19 @@ export const projects = [
     title: 'KLS',
     role: 'Product Designer',
     year: '2024',
-    headline: 'Allowing Agents to manage notification settings',
-    tags: ['B2B SaaS', 'Fintech', 'Web responsive'],
+    headline: 'Allowing multi persona to manage the same notification settings',
+    description: 'In the flow of managing a file, an agent perform mass actions triggering a high volume of notifications to lenders. Allowing both side notification settings was necessary to increase notification.',
+    metrics: [
+      { value: '-50%', label: 'unwanted notifications received' },
+      { value: '+10%', label: 'improved Customer Effort Score' },
+    ],
+    testimonial: {
+      quote: 'His mastery of Figma enabled us to produce high-quality deliverables, his autonomy and pro-activity allowed us to quickly propose improvements in terms of user flows and processes, particularly regarding our Design System',
+      author: 'Romain Giroud',
+      job: 'Head of Design',
+      avatar: 'assets/images/testimonials/romain.jpg'
+    },
+    tags: ['B2B SaaS', 'Fintech', 'Startup'],
     cover: {
       src: 'assets/images/work/kls.png',
       alt: 'KLS notification settings screens on desktop and mobile',
@@ -84,24 +105,6 @@ export const projects = [
     access: { locked: false },
     links: {
       caseStudy: 'https://www.behance.net/gallery/200784759/KLS-Notification-settings',
-    },
-  },
-  {
-    id: 'kuartz-energy-contracts',
-    title: 'Kuartz',
-    role: 'Freelance Product Designer',
-    year: '2023',
-    headline: 'Transforming energy contracts: from paperwork to digital efficiency',
-    tags: ['B2B SaaS', 'Energy', 'Web responsive'],
-    cover: {
-      src: 'assets/images/work/kuartz.png',
-      alt: 'Kuartz energy contract management interface',
-      width: 4328,
-      height: 3179,
-    },
-    access: { locked: false },
-    links: {
-      caseStudy: 'https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector',
     },
   },
 ]
