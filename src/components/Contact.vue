@@ -10,7 +10,15 @@
         <h3 class="text-display">Contact</h3>
         <p class="subtitle">Need someone who can own the problem, not just the interface?</p>
         <div class="cta">
-          <a href="mailto:contact@tanguydeleage.com" class="btn primary">Get in touch</a>
+          <button type="button" class="btn primary copy-email" @click="copyEmail">
+            <span aria-live="polite">{{ emailCopied ? 'Email copied' : 'Copy email' }}</span>
+            <svg v-if="emailCopied" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg v-else width="24" height="24" viewBox="0 0 24 25" fill="none" aria-hidden="true">
+              <path d="M22 7.5L13.03 13.2C12.7213 13.3934 12.3643 13.496 12 13.496C11.6357 13.496 11.2787 13.3934 10.97 13.2L2 7.5M4 4.5H20C21.1046 4.5 22 5.39543 22 6.5V18.5C22 19.6046 21.1046 20.5 20 20.5H4C2.89543 20.5 2 19.6046 2 18.5V6.5C2 5.39543 2.89543 4.5 4 4.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
           <!-- <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn secondary">Book a free call</a> -->
         </div>
       </div>
@@ -22,9 +30,19 @@
         </a>
       </div>
     </div>
-    <div class="flex">
-      <a href="mailto:contact@tanguydeleage.com" class="last-link">contact@tanguydeleage.com</a>
-    </div>
+    <footer class="footer">
+      <p class="footer-copyright">© {{ currentYear }} Tanguy Deléage</p>
+      <div class="footer-deploy" :title="`Last deployed on ${buildDate}`">
+        <div class="deploy-counter" aria-hidden="true">
+          <span v-for="(digit, index) in daysSinceDeploy" :key="index">{{ digit }}</span>
+        </div>
+        <p>
+          <span class="visually-hidden">{{ daysSinceDeploy }}</span>
+          Days since last <s>incident</s> update
+        </p>
+      </div>
+      <p class="footer-email">{{ email }}</p>
+    </footer>
   </section>
 </template>
   
@@ -83,6 +101,9 @@
               fillRule: "evenodd",
           }
         ],
+        email: "contact@tanguydeleage.com",
+        emailCopied: false,
+        copyTimeout: null,
         heightThreshold: {
           mobile: 1000,
           tablet: 800,
@@ -90,10 +111,38 @@
         },
       }
     },
+    computed: {
+      currentYear() {
+        return new Date().getFullYear();
+      },
+      buildDate() {
+        return new Date(__BUILD_TIME__).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      },
+      daysSinceDeploy() {
+        const days = Math.floor((Date.now() - new Date(__BUILD_TIME__)) / 86400000);
+        return String(Math.min(Math.max(days, 0), 999)).padStart(3, '0');
+      },
+    },
     mounted() {
       window.addEventListener('scroll', this.logoArrow);
     },
+    beforeUnmount() {
+      clearTimeout(this.copyTimeout);
+    },
     methods: {
+      async copyEmail() {
+        try {
+          await navigator.clipboard.writeText(this.email);
+        } catch {
+          window.location.href = `mailto:${this.email}`;
+          return;
+        }
+        this.emailCopied = true;
+        clearTimeout(this.copyTimeout);
+        this.copyTimeout = setTimeout(() => {
+          this.emailCopied = false;
+        }, 2000);
+      },
       logoArrow() {
         const arrow = document.querySelector('.arrow')
         const rect = arrow.getBoundingClientRect();
@@ -171,6 +220,16 @@
     /* gap: 2rem; */
   }
 
+  .copy-email {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .copy-email svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
   .cta {
     display: flex;
     flex-direction: row;
@@ -190,12 +249,57 @@
     margin-bottom: 2rem;
   }
 
-  .last-link{
-    width: 100%;
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas: "copyright deploy email";
+    align-items: end;
+    gap: 1rem;
+    font-weight: 300;
+  }
+
+  .footer-copyright {
+    grid-area: copyright;
+  }
+
+  .footer-email {
+    grid-area: email;
+    text-align: right;
+  }
+
+  .footer-deploy {
+    grid-area: deploy;
     display: flex;
-    justify-content: right;
-    color: var(--primary-brand-highest);
-    text-decoration: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+    opacity: 0.8;
+  }
+
+  .deploy-counter {
+    display: flex;
+    border: 1px solid var(--primary-brand-highest);
+  }
+
+  .deploy-counter span {
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .deploy-counter span + span {
+    border-left: 1px solid var(--primary-brand-highest);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   .arrow{
@@ -222,11 +326,6 @@
       animation: 1.3s moveArrowTop 2.2s ease-out forwards;
   }
 
-  .flex {
-    display: flex;
-    width: 100%;
-    justify-content: right;
-  }
 
   @keyframes moveArrowLeft {
       0% {
@@ -274,29 +373,6 @@
       width: 100%;
     }
 
-    .last-link::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      background-color: var(--primary-brand-highest);
-      bottom: -5px;
-      left: 0;
-      transform: scaleX(0);
-      transform-origin: left center;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .last-link:hover:after {
-        transform: scaleX(1);
-    }
-
-    .last-link{
-        position: relative;
-        display: flex;
-        width: fit-content;
-    }
-
     .icon {
       transition: 0.5s ease-out;
     }
@@ -339,8 +415,12 @@
       font-size: 6rem;
     }
 
-    .last-link {
-      justify-content: right;
+    .footer {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "deploy deploy"
+        "copyright email";
+      row-gap: 3rem;
     }
 
     .subtitle {
@@ -391,8 +471,18 @@
       font-size: 6rem;
     }
 
-    .last-link {
-      justify-content: center;
+    .footer {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "deploy"
+        "email"
+        "copyright";
+      justify-items: center;
+      row-gap: 0.5rem;
+    }
+
+    .footer-deploy {
+      margin-bottom: 2.5rem;
     }
 
     .subtitle {

@@ -48,7 +48,7 @@
         </a>
         <!-- Password flow not implemented yet: the parent can listen to `unlock` -->
         <button type="button" class="btn primary" @click="$emit('unlock', project)">
-          Unlock case study
+          Unlock projects
           <WorkIcon name="lock-open" />
         </button>
       </template>
@@ -224,7 +224,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 0.5rem;
+    gap: 1rem;
     margin-top: auto; /* pins CTAs to the bottom when the parent stretches us (desktop sidebar) */
   }
 
