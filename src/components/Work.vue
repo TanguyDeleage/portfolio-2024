@@ -1,132 +1,112 @@
 <template>
-  <section class="work" id="work">
-    <aside>
-      <div class="header">
-        <h2 class="section-title">Work</h2>
-      </div>
-      <div class="divider"></div>
-      <div class="services">
-        <div class="service" v-for="(service, index) in services" :key="index">
-          <div class="header">
-            <p class="index">0{{ index + 1}}</p>
-            <p class="title">{{ service.title }}</p>
-          </div>
-          <ul class="items">
-            <li class="item" v-for="item in service.items" :key="item"> {{ item }}</li>
-          </ul>
-        </div>
-      </div>
+  <section class="work" id="work" aria-labelledby="work-title">
+    <aside class="sidebar">
+      <h2 class="section-title" id="work-title">Work</h2>
+
+      <!-- Desktop: one ProjectInfo, driven by the project currently in view -->
+      <Transition v-if="isDesktop" name="project-swap" mode="out-in">
+        <ProjectInfo :key="activeProject.id" :project="activeProject" class="sidebar-info" />
+      </Transition>
     </aside>
 
     <div class="projects">
-      <a class="project" :href=project.link target="_blank" v-for="project in projects" :key="project">
-        <div class="project-header">
-          <h3 class="project-title">{{ project.title }}</h3>
-          <ul class="project-tags">
-            <li v-for="tag in project.tags" :key="tag" class="project-tag">{{ tag }}</li>
-          </ul>
-        </div>
-        <div class="mockup"><img :src=project.mockup :alt="'Mockup' + project.title" loading="lazy"></div>
-        <div class="content">
-          <p class="project-description">{{ project.description }}</p>
-          <a :href=project.link target="_blank" class="button">
-            <p>Read case study</p>
-            <img src="/assets/icons/external-link.svg" style="width: 24px;" alt="External link icon" loading="lazy">
-          </a>
-        </div>
-      </a>
+      <article
+        v-for="project in projects"
+        :key="project.id"
+        ref="projectEls"
+        class="project"
+        :data-project-id="project.id"
+        :aria-label="isDesktop ? `${project.title}: ${project.headline}` : null"
+      >
+        <!-- Tablet & Mobile: each project carries its own info -->
+        <ProjectInfo v-if="!isDesktop" :project="project" />
+        <ProjectCover :project="project" />
+      </article>
     </div>
   </section>
-  
 </template>
-  
+
 <script>
+import { projects } from '../data/projects.js'
+import ProjectInfo from './ProjectInfo.vue'
+import ProjectCover from './ProjectCover.vue'
+
+// Matches the global desktop breakpoint (see assets/base.css)
+const DESKTOP_QUERY = '(min-width: 1200px)'
+
 export default {
   name: 'Work',
+  components: { ProjectInfo, ProjectCover },
   data() {
     return {
-      services: [
-        {
-          title: 'Tools',
-          items: ["Figma, Claude Code, Dust", "HTML, CSS, JS, Github", "Hotjar, Analytics, Modjo"]
-        },
-        {
-          title: 'Capabilities',
-          items: ["Product Discovery & Research", "Interaction & Data visualization", "Prototyping, Design Systems"]
-        },
-        {
-          title: 'Industry',
-          items: ["SaaS", "B2B", "FinTech", "AI/ML", "InsurTech", ]
-        }
-      ],
+      projects,
+      activeId: projects[0].id,
+      isDesktop: window.matchMedia(DESKTOP_QUERY).matches,
+    }
+  },
+  computed: {
+    activeProject() {
+      return this.projects.find(project => project.id === this.activeId) ?? this.projects[0]
+    },
+  },
+  watch: {
+    isDesktop() {
+      // Wait for the layout to switch before (re)observing
+      this.$nextTick(this.syncObserver)
+    },
+  },
+  mounted() {
+    // Non-reactive handles: no need for Vue to track these
+    this.mediaQuery = window.matchMedia(DESKTOP_QUERY)
+    this.mediaQuery.addEventListener('change', this.onBreakpointChange)
+    this.syncObserver()
+  },
+  beforeUnmount() {
+    this.mediaQuery.removeEventListener('change', this.onBreakpointChange)
+    this.disconnectObserver()
+  },
+  methods: {
+    onBreakpointChange(event) {
+      this.isDesktop = event.matches
+    },
+    // Active-project detection is only needed while the sidebar exists
+    syncObserver() {
+      this.disconnectObserver()
+      if (!this.isDesktop) return
 
-      projects: [
-        {
-          title: 'Confidential',
-          description : 'Rebuilding a product from scratch to enable an E2E workflow',
-          tags: ["B2B", "SaaS", "Machine Learning"],
-          mockup: 'assets/images/work/graph.png',
-          link: "https://www.behance.net/gallery/255945815/Confidential-Rebuilding-a-product-from-scratch"
-        },
-        {
-         title: 'Confidential',
-        description : 'MVP: Demonstrating power of agentic workflows in 3 months',
-        tags: ["SaaS", "Agentic", "AI/ML",],
-        mockup: 'assets/images/work/node.png',
-        link: "https://www.behance.net/gallery/256089095/Building-Agentic-flows-in-3-months"
-        },  
-        {
-          title: 'KLS',
-          description : 'Allowing Agents to manage notification settings',
-          tags: ["B2B", "SaaS", "Web Responsive"],
-          mockup: 'assets/images/work/kls.png',
-          link: "https://www.behance.net/gallery/200784759/KLS-Notification-settings"
-        },
-        // {
-        //   title: 'Canal+',
-        //   description : 'Allowing Mac users to download offline content',
-        //   tags: ["B2C", "Mobile", "Web Responsive"],
-        //   mockup: 'assets/images/work/canal.png',
-        //   link: "https://www.behance.net/gallery/179911807/Download-Offline-Content-MyCANAL"
-        // },
-        {
-          title: 'Kuartz',
-          description : 'Transforming energy contracts: from paperwork to digital efficiency',
-          tags: ["B2B", "SaaS", "Web Responsive"],
-          mockup: 'assets/images/work/kuartz.png',
-          link: "https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector?tracking_source=project_owner_other_projects"
-        },
-        // {
-        //   title: 'Matematch',
-        //   description : '10 days to help foreign students live a deeper exchange experience',
-        //   tags: ["B2C", "Mobile", "Web App"],
-        //   mockup: 'assets/images/work/matematch.png',
-        //   link: "https://www.behance.net/gallery/175709177/Matematch-Mobile-App-for-foreign-students-Le-Wagon?tracking_source=project_owner_other_projects"
-        // },
-        // {
-        //   title: 'Aisty',
-        //   description : 'Lorem ipsum dolor sit amet',
-        //   tags: ["UI Design", "Responsive", "WebApp"],
-        //   mockup: 'assets/images/work/aisty.png',
-        //   link: ""
-        // }
-      ]
-    };
-  }
+      // The root is a thin horizontal band at the vertical centre of the viewport.
+      // A project is active while it crosses that band: projects are separated by a
+      // gap wider than the band, so at most one can intersect at a time, and while
+      // the band sits in a gap nothing intersects and the previous project is kept.
+      // That gives stable, flicker-free switching in both scroll directions, and
+      // fast scrolls resolve to wherever the user lands.
+      this.observer = new IntersectionObserver(this.onIntersect, {
+        rootMargin: '-49% 0px -49% 0px',
+        threshold: 0,
+      })
+      this.$refs.projectEls.forEach(el => this.observer.observe(el))
+    },
+    disconnectObserver() {
+      this.observer?.disconnect()
+      this.observer = null
+    },
+    onIntersect(entries) {
+      // Latest entering project wins if a batch ever contains more than one
+      const entering = entries.filter(entry => entry.isIntersecting).pop()
+      if (entering) {
+        // Same-value assignments don't trigger a re-render
+        this.activeId = entering.target.dataset.projectId
+      }
+    },
+  },
 }
 </script>
-  
-<style scoped>
 
-  .work{
+<style scoped>
+  .work {
     display: flex;
     width: 100%;
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
+    background-color: #FAFAFA;
   }
 
   .section-title {
@@ -137,333 +117,128 @@ export default {
     line-height: 120%; /* 7.2rem */
   }
 
-  aside {
+  .sidebar {
     padding: var(--padding-v) var(--padding-h);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 0;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    gap: 4rem;
   }
-
-  .index {
-    color: #000;
-    font-size: 0.75rem;
-    font-weight: 400;
-    line-height: 140%;
-    text-transform: uppercase;
-  }
-
-  .project-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-    gap: 2rem;
-  }
-
-  .divider {
-    height: 1px;
-    width: 100%;
-    background-color: #000;
-  }
-
-  .services {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .service {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .title {
-    color: #000;
-    /* font-family: Inter; */
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 140%;
-    text-transform: uppercase;
-  }
-
-  ul {
-    list-style: none;
-    padding-inline-start: 0;
-  }
-
-  .services > .service:nth-child(3) .items {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    align-content: flex-start;
-    gap: 0.5rem;
-    align-self: stretch;
-    flex-wrap: wrap;
-  }
-
-  .items {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .item {
-    color: #000;
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 140%;
-  }
-
-  .services > .service:last-child .items li {
-    display: flex;
-    padding: 0.25rem 1rem;
-    align-items: flex-start;
-    border-radius: 1.5rem;
-    border: 1px solid #000;
-  }
-
 
   .projects {
-    background-color: #000;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    color: white;
-    padding: 4rem 2rem;
-    z-index: 1;
-    -webkit-transform: translateZ(1);
-    transform: translateZ(1);
-    position: relative;
   }
 
-  .project{
-    width: 100%;
-    background-color: #0A0A0A;
-    border-radius: 0.5rem;
+  .project {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 3rem 2rem;
-    text-decoration: none;
-    color: var(--primary-brand-lowest);
-  }
-  
-  .mockup {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .mockup img {
-    max-width: 80%;
-  }
-
-  .project-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 140%; /* 2.1rem */
-    text-transform: uppercase;
-    text-wrap: nowrap;
-  }
-
-  .project-description {
-    font-size: 0.875rem;
-    font-weight: 300;
-    line-height: 150%; /* 1.3125rem */
-    color: #CFCFCF;
-  }
-
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .project-tag {
-    color: #CFCFCF;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 150%; /* 1.3125rem */
-    display: flex;
-    padding: 0.25rem 0.5rem;
-    align-items: flex-start;
-    border-radius: 2rem;
-    border: 1px solid #D1D1D1;
-  }
-
-  .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
     gap: 2rem;
   }
 
-  .information {
-    display: flex;
-    flex-direction: Column;
-    gap: 1.5rem;
+  /* Sidebar content swap */
+  .project-swap-enter-active {
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
   }
 
-  .button {
-    color: var(--primary-brand-lowest);
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    justify-content: center;
-    align-items: center;
+  .project-swap-leave-active {
+    transition: opacity 0.12s ease-in;
   }
 
-  .button p {
-    text-wrap: nowrap;
+  .project-swap-enter-from {
+    opacity: 0;
+    transform: translateY(6px);
   }
 
-  /* desktop */
-  @media screen and (min-width: 1200px) {
-    aside {
-      height: 100vh;
-      width: calc((100% - 2.5rem)/ 3)
+  .project-swap-leave-to {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-swap-enter-active,
+    .project-swap-leave-active {
+      transition: opacity 0.12s linear;
     }
 
-    .services {
-      height: 100%;
+    .project-swap-enter-from {
+      transform: none;
+    }
+  }
+
+  /* Desktop */
+  @media screen and (min-width: 1200px) {
+    .sidebar {
+      position: sticky;
+      top: 0;
+      align-self: flex-start;
+      height: 100vh;
+      width: calc((100% - 2.5rem) / 3);
+      overflow-y: auto; /* safety net on very short viewports */
+    }
+
+    .sidebar-info {
+      flex: 1;
     }
 
     .projects {
-      width: calc(100% - ((100% - 2.5rem)/ 3))
+      width: calc(100% - ((100% - 2.5rem) / 3));
+      padding: 2rem;
+      background-color: #0A0A0A;
     }
-
-    .button p::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      background-color: var(--primary-brand-lowest);
-      bottom: -5px;
-      left: 0;
-      transform: scaleX(0);
-      transform-origin: left center;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .button p:hover:after {
-        transform: scaleX(1);
-    }
-
-    .button p{
-        position: relative;
-        display: inline-block;
-    }
-
   }
 
-  /* desktop with small length*/
-  @media screen and (min-width: 1200px) and (max-height: 780px){
-    
-    aside {
-      height: fit-content;
-    }
-    .services {
-      height: fit-content;
-      gap: 4rem;
+  /* Desktop with small height: tighten, then drop the testimonial if still too short */
+  @media screen and (min-width: 1200px) and (max-height: 900px) {
+    .sidebar {
+      gap: 2rem;
+      padding-block: 2rem;
     }
 
+    .section-title {
+      font-size: 4.5rem;
+      line-height: 100%;
+    }
   }
 
-  /* Tablet */
-  @media screen and (min-width: 769px) and (max-width: 1199px) {
+  @media screen and (min-width: 1200px) and (max-height: 800px) {
+    .sidebar :deep(.testimonial) {
+      display: none;
+    }
+  }
+
+  /* Tablet & Mobile: no sidebar, self-contained projects */
+  @media screen and (max-width: 1199px) {
     .work {
       flex-direction: column;
+      padding: var(--padding-v) var(--padding-h);
+      gap: 2rem;
     }
 
-    aside {
-      width: 100%;
-      z-index: 0;
-    }
-
-    .services {
-      flex-direction: row;
-      width: 100%;
-      gap: 4rem;
-      height: fit-content;
-    }
-
-    .service {
-      height: fit-content;
+    .sidebar {
+      padding: 0;
     }
 
     .projects {
-      width: 100%;
-      z-index: 1;
+      gap: 5rem;
     }
 
+    .project :deep(.project-info) {
+      max-width: 40rem;
+    }
   }
-
 
   /* Mobile */
   @media screen and (max-width: 768px) {
-    .work {
-      flex-direction: column;
-    }
-
-    aside {
-      width: 100%;
-      z-index: 0;
-    }
-
-    .services {
-      flex-direction: row;
-      width: 100%;
-      gap: 2rem;
-      flex-wrap: wrap;
-      height: fit-content;
-    }
-
-    .service {
-      height: fit-content;
+    .section-title {
+      font-size: 4rem;
     }
 
     .projects {
-      padding: 2rem 1rem;
+      gap: 4rem;
     }
 
     .project {
-      gap: 4rem;
-      padding: 2rem 1rem;
-    }
-
-    .project-header {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .project-tags {
-      justify-content: flex-start;
-    }
-
-    .mockup img{
-      max-width: 100%;
-    }
-
-    .content {
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .project-description {
-      display: flex;
-      width: 100%;
+      gap: 1.5rem;
     }
   }
 </style>
