@@ -19,7 +19,14 @@
     </aside>
 
     <div class="projects">
-      <a class="project" :href=project.link target="_blank" v-for="project in projects" :key="project">
+      <component
+        :is="isProjectLocked(project) ? 'div' : 'a'"
+        class="project"
+        v-for="project in projects"
+        :key="project.title + project.description"
+        :href="isProjectLocked(project) ? undefined : project.link"
+        :target="isProjectLocked(project) ? undefined : '_blank'"
+      >
         <div class="project-header">
           <h3 class="project-title">{{ project.title }}</h3>
           <ul class="project-tags">
@@ -29,22 +36,78 @@
         <div class="mockup"><img :src=project.mockup :alt="'Mockup' + project.title" loading="lazy"></div>
         <div class="content">
           <p class="project-description">{{ project.description }}</p>
-          <a :href=project.link target="_blank" class="button">
-            <p>Read case study</p>
+          <span
+            v-if="!isProjectLocked(project)"
+            class="button"
+          >
+            <p>See project</p>
             <img src="/assets/icons/external-link.svg" style="width: 24px;" alt="External link icon" loading="lazy">
-          </a>
+          </span>
+          <button
+            v-else
+            type="button"
+            class="button"
+            @click="openUnlockModal"
+          >
+            <p>Unlock project</p>
+          </button>
         </div>
-      </a>
+      </component>
     </div>
+
+    <Teleport to="body">
+      <div
+        v-if="isUnlockModalOpen"
+        class="unlock-overlay"
+        @click.self="closeUnlockModal"
+      >
+        <form
+          class="unlock-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="unlock-dialog-title"
+          @submit.prevent="submitUnlock"
+        >
+          <div class="unlock-copy">
+            <h2 id="unlock-dialog-title" class="unlock-title">Unlock all private work</h2>
+            <p class="unlock-subtitle">Enter the password to unlock private projects.</p>
+          </div>
+          <Input
+            v-model="unlockPassword"
+            type="password"
+            title="Password"
+            placeholder="••••••••"
+            hint="Password? You can find it on my resume, below the QR code."
+            :error="unlockError"
+            autocomplete="current-password"
+          />
+          <div class="unlock-actions">
+            <button type="button" class="btn primary" @click="closeUnlockModal">Cancel</button>
+            <button type="submit" class="btn secondary">Unlock</button>
+          </div>
+        </form>
+      </div>
+    </Teleport>
   </section>
   
 </template>
   
 <script>
+import Input from './Input.vue'
+
+const PRIVATE_WORK_PASSWORD = 'WorksOnMyMachine'
+
 export default {
   name: 'Work',
+  components: {
+    Input
+  },
   data() {
     return {
+      privateWorkUnlocked: false,
+      isUnlockModalOpen: false,
+      unlockPassword: '',
+      unlockError: '',
       services: [
         {
           title: 'Tools',
@@ -66,21 +129,24 @@ export default {
           description : 'Rebuilding a product from scratch to enable an E2E workflow',
           tags: ["B2B", "SaaS", "Machine Learning"],
           mockup: 'assets/images/work/graph.png',
-          link: "https://www.behance.net/gallery/255945815/Confidential-Rebuilding-a-product-from-scratch"
+          link: "https://www.behance.net/gallery/255945815/Confidential-Rebuilding-a-product-from-scratch",
+          status: "private"
         },
         {
          title: 'Confidential',
         description : 'MVP: Demonstrating power of agentic workflows in 3 months',
         tags: ["SaaS", "Agentic", "AI/ML",],
         mockup: 'assets/images/work/node.png',
-        link: "https://www.behance.net/gallery/256089095/Building-Agentic-flows-in-3-months"
+        link: "https://www.behance.net/gallery/256089095/Building-Agentic-flows-in-3-months",
+        status: "private"
         },  
         {
           title: 'KLS',
           description : 'Allowing Agents to manage notification settings',
           tags: ["B2B", "SaaS", "Web Responsive"],
           mockup: 'assets/images/work/kls.png',
-          link: "https://www.behance.net/gallery/200784759/KLS-Notification-settings"
+          link: "https://www.behance.net/gallery/200784759/KLS-Notification-settings",
+          status: "public"
         },
         // {
         //   title: 'Canal+',
@@ -94,7 +160,8 @@ export default {
           description : 'Transforming energy contracts: from paperwork to digital efficiency',
           tags: ["B2B", "SaaS", "Web Responsive"],
           mockup: 'assets/images/work/kuartz.png',
-          link: "https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector?tracking_source=project_owner_other_projects"
+          link: "https://www.behance.net/gallery/182420717/Kuartz-Freelance-mission-in-energy-sector?tracking_source=project_owner_other_projects",
+          status: "public"
         },
         // {
         //   title: 'Matematch',
@@ -112,6 +179,57 @@ export default {
         // }
       ]
     };
+  },
+  watch: {
+    unlockPassword() {
+      this.unlockError = ''
+    },
+    isUnlockModalOpen(isOpen) {
+      if (isOpen) {
+        document.body.style.overflow = 'hidden'
+        window.addEventListener('keydown', this.onUnlockKeydown)
+        this.$nextTick(() => {
+          const input = document.querySelector('.unlock-dialog .field-input')
+          input?.focus()
+        })
+      } else {
+        document.body.style.overflow = ''
+        window.removeEventListener('keydown', this.onUnlockKeydown)
+      }
+    }
+  },
+  beforeUnmount() {
+    document.body.style.overflow = ''
+    window.removeEventListener('keydown', this.onUnlockKeydown)
+  },
+  methods: {
+    isProjectLocked(project) {
+      return project.status === 'private' && !this.privateWorkUnlocked
+    },
+    openUnlockModal() {
+      this.unlockPassword = ''
+      this.unlockError = ''
+      this.isUnlockModalOpen = true
+    },
+    closeUnlockModal() {
+      this.isUnlockModalOpen = false
+      this.unlockPassword = ''
+      this.unlockError = ''
+    },
+    onUnlockKeydown(event) {
+      if (event.key === 'Escape') {
+        this.closeUnlockModal()
+      }
+    },
+    submitUnlock() {
+      if (this.unlockPassword === PRIVATE_WORK_PASSWORD) {
+        this.privateWorkUnlocked = true
+        this.closeUnlockModal()
+        return
+      }
+
+      this.unlockError = 'Incorrect password. Please try again.'
+    }
   }
 }
 </script>
@@ -323,6 +441,11 @@ export default {
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
   }
 
   .button p {
@@ -465,5 +588,70 @@ export default {
       display: flex;
       width: 100%;
     }
+  }
+
+  .unlock-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .unlock-dialog {
+    display: flex;
+    width: 100%;
+    max-width: 440px;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background: var(--primary-brand-lowest);
+    color: var(--primary-brand-highest);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+  }
+
+  .unlock-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .unlock-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 140%;
+  }
+
+  .unlock-subtitle {
+    color: #5C5C5C;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+  .unlock-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .unlock-dialog .btn {
+    mix-blend-mode: normal;
+  }
+
+  .unlock-dialog .btn.primary {
+    border-color: var(--primary-brand-highest);
+    color: var(--primary-brand-highest);
+    background-color: var(--primary-brand-lowest);
+  }
+
+  .unlock-dialog .btn.secondary {
+    border-color: var(--primary-brand-highest);
+    color: var(--primary-brand-lowest);
+    background-color: var(--primary-brand-highest);
   }
 </style>
