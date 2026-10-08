@@ -27,8 +27,8 @@ export const projects = [
     description: 'Redesigned Akur8’s core product to establish a new ecosystem-based business model, coordinating work across 3 squads on overlapping topics to keep alignment and deliver at high speed in under 9 months.',
     metrics: [
       { value: '10x', label: 'faster computations' },
-      { value: '+$10M', label: 'additional CARR unlocked (year 1)' },
-      { value: '+$50M', label: 'additional CARR targeted (over 3 year)' },
+      { value: '+$10M', label: 'additional CARR, 1st year' },
+      { value: '+$50M', label: 'CARR targeted, 3 yrs' },
     ],
     testimonial: {
       quote: "He throws himself wholeheartedly into every project, combining curiosity, dedication, and a genuine desire to create the best possible experience for users. He's a strong user advocate, an excellent communicator, and someone who always puts a great deal of care into his work.",
@@ -57,7 +57,7 @@ export const projects = [
     description: 'Delivered an embedded AI agent MVP by designing its foundational flows, layout, guardrails, and component system.',
     metrics: [
       { value: '3', label: 'agents built' },
-      { value: '+80', label: 'requests/user/day (during pilot)' },
+      { value: '+80', label: 'requests/user/day (pilot)' },
       { value: '+1.3K', label: 'requests sent/month (1st month)' },
     ],
     testimonial: {
@@ -84,13 +84,13 @@ export const projects = [
     role: 'Product Designer',
     year: '2024',
     headline: 'Allowing multi persona to manage the same notification settings',
-    description: 'In the flow of managing a file, an agent perform mass actions triggering a high volume of notifications to lenders. Allowing both side notification settings was necessary to increase notification.',
+    description: 'In the flow of managing a file, an agent perform mass actions triggering a high volume of notifications to lenders. Allowing both side notification settings was necessary to increase notification purpose.',
     metrics: [
-      { value: '-50%', label: 'unwanted notifications received' },
+      { value: '-50%', label: 'notifications received' },
       { value: '+10%', label: 'improved Customer Effort Score' },
     ],
     testimonial: {
-      quote: 'His mastery of Figma enabled us to produce high-quality deliverables, his autonomy and pro-activity allowed us to quickly propose improvements in terms of user flows and processes, particularly regarding our Design System',
+      quote: 'His mastery of Figma enabled us to produce high-quality deliverables, his autonomy and pro-activity allowed us to quickly propose improvements in terms of user flows and processes, particularly regarding our Design System.',
       author: 'Romain Giroud',
       job: 'Head of Design',
       avatar: 'assets/images/testimonials/romain.jpg'

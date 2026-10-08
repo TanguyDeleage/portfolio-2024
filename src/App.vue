@@ -8,7 +8,6 @@
     <Hero />
     <Showreel />
     <Work />
-    <Testimonials />/
     <About />
     <Contact />
   </main>
@@ -38,10 +37,6 @@ const Work = defineAsyncComponent(() =>
   import('./components/Work.vue')
 );
 
-const Testimonials = defineAsyncComponent(() =>
-  import('./components/Testimonials.vue')
-);
-
 const About = defineAsyncComponent(() =>
   import('./components/About.vue')
 );
@@ -54,7 +49,6 @@ import Header from'./components/Header.vue';
 import Hero from'./components/Hero.vue';
 // import Showreel from'./components/Showreel.vue';
 // import Work from'./components/Work.vue';
-// import Testimonials from'./components/Testimonials.vue';
 // import About from'./components/About.vue';
 // import Contact from'./components/Contact.vue';
 

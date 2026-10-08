@@ -8,7 +8,7 @@
       </div>
       <div class="main">
         <h3 class="text-display">Contact</h3>
-        <p class="subtitle">Interested in working together ?</p>
+        <p class="subtitle">Need someone who can own the problem, not just the interface?</p>
         <div class="cta">
           <a href="mailto:contact@tanguydeleage.com" class="btn primary">Get in touch</a>
           <!-- <a href="https://calendly.com/tdeleage/hello" target="_blank" class="btn secondary">Book a free call</a> -->
@@ -184,8 +184,8 @@
   }
 
   .subtitle {
-    font-size: 2rem;
-    font-weight: 500;
+    font-size: 1.25rem;
+    font-weight: 300;
     line-height: 140%; /* 2.8rem */
     margin-bottom: 2rem;
   }

@@ -12,9 +12,6 @@
             <a href="#work" class="nav-link">
                 <p class="nav-title slide-left">Work</p>
             </a>
-            <a href="#reviews" class="nav-link">
-                <p class="nav-title slide-left">Reviews</p>
-            </a>
             <a href="#about" class="nav-link">
                 <p class="nav-title slide-left">About</p>
             </a>

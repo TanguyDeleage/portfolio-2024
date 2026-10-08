@@ -173,7 +173,13 @@ export default {
       align-self: flex-start;
       height: 100vh;
       width: calc((100% - 2.5rem) / 3);
+      padding-inline: 2.5rem;
       overflow-y: auto; /* safety net on very short viewports */
+    }
+
+    .sidebar .section-title {
+      font-size: 4.5rem;
+      line-height: 100%;
     }
 
     .sidebar-info {
@@ -192,11 +198,6 @@ export default {
     .sidebar {
       gap: 2rem;
       padding-block: 2rem;
-    }
-
-    .section-title {
-      font-size: 4.5rem;
-      line-height: 100%;
     }
   }
 
