@@ -12,10 +12,14 @@
 //   metrics:     optional [{ value, label }]
 //   testimonial: optional { quote, author, job, avatar }  (avatar optional)
 //   tags:        string[]
-//   cover:       { src, alt, width, height }
+//   cover:       { src, alt, width, height, blurred? }
+//                blurred: { src, width, height }, pre-blurred image shown while the project is locked
+//                (the real image is never requested until unlock)
 //   access:      { locked: boolean }  (private: password-gated, see privateAccess.js)
-//   links:       { caseStudy?, overview?, page? }  (page: dedicated page of a private project, once unlocked)
+//   links:       { caseStudy?, overview?, page? }  (page: dedicated project page, /work/<id>, content in caseStudies.js)
 // }
+//
+// Asset paths are root-absolute so they also resolve on project pages.
 
 export const projects = [
   {
@@ -34,19 +38,20 @@ export const projects = [
       quote: "He throws himself wholeheartedly into every project, combining curiosity, dedication, and a genuine desire to create the best possible experience for users. He's a strong user advocate, an excellent communicator, and someone who always puts a great deal of care into his work.",
       author: 'Carolina Barbosa Russi',
       job: 'Senior Product Designer',
-      avatar: 'assets/images/testimonials/carolina.jpg',
+      avatar: '/assets/images/testimonials/carolina.jpg',
     },
     tags: ['B2B SaaS', 'Insurtech', 'Machine learning'],
     cover: {
-      src: 'assets/images/work/graph.png',
+      src: '/assets/images/work/graph.png',
       alt: 'Akur8 modelling workspace showing a coefficient table and chart',
       width: 6000,
       height: 4500,
+      blurred: { src: '/assets/images/work/occam-blur.webp', width: 1472, height: 932 },
     },
     access: { locked: true },
     links: {
       overview: 'https://www.behance.net/gallery/255945815/Confidential-Rebuilding-a-product-from-scratch',
-      page: '/work/akur8-core-redesign', // TODO: dedicated project page not built yet
+      page: '/work/akur8-core-redesign',
     },
   },
   {
@@ -69,15 +74,16 @@ export const projects = [
     },
     tags: ['B2B SaaS', 'Insurtech', 'Agentic'],
     cover: {
-      src: 'assets/images/work/node.png',
+      src: '/assets/images/work/node.png',
       alt: 'Node-based canvas with an AI assistant panel proposing coefficient changes',
       width: 2462,
       height: 1739,
+      blurred: { src: '/assets/images/work/agent-blur.webp', width: 1472, height: 932 },
     },
     access: { locked: true },
     links: {
       overview: 'https://www.behance.net/gallery/256089095/Building-Agentic-flows-in-3-months',
-      page: '/work/akur8-agentic-mvp', // TODO: dedicated project page not built yet
+      page: '/work/akur8-agentic-mvp', // TODO: case study content in caseStudies.js
     },
   },
   {
@@ -95,18 +101,19 @@ export const projects = [
       quote: 'His mastery of Figma enabled us to produce high-quality deliverables, his autonomy and pro-activity allowed us to quickly propose improvements in terms of user flows and processes, particularly regarding our Design System.',
       author: 'Romain Giroud',
       job: 'Head of Design',
-      avatar: 'assets/images/testimonials/romain.jpg'
+      avatar: '/assets/images/testimonials/romain.jpg'
     },
     tags: ['B2B SaaS', 'Fintech', 'Startup'],
     cover: {
-      src: 'assets/images/work/kls.png',
+      src: '/assets/images/work/kls.png',
       alt: 'KLS notification settings screens on desktop and mobile',
       width: 4488,
       height: 3434,
     },
     access: { locked: false },
     links: {
-      caseStudy: 'https://www.behance.net/gallery/200784759/KLS-Notification-settings',
+      overview: 'https://www.behance.net/gallery/200784759/KLS-Notification-settings',
+      page: '/work/kls-notification-settings', // TODO: case study content in caseStudies.js
     },
   },
 ]

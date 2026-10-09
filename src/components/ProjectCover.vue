@@ -12,10 +12,10 @@
       v-bind="coverLink ? { href: coverLink, tabindex: -1, 'aria-hidden': 'true', ...(isExternal && { target: '_blank', rel: 'noopener' }) } : {}"
     >
       <img
-        :src="project.cover.src"
+        :src="coverImage.src"
         :alt="isLocked ? `Blurred preview: ${project.cover.alt} (case study locked)` : project.cover.alt"
-        :width="project.cover.width"
-        :height="project.cover.height"
+        :width="coverImage.width"
+        :height="coverImage.height"
         loading="lazy"
         decoding="async"
       >
@@ -29,7 +29,7 @@
 
 <script>
 import WorkIcon from './WorkIcon.vue'
-import { isPrivateProject, isProjectLocked } from '../data/privateAccess.js'
+import { isProjectLocked } from '../data/privateAccess.js'
 
 export default {
   name: 'ProjectCover',
@@ -41,13 +41,17 @@ export default {
     isLocked() {
       return isProjectLocked(this.project)
     },
-    // Mirrors the primary CTA: dedicated page for private work, case study otherwise
+    // Locked projects show a pre-blurred file so the real image is never downloaded
+    coverImage() {
+      return this.isLocked && this.project.cover.blurred ? this.project.cover.blurred : this.project.cover
+    },
+    // Mirrors the primary CTA: dedicated page when there is one, case study otherwise
     coverLink() {
       if (this.isLocked) return null
-      return isPrivateProject(this.project) ? this.project.links?.page : this.project.links?.caseStudy
+      return this.project.links?.page ?? this.project.links?.caseStudy
     },
     isExternal() {
-      return !isPrivateProject(this.project)
+      return !this.project.links?.page
     },
   },
 }
@@ -101,7 +105,6 @@ export default {
   }
 
   .locked .mockup img {
-    filter: blur(16px);
     user-select: none;
     pointer-events: none;
   }

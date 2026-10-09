@@ -1,16 +1,23 @@
 <template>
 
-  <header>
-    <Header />
-  </header>
-
-  <main>
-    <Hero />
-    <Showreel />
-    <Work />
-    <About />
-    <Contact />
+  <main v-if="currentProject">
+    <!-- Keyed so moving between projects starts a fresh page -->
+    <ProjectPage :key="currentProject.id" :project="currentProject" />
   </main>
+
+  <template v-else>
+    <header>
+      <Header />
+    </header>
+
+    <main>
+      <Hero />
+      <Showreel />
+      <Work />
+      <About />
+      <Contact />
+    </main>
+  </template>
 
   <!-- <footer>
   </footer> -->
@@ -19,7 +26,9 @@
 
 <script setup>
 
-import { defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent } from 'vue'
+import { route } from './router.js'
+import { projects } from './data/projects.js'
 
 // const Header = defineAsyncComponent(() =>
 //   import ('./components/Header.vue')
@@ -44,6 +53,16 @@ const About = defineAsyncComponent(() =>
 const Contact = defineAsyncComponent(() =>
   import('./components/Contact.vue')
 );
+
+const ProjectPage = defineAsyncComponent(() =>
+  import('./components/ProjectPage.vue')
+);
+
+// Project pages live at their `links.page` path; anything else shows the home page
+const currentProject = computed(() => {
+  const path = route.path.replace(/\/+$/, '')
+  return projects.find(project => project.links?.page === path)
+})
 
 import Header from'./components/Header.vue';
 import Hero from'./components/Hero.vue';

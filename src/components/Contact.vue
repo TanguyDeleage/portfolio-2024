@@ -128,6 +128,7 @@
     },
     beforeUnmount() {
       clearTimeout(this.copyTimeout);
+      window.removeEventListener('scroll', this.logoArrow);
     },
     methods: {
       async copyEmail() {
