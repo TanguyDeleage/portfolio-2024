@@ -22,6 +22,10 @@
       <path d="M19 12H5" />
       <path d="m12 19-7-7 7-7" />
     </template>
+    <template v-else-if="name === 'clock'">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 6v6l4 2" />
+    </template>
     <template v-else-if="name === 'arrow-up'">
       <path d="M12 19V5" />
       <path d="m5 12 7-7 7 7" />

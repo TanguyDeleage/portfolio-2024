@@ -40,13 +40,19 @@
     </div>
 
     <div class="cta" :class="{ 'cta-stacked': hasTwoCtas }">
-      <a v-if="project.links?.overview" :href="project.links.overview" target="_blank" rel="noopener" class="btn secondary">
+      <!-- While the full page is in progress, the overview is the only way in, so it leads -->
+      <a v-if="project.links?.overview" :href="project.links.overview" target="_blank" rel="noopener" class="btn" :class="project.inProgress ? 'primary' : 'secondary'">
         Read overview
         <span class="visually-hidden">of {{ project.title }} (opens in a new tab)</span>
         <WorkIcon name="external-link" />
       </a>
+      <!-- Status, not an action: a plain element so it isn't announced as an unusable button -->
+      <p v-if="project.inProgress" class="btn in-progress">
+        <span class="visually-hidden">Full </span>Case study soon
+        <WorkIcon name="clock" />
+      </p>
       <!-- The parent owns the password dialog -->
-      <button v-if="isLocked" type="button" class="btn primary" @click="$emit('unlock', project)">
+      <button v-else-if="isLocked" type="button" class="btn primary" @click="$emit('unlock', project)">
         Unlock projects
         <WorkIcon name="lock-open" />
       </button>
@@ -274,6 +280,19 @@ export default {
   .btn.secondary {
     background-color: var(--primary-brand-lowest);
     color: var(--primary-brand-highest);
+  }
+
+  /* Reads as a disabled button: same footprint, dashed and muted, no hover */
+  .btn.in-progress {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    border: 1px dashed #8A8A8A;
+    background-color: transparent;
+    color: #6B6B6B;
+    cursor: default;
+    pointer-events: none;
   }
 
   .visually-hidden {

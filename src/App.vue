@@ -58,10 +58,11 @@ const ProjectPage = defineAsyncComponent(() =>
   import('./components/ProjectPage.vue')
 );
 
-// Project pages live at their `links.page` path; anything else shows the home page
+// Project pages live at their `links.page` path; anything else shows the home page.
+// Pages still in progress are only served in dev, so they can be built without being public.
 const currentProject = computed(() => {
   const path = route.path.replace(/\/+$/, '')
-  return projects.find(project => project.links?.page === path)
+  return projects.find(project => project.links?.page === path && (!project.inProgress || import.meta.env.DEV))
 })
 
 import Header from'./components/Header.vue';

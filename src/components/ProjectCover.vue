@@ -47,7 +47,7 @@ export default {
     },
     // Mirrors the primary CTA: dedicated page when there is one, case study otherwise
     coverLink() {
-      if (this.isLocked) return null
+      if (this.isLocked || this.project.inProgress) return null
       return this.project.links?.page ?? this.project.links?.caseStudy
     },
     isExternal() {

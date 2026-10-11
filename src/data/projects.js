@@ -17,6 +17,8 @@
 //                (the real image is never requested until unlock)
 //   access:      { locked: boolean }  (private: password-gated, see privateAccess.js)
 //   links:       { caseStudy?, overview?, page? }  (page: dedicated project page, /work/<id>, content in caseStudies.js)
+//   inProgress:  optional boolean, the dedicated page is still being written: its CTA shows as
+//                "in progress" and /work/<id> is only served in dev
 // }
 //
 // Asset paths are root-absolute so they also resolve on project pages.
@@ -35,10 +37,10 @@ export const projects = [
       { value: '+$50M', label: 'CARR targeted, 3 yrs' },
     ],
     testimonial: {
-      quote: "He throws himself wholeheartedly into every project, combining curiosity, dedication, and a genuine desire to create the best possible experience for users. He's a strong user advocate, an excellent communicator, and someone who always puts a great deal of care into his work.",
-      author: 'Carolina Barbosa Russi',
-      job: 'Senior Product Designer',
-      avatar: '/assets/images/testimonials/carolina.jpg',
+      quote: "He is always curious about new technologies and ways of working, and consistently looks for ways to improve both the product and the design process. He is a great collaborator, takes real ownership of his work and brings a high level of quality to everything he does.",
+      author: 'Piotr Kwiatkowski',
+      job: 'Head of Design',
+      avatar: null,
     },
     tags: ['B2B SaaS', 'Insurtech', 'Machine learning'],
     cover: {
@@ -49,6 +51,7 @@ export const projects = [
       blurred: { src: '/assets/images/work/occam-blur.webp', width: 1472, height: 932 },
     },
     access: { locked: true },
+    inProgress: true,
     links: {
       overview: 'https://www.behance.net/gallery/255945815/Confidential-Rebuilding-a-product-from-scratch',
       page: '/work/akur8-core-redesign',
@@ -67,9 +70,9 @@ export const projects = [
       { value: '+1.3K', label: 'requests sent/month (1st month)' },
     ],
     testimonial: {
-      quote: 'He is always curious about new technologies and ways of working, and consistently looks for ways to improve both the product and the design process. He is a great collaborator, takes real ownership of his work and brings a high level of quality to everything he does.',
-      author: 'Piotr Kwiatkowski',
-      job: 'Head of Design',
+      quote: 'I had the pleasure of collaborating with Tanguy on several projects, including the initial setup of Akur8 agents on our platform. He took a problem with no established patterns and turned it into clear, usable workflows.',
+      author: 'Lukas Wenzl',
+      job: 'Engineering manager',
       avatar: null, // TODO: add assets/images/testimonials/piotr.jpg
     },
     tags: ['B2B SaaS', 'Insurtech', 'Agentic'],
@@ -81,6 +84,7 @@ export const projects = [
       blurred: { src: '/assets/images/work/agent-blur.webp', width: 1472, height: 932 },
     },
     access: { locked: true },
+    inProgress: true,
     links: {
       overview: 'https://www.behance.net/gallery/256089095/Building-Agentic-flows-in-3-months',
       page: '/work/akur8-agentic-mvp', // TODO: case study content in caseStudies.js
@@ -111,6 +115,7 @@ export const projects = [
       height: 3434,
     },
     access: { locked: false },
+    inProgress: true,
     links: {
       overview: 'https://www.behance.net/gallery/200784759/KLS-Notification-settings',
       page: '/work/kls-notification-settings', // TODO: case study content in caseStudies.js
