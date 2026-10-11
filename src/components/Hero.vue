@@ -5,14 +5,22 @@
       <div class="title">
         <h1 class="display-text">Product</h1>
         <div class="second-line">
-          <div class="hero-pill">UI/UX</div>
           <div class="column">
             <div class="text-container">
               <h1 class="display-text">Designer</h1>
             </div>
-            <div class="cta">
-              <a class="btn primary" href="#work">Discover projects</a>
-              <a class="btn secondary" href="#about">About me</a>
+            <div class="actions">
+              <div class="status">
+                <span class="status-dot" aria-hidden="true"></span>
+                <div class="status-text">
+                  <span class="status-label">Currently</span>
+                  <span class="status-value">Building at Akur8</span>
+                </div>
+              </div>
+              <div class="cta">
+                <a class="btn primary" href="#work">Discover projects</a>
+                <a class="btn secondary" href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download>Download CV</a>
+              </div>
             </div>
           </div>
         </div>        
@@ -29,15 +37,23 @@
         <div class="hero-wrapper">
           <h1 class="display-text">Product</h1>
           <div class="second-line">
-            <div class="hero-pill">UI/UX</div>
             <div class="text-container">
               <h1 class="display-text">Designer</h1>
             </div>
           </div>
         </div>  
-        <div class="cta">
-          <a class="btn primary" href="#work">Discover projects</a>
-          <a class="btn secondary" href="#about">About me</a>
+        <div class="actions">
+          <div class="status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <div class="status-text">
+              <span class="status-label">Currently</span>
+              <span class="status-value">Building at Akur8</span>
+            </div>
+          </div>
+          <div class="cta">
+            <a class="btn primary" href="#work">Discover projects</a>
+            <a class="btn secondary" href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download>Download CV</a>
+          </div>
         </div>
       </div>
       <div class="description">
@@ -52,7 +68,6 @@
         <div class="hero-wrapper">
           <h1 class="display-text">Product</h1>
           <div class="second-line">
-            <div class="hero-pill">UI/UX</div>
             <div class="text-container">
               <h1 class="display-text">Designer</h1>
             </div>
@@ -63,9 +78,18 @@
           <h1 class="author">Tanguy Deléage</h1>
           <p>Specialising in complex B2B SaaS products across FinTech, InsurTech, and AI/ML. I turn data-heavy workflows and technical constraints into clear user experiences.</p>
         </div>
-        <div class="cta">
-          <a class="btn primary" href="#work">Discover projects</a>
-          <a class="btn secondary" href="#about">About me</a>
+        <div class="actions">
+          <div class="status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <div class="status-text">
+              <span class="status-label">Currently</span>
+              <span class="status-value">Building at Akur8</span>
+            </div>
+          </div>
+          <div class="cta">
+            <a class="btn primary" href="#work">Discover projects</a>
+            <a class="btn secondary" href="assets/documents/CV Tanguy DELEAGE - EN.pdf" download>Download CV</a>
+          </div>
         </div>
       </div>
     </div>
@@ -140,32 +164,80 @@
 .second-line {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  padding-left: 7.5rem; /* keeps "Designer" indented under "Product" */
 }
 .column {
  display: flex;
  flex-direction: column;
  gap: 5rem;
 }
-.hero-pill {
-  color: var(--Black, #000);
-  font-family: 'Eklektyk';
-  font-style: normal;
-  font-weight: 300;
-  line-height: 120%; /* 3.6rem */
-  height: fit-content;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3rem;
-  border: 1px solid #000;
-  width: fit-content;
-}
 .cta {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+/* Status + CTAs row: a wider gap than between the buttons themselves */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.status-label {
+  font-size: 0.75rem;
+  font-weight: var(--light);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #3D3D3D;
+}
+
+.status-value {
+  font-size: 1.125rem;
+  color: black;
+}
+
+.status-dot {
+  position: relative;
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #F5A05A;
+}
+
+/* Ping: a ring that expands out of the dot and fades away */
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #F5A05A;
+  animation: status-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes status-ping {
+  0% { transform: scale(1); opacity: 0.75; }
+  75%, 100% { transform: scale(2.75); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot::after {
+    animation: none;
+  }
 }
 
 .hero-picture {
@@ -199,10 +271,6 @@
   .display-text {
     font-size: 10rem;
   }
-  .hero-pill {
-    font-size: 2rem;
-    padding: 0.5rem 1rem;
-  }
 
   .text-container {
     height: 6rem;
@@ -223,16 +291,16 @@
     font-size: 5rem;
   }
 
-  .hero-pill {
-    font-size: 1.5rem;
-    padding: 0.25rem 0.5rem;
-  }
 
   .text-container {
     height: 3rem;
   }
 
-  .cta {
+  .second-line {
+    padding-left: 3.75rem;
+  }
+
+  .cta, .actions {
     justify-content: center;
   }
 
@@ -279,7 +347,7 @@
 
   .second-line {
     width: 100%;
-    gap: 0.5rem;
+    padding-left: 3rem;
   }
 
   .text-container {
@@ -302,9 +370,10 @@
     font-size: 4rem;
   }
 
-  .hero-pill {
-    font-size: 1rem;
-    padding: 0.25rem 0.5rem;
+
+  .actions {
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .cta {

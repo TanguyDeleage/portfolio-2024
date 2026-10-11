@@ -5,6 +5,9 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'eslint:recommended'
   ],
+  globals: {
+    __BUILD_TIME__: 'readonly'
+  },
   parserOptions: {
     ecmaVersion: 'latest'
   }

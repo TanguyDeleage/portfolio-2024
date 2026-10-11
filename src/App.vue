@@ -1,17 +1,23 @@
 <template>
 
-  <header>
-    <Header />
-  </header>
-
-  <main>
-    <Hero />
-    <Showreel />
-    <Work />
-    <Testimonials />
-    <About />
-    <Contact />
+  <main v-if="currentProject">
+    <!-- Keyed so moving between projects starts a fresh page -->
+    <ProjectPage :key="currentProject.id" :project="currentProject" />
   </main>
+
+  <template v-else>
+    <header>
+      <Header />
+    </header>
+
+    <main>
+      <Hero />
+      <Showreel />
+      <Work />
+      <About />
+      <Contact />
+    </main>
+  </template>
 
   <!-- <footer>
   </footer> -->
@@ -20,7 +26,9 @@
 
 <script setup>
 
-import { defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent } from 'vue'
+import { route } from './router.js'
+import { projects } from './data/projects.js'
 
 // const Header = defineAsyncComponent(() =>
 //   import ('./components/Header.vue')
@@ -38,10 +46,6 @@ const Work = defineAsyncComponent(() =>
   import('./components/Work.vue')
 );
 
-const Testimonials = defineAsyncComponent(() =>
-  import('./components/Testimonials.vue')
-);
-
 const About = defineAsyncComponent(() =>
   import('./components/About.vue')
 );
@@ -50,11 +54,21 @@ const Contact = defineAsyncComponent(() =>
   import('./components/Contact.vue')
 );
 
+const ProjectPage = defineAsyncComponent(() =>
+  import('./components/ProjectPage.vue')
+);
+
+// Project pages live at their `links.page` path; anything else shows the home page.
+// Pages still in progress are only served in dev, so they can be built without being public.
+const currentProject = computed(() => {
+  const path = route.path.replace(/\/+$/, '')
+  return projects.find(project => project.links?.page === path && (!project.inProgress || import.meta.env.DEV))
+})
+
 import Header from'./components/Header.vue';
 import Hero from'./components/Hero.vue';
 // import Showreel from'./components/Showreel.vue';
 // import Work from'./components/Work.vue';
-// import Testimonials from'./components/Testimonials.vue';
 // import About from'./components/About.vue';
 // import Contact from'./components/Contact.vue';
 

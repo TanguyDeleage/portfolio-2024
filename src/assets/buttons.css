@@ -7,6 +7,8 @@
     text-decoration: none;
     position: relative;
     overflow: hidden;
+    font-family: inherit;
+    cursor: pointer;
 }
 
 .primary {
@@ -90,8 +92,13 @@
         border-radius: 0 0 0.5rem 0.5rem;
     }
 
+    .btn.small {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+
     .primary:hover::before,
-    .primary:hover::after, 
+    .primary:hover::after,
     .secondary:hover::before,
     .secondary:hover::after {
         transform: scaleY(1);
@@ -103,6 +110,10 @@
     .btn {
         font-size: 0.75rem;
         padding: 0.75rem 1rem;
+    }
+
+    .btn.small {
+        padding: 0.5rem 0.75rem;
     }
 
     .social-link {
