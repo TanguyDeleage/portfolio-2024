@@ -11,9 +11,23 @@
       class="mockup"
       v-bind="coverLink ? { href: coverLink, tabindex: -1, 'aria-hidden': 'true', ...(isExternal && { target: '_blank', rel: 'noopener' }) } : {}"
     >
-      <img
+      <video
+        v-if="isVideo"
         :src="coverImage.src"
-        :alt="isLocked ? `Blurred preview: ${project.cover.alt} (case study locked)` : project.cover.alt"
+        :poster="coverImage.poster"
+        :aria-label="coverAlt"
+        :width="coverImage.width"
+        :height="coverImage.height"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+      />
+      <img
+        v-else
+        :src="coverImage.src"
+        :alt="coverAlt"
         :width="coverImage.width"
         :height="coverImage.height"
         loading="lazy"
@@ -30,6 +44,7 @@
 <script>
 import WorkIcon from './WorkIcon.vue'
 import { isProjectLocked } from '../data/privateAccess.js'
+import { projectLink } from '../data/projects.js'
 
 export default {
   name: 'ProjectCover',
@@ -45,13 +60,21 @@ export default {
     coverImage() {
       return this.isLocked && this.project.cover.blurred ? this.project.cover.blurred : this.project.cover
     },
-    // Mirrors the primary CTA: dedicated page when there is one, case study otherwise
+    coverAlt() {
+      return this.isLocked ? `Blurred preview: ${this.project.cover.alt} (case study locked)` : this.project.cover.alt
+    },
+    isVideo() {
+      return /\.(mp4|webm)$/i.test(this.coverImage.src)
+    },
+    // Mirrors the "View project" CTA
+    link() {
+      return this.isLocked ? null : projectLink(this.project)
+    },
     coverLink() {
-      if (this.isLocked || this.project.inProgress) return null
-      return this.project.links?.page ?? this.project.links?.caseStudy
+      return this.link?.href
     },
     isExternal() {
-      return !this.project.links?.page
+      return Boolean(this.link?.external)
     },
   },
 }
@@ -93,18 +116,25 @@ export default {
     min-height: 0;
   }
 
-  .mockup img {
+  .mockup img,
+  .mockup video {
     display: block;
     max-width: 85%;
     height: auto;
     transition: transform 0.4s ease-out;
   }
 
-  a.mockup:hover img {
+  .mockup video {
+    border-radius: 0.5rem;
+  }
+
+  a.mockup:hover img,
+  a.mockup:hover video {
     transform: scale(1.02);
   }
 
-  .locked .mockup img {
+  .locked .mockup img,
+  .locked .mockup video {
     user-select: none;
     pointer-events: none;
   }
@@ -135,7 +165,8 @@ export default {
       min-height: calc(100vh - 4rem);
     }
 
-    .mockup img {
+    .mockup img,
+    .mockup video {
       max-height: calc(100vh - 16rem);
       width: auto;
     }
@@ -148,7 +179,8 @@ export default {
       gap: 1rem;
     }
 
-    .mockup img {
+    .mockup img,
+    .mockup video {
       max-width: 100%;
     }
 
@@ -165,11 +197,13 @@ export default {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .mockup img {
+    .mockup img,
+    .mockup video {
       transition: none;
     }
 
-    a.mockup:hover img {
+    a.mockup:hover img,
+    a.mockup:hover video {
       transform: none;
     }
   }

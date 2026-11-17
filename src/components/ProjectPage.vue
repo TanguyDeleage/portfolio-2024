@@ -1,13 +1,15 @@
 <template>
   <div class="project-page">
     <!-- Private work sits behind the same soft gate as the Work section -->
-    <section v-if="isLocked" class="gate container" aria-labelledby="gate-title">
-      <a href="/#work" class="btn secondary small back-link">
-        <WorkIcon name="arrow-left" />
-        Back to projects
-      </a>
-      <div class="gate-content">
-        <p class="eyebrow">{{ project.title }} · Private case study</p>
+    <section v-if="isLocked" class="gate" aria-labelledby="gate-title">
+      <!-- Same link, same spot as the case study's "Back to projects" once the company is stuck -->
+      <div class="gate-nav wide">
+        <a href="/#work" class="text-link">
+          <WorkIcon name="arrow-left" />
+          Back to projects
+        </a>
+      </div>
+      <div class="gate-content container">
         <h1 id="gate-title" class="page-title">{{ title }}</h1>
         <p class="text muted">This project is confidential. Enter the password to read the full case study.</p>
         <button type="button" class="btn primary" @click="$refs.unlockDialog.open()">
@@ -19,190 +21,158 @@
     </section>
 
     <template v-else>
-      <!-- Intro -->
-      <header id="top" class="intro container">
-        <a href="/#work" class="btn secondary small back-link">
-          <WorkIcon name="arrow-left" />
-          Back to projects
-        </a>
-        <p class="eyebrow intro-meta">
-          <template v-for="(item, index) in meta" :key="item">
-            <span v-if="index" aria-hidden="true">·</span>
-            <span>{{ item }}</span>
-          </template>
-        </p>
-        <h1 class="page-title">{{ title }}</h1>
-        <ul v-if="stats.length" class="stats intro-stats">
-          <li v-for="stat in stats" :key="stat.label" class="stat">
-            <span class="stat-value">{{ stat.value }}</span>
-            <span class="stat-label">{{ stat.label }}</span>
-          </li>
-        </ul>
-      </header>
-
-      <div class="hero wide">
-        <img :src="hero.src" :alt="hero.alt" :width="hero.width" :height="hero.height" decoding="async">
+      <!-- Hero: full bleed picture or video at the very top (no site header on case studies) -->
+      <div class="hero">
+        <video
+          v-if="/\.(mp4|webm)$/i.test(hero.src)"
+          :src="hero.src"
+          :poster="hero.poster"
+          :aria-label="hero.alt"
+          :width="hero.width"
+          :height="hero.height"
+          autoplay
+          loop
+          muted
+          playsinline
+        />
+        <img v-else :src="hero.src" :alt="hero.alt" :width="hero.width" :height="hero.height" decoding="async">
       </div>
 
-      <!-- Role & team -->
-      <dl v-if="caseStudy.facts" class="facts container">
-        <div v-for="fact in caseStudy.facts" :key="fact.label" class="fact">
-          <dt class="eyebrow">{{ fact.label }}</dt>
-          <dd>{{ fact.text }}</dd>
-        </div>
-      </dl>
-
-      <!-- Context -->
-      <section v-if="context" id="context" class="section container" aria-labelledby="context-title">
-        <div class="split">
-          <div class="heading">
-            <p class="eyebrow">{{ eyebrows.context }}</p>
-            <h2 id="context-title" class="section-title">{{ context.title }}</h2>
+      <!--
+        Left column runs the whole layout so both of its blocks can stick:
+        the company sticks first (a back link fades in above it), then the
+        summary scrolls up to it and sticks right below.
+      -->
+      <!-- "Back to top" lands here, past the video, see scroll-margin-top -->
+      <div id="top" ref="layout" class="case-layout wide">
+        <aside class="rail rail-left">
+          <div ref="brand" class="brand" :class="{ stuck: brandStuck }">
+            <a href="/#work" class="text-link brand-back" :inert="!brandStuck">
+              <WorkIcon name="arrow-left" />
+              Back to projects
+            </a>
+            <img
+              v-if="caseStudy.logo"
+              :src="caseStudy.logo.src"
+              :alt="project.title"
+              :width="caseStudy.logo.width"
+              :height="caseStudy.logo.height"
+              class="company-logo"
+            >
+            <p v-else class="company-name">{{ project.title }}</p>
           </div>
-          <div class="body">
-            <p v-for="(paragraph, index) in context.text" :key="index" class="text" :class="{ muted: index > 0 }">{{ paragraph }}</p>
+
+          <nav
+            v-if="summary.length"
+            class="summary"
+            aria-label="Summary"
+            :style="summaryOffset == null ? null : { marginTop: `${summaryOffset}px` }"
+          >
+            <ol class="summary-list">
+              <li v-for="section in summary" :key="section.id">
+                <a
+                  :href="`#${section.id}`"
+                  class="summary-link"
+                  :class="{ active: section.id === activeId }"
+                  :aria-current="section.id === activeId ? 'true' : null"
+                >
+                  <span class="summary-index" aria-hidden="true">{{ section.number }}</span>
+                  <span class="summary-title">{{ section.display }}</span>
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </aside>
+
+        <!-- Info row: timeline, role, team, scope… next to the company -->
+        <dl v-if="caseStudy.facts" class="meta">
+          <div v-for="fact in caseStudy.facts" :key="fact.label" class="fact">
+            <dt class="eyebrow">{{ fact.label }}</dt>
+            <dd>{{ fact.text }}</dd>
           </div>
-        </div>
-        <CaseFigure v-if="context.figure" :figure="context.figure" class="section-figure" />
-      </section>
+        </dl>
 
-      <!-- Challenge -->
-      <section v-if="challenge" id="challenge" class="section container" aria-labelledby="challenge-title">
-        <div class="heading">
-          <p class="eyebrow">{{ eyebrows.challenge }}</p>
-          <h2 id="challenge-title" class="section-title narrow">{{ challenge.title }}</h2>
-          <p v-if="challenge.text" class="text muted measure">{{ challenge.text }}</p>
-        </div>
-      </section>
+        <div ref="content" class="case-content">
+          <header class="intro">
+            <h1 class="page-title">{{ title }}</h1>
+          </header>
 
-      <!-- Research -->
-      <section v-if="research" id="research" class="section container" aria-labelledby="research-title">
-        <div class="split">
-          <div class="heading">
-            <p class="eyebrow">{{ eyebrows.research }}</p>
-            <h2 id="research-title" class="section-title">{{ research.title }}</h2>
-            <p v-if="research.text" class="text muted">{{ research.text }}</p>
-          </div>
-          <ul v-if="research.stats" class="stat-cards">
-            <li v-for="stat in research.stats" :key="stat.label" class="stat stat-card">
-              <span class="stat-value">{{ stat.value }}</span>
-              <span class="stat-label">{{ stat.label }}</span>
-            </li>
-          </ul>
-        </div>
-        <figure v-if="research.quote" class="quote">
-          <blockquote>
-            <p>“{{ research.quote.text }}”</p>
-          </blockquote>
-          <figcaption>{{ research.quote.source }}</figcaption>
-        </figure>
-        <CaseFigure v-if="research.figure" :figure="research.figure" :class="{ 'section-figure': !research.quote }" />
-      </section>
-
-      <!-- Problem: inverted band -->
-      <section v-if="problem" id="problem" class="problem" aria-labelledby="problem-title">
-        <div class="container">
-          <div class="heading">
-            <p class="eyebrow">{{ eyebrows.problem }}</p>
-            <h2 id="problem-title" class="problem-title">{{ problem.title }}</h2>
-          </div>
-          <ul v-if="problem.points" class="points">
-            <li v-for="point in problem.points" :key="point.title" class="point">
-              <h3 class="point-title">{{ point.title }}</h3>
-              <p class="point-text">{{ point.text }}</p>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Solution -->
-      <section v-if="solution" id="solution" class="section container" aria-labelledby="solution-title">
-        <div class="heading">
-          <p class="eyebrow">{{ eyebrows.solution }}</p>
-          <h2 id="solution-title" class="section-title narrow">{{ solution.title }}</h2>
-          <p v-if="solution.text" class="text muted measure">{{ solution.text }}</p>
-        </div>
-
-        <ol v-if="solution.features" class="features">
-          <li v-for="(feature, index) in solution.features" :key="feature.title" class="feature">
-            <span class="feature-index" aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</span>
-            <span class="feature-title">{{ feature.title }}</span>
-            <span class="feature-text">{{ feature.text }}</span>
-          </li>
-        </ol>
-
-        <div v-if="solution.comparison" class="subsection">
-          <h3 class="subsection-title">{{ solution.comparison.title }}</h3>
-          <div class="pair">
-            <CaseFigure :figure="solution.comparison.before" label="Before" />
-            <CaseFigure :figure="solution.comparison.after" label="After" />
-          </div>
-        </div>
-      </section>
-
-      <!-- Gallery: tinted full-width band -->
-      <section v-if="gallery" class="gallery" :aria-labelledby="gallery.title ? 'gallery-title' : null">
-        <div v-if="gallery.title" class="container">
-          <h3 id="gallery-title" class="subsection-title">{{ gallery.title }}</h3>
-        </div>
-        <div class="gallery-band">
-          <div class="gallery-grid wide">
-            <CaseFigure v-if="gallery.featured" :figure="gallery.featured" elevated />
-            <div v-if="gallery.figures" class="pair">
-              <CaseFigure v-for="figure in gallery.figures" :key="figure.src" :figure="figure" elevated />
+          <!-- Sections: big title + title + text + images, all optional -->
+          <section
+            v-for="(section, index) in sections"
+            :id="section.id"
+            :key="index"
+            class="section"
+            :class="{ continued: section.continued }"
+            :aria-labelledby="section.display ? `${section.id}-title` : null"
+          >
+            <div v-if="section.columns.length" class="split columns" :style="{ '--columns': section.columns.length }">
+              <div v-for="(column, i) in section.columns" :key="i" class="body">
+                <p v-if="column.title" class="lead">{{ column.title }}</p>
+                <p v-for="(paragraph, j) in [column.text ?? []].flat()" :key="j" class="text muted">{{ paragraph }}</p>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+            <div v-else-if="section.display || section.title || section.paragraphs.length" class="split">
+              <h2 v-if="section.display" :id="`${section.id}-title`" class="display-title">{{ section.display }}</h2>
+              <div v-if="section.title || section.paragraphs.length" class="body">
+                <p v-if="section.title" class="lead">
+                  <template v-for="(part, i) in section.title.split('*')" :key="i">
+                    <em v-if="i % 2">{{ part }}</em><template v-else>{{ part }}</template>
+                  </template>
+                </p>
+                <p v-for="(paragraph, i) in section.paragraphs" :key="i" class="text muted">{{ paragraph }}</p>
+              </div>
+            </div>
 
-      <!-- Impact -->
-      <section v-if="impact" id="impact" class="section container" aria-labelledby="impact-title">
-        <div class="heading">
-          <p class="eyebrow">{{ eyebrows.impact }}</p>
-          <h2 id="impact-title" class="section-title narrow">{{ impact.title }}</h2>
-        </div>
-        <ul v-if="impact.stats" class="impact-stats">
-          <li v-for="stat in impact.stats" :key="stat.label" class="stat impact-stat">
-            <span class="stat-value">{{ stat.value }}</span>
-            <span class="stat-label">{{ stat.label }}</span>
-          </li>
-        </ul>
-        <p v-if="impact.text" class="text muted measure impact-text">{{ impact.text }}</p>
-      </section>
+            <!-- KPIs: the same metrics as the project intro, so both stay in sync -->
+            <ul v-if="section.metrics && project.metrics?.length" class="closing-metrics">
+              <li v-for="metric in project.metrics" :key="metric.label" class="closing-metric">
+                <span class="closing-metric-value">{{ metric.value }}</span>
+                <span class="closing-metric-label">{{ metric.label }}</span>
+              </li>
+            </ul>
 
-      <!-- Previous / next -->
-      <footer class="page-footer">
+            <template v-for="(row, i) in section.media" :key="i">
+              <div v-if="row.layout === 'bleed'" class="band">
+                <CaseFigure v-for="figure in row.figures" :key="figure.src" :figure="figure" elevated />
+              </div>
+              <div v-else :class="{ pair: row.layout === 'pair' }">
+                <CaseFigure v-for="figure in row.figures" :key="figure.src" :figure="figure" />
+              </div>
+            </template>
+          </section>
+        </div>
+
+        <aside class="rail rail-right">
+          <a href="#top" class="text-link to-top">
+            Back to top
+            <WorkIcon name="arrow-up" />
+          </a>
+        </aside>
+      </div>
+
+      <!-- Previous / next; a neighbour still in progress shows as a disabled card, not a link -->
+      <footer v-if="adjacent.length" class="page-footer">
         <div class="container">
-          <nav v-if="adjacent.length" class="adjacent" aria-label="More projects">
-            <a
+          <nav class="adjacent" aria-label="More projects">
+            <component
+              :is="item.disabled ? 'div' : 'a'"
               v-for="item in adjacent"
               :key="item.direction"
-              :href="item.href"
-              class="adjacent-link secondary"
-              :class="item.direction"
-              v-bind="item.external ? { target: '_blank', rel: 'noopener' } : {}"
+              class="adjacent-link"
+              :class="[item.direction, item.disabled ? 'disabled' : 'secondary']"
+              v-bind="item.disabled ? {} : { href: item.href, ...(item.external ? { target: '_blank', rel: 'noopener' } : {}) }"
             >
               <span class="eyebrow adjacent-direction">
                 <WorkIcon v-if="item.direction === 'previous'" name="arrow-left" />
                 {{ item.label }}
-                <WorkIcon v-if="item.direction === 'next'" :name="item.external ? 'external-link' : 'arrow-right'" />
+                <template v-if="item.disabled"> · Coming soon</template>
+                <WorkIcon v-if="item.direction === 'next'" :name="item.disabled ? 'clock' : item.external ? 'external-link' : 'arrow-right'" />
               </span>
               <span class="adjacent-title">{{ item.project.headline }}</span>
-              <span v-if="item.project.description" class="adjacent-text">{{ item.project.description }}</span>
-              <span v-if="item.external" class="visually-hidden">(opens in a new tab)</span>
-            </a>
+              <span v-if="item.external && !item.disabled" class="visually-hidden">(opens in a new tab)</span>
+            </component>
           </nav>
-
-          <div class="footer-actions">
-            <a href="/#work" class="btn secondary small">
-              <WorkIcon name="arrow-left" />
-              Back to projects
-            </a>
-            <a href="#top" class="btn secondary small">
-              Back to top
-              <WorkIcon name="arrow-up" />
-            </a>
-          </div>
         </div>
       </footer>
     </template>
@@ -213,32 +183,31 @@
 import CaseFigure from './CaseFigure.vue'
 import UnlockDialog from './UnlockDialog.vue'
 import WorkIcon from './WorkIcon.vue'
-import { projects } from '../data/projects.js'
+import { projects, projectLink } from '../data/projects.js'
 import { caseStudies } from '../data/caseStudies.js'
 import { isProjectLocked } from '../data/privateAccess.js'
 
-// Numbered sections, in page order
-const SECTION_LABELS = {
-  context: 'Context',
-  challenge: 'Challenge',
-  research: 'Research',
-  problem: 'Problem definition',
-  solution: 'Solution',
-  impact: 'Impact',
+function slugify(text) {
+  return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
 // Same destination as the project's primary CTA in the Work section
-function projectLink(project) {
-  return project.links?.page
-    ? { href: project.links.page, external: false }
-    : { href: project.links?.caseStudy, external: true }
-}
 
 export default {
   name: 'ProjectPage',
   components: { CaseFigure, UnlockDialog, WorkIcon },
   props: {
     project: { type: Object, required: true },
+  },
+  data() {
+    return {
+      // Summary entry of the section being read
+      activeId: null,
+      // Company has reached its sticky spot: reveal the back link above it
+      brandStuck: false,
+      // Space above the summary so it starts level with the content (px, desktop only)
+      summaryOffset: null,
+    }
   },
   computed: {
     isLocked() {
@@ -250,44 +219,25 @@ export default {
     title() {
       return this.caseStudy.title ?? this.project.headline
     },
-    meta() {
-      return [this.project.title, this.caseStudy.period ?? this.project.year, this.project.tags?.[0]].filter(Boolean)
-    },
-    stats() {
-      return this.caseStudy.stats ?? this.project.metrics ?? []
-    },
     hero() {
       return this.caseStudy.hero ?? this.project.cover
     },
-    context() {
-      return this.caseStudy.context
+    sections() {
+      return (this.caseStudy.sections ?? []).map((section, index) => ({
+        ...section,
+        id: section.display ? slugify(section.display) : `section-${index + 1}`,
+        paragraphs: [section.text ?? []].flat(),
+        media: section.media ?? [],
+        columns: section.columns ?? [],
+      }))
     },
-    challenge() {
-      return this.caseStudy.challenge
+    // "01 Context"…, numbered by the sections that have a big title
+    summary() {
+      return this.sections
+        .filter(section => section.display)
+        .map((section, index) => ({ ...section, number: String(index + 1).padStart(2, '0') }))
     },
-    research() {
-      return this.caseStudy.research
-    },
-    problem() {
-      return this.caseStudy.problem
-    },
-    solution() {
-      return this.caseStudy.solution
-    },
-    gallery() {
-      return this.caseStudy.gallery
-    },
-    impact() {
-      return this.caseStudy.impact
-    },
-    // "01 — Context"…, numbered by the sections this project actually has
-    eyebrows() {
-      const present = Object.keys(SECTION_LABELS).filter(key => this.caseStudy[key])
-      return Object.fromEntries(present.map((key, index) => [
-        key,
-        `${String(index + 1).padStart(2, '0')} — ${SECTION_LABELS[key]}`,
-      ]))
-    },
+    // A neighbour with nowhere to go stays visible as a disabled card
     adjacent() {
       const index = projects.indexOf(this.project)
       return [
@@ -295,8 +245,10 @@ export default {
         { direction: 'next', label: 'Next project', project: projects[index + 1] },
       ]
         .filter(item => item.project)
-        .map(item => ({ ...item, ...projectLink(item.project) }))
-        .filter(item => item.href)
+        .map(item => {
+          const link = projectLink(item.project)
+          return { ...item, ...link, disabled: !link }
+        })
     },
   },
   watch: {
@@ -307,11 +259,76 @@ export default {
   mounted() {
     this.homeTitle = document.title
     this.updateDocumentTitle()
+    window.addEventListener('scroll', this.onScroll, { passive: true })
+    window.addEventListener('resize', this.onScroll, { passive: true })
+    // Info row and fonts change heights without a window resize
+    this.resizeObserver = new ResizeObserver(this.onScroll)
+    this.observeLayout()
+    this.onScrollFrame()
+  },
+  updated() {
+    // Sections appear after unlock
+    this.observeLayout()
+    this.onScrollFrame()
   },
   beforeUnmount() {
     document.title = this.homeTitle
+    window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('resize', this.onScroll)
+    cancelAnimationFrame(this.scrollFrame)
+    this.resizeObserver.disconnect()
   },
   methods: {
+    onScroll() {
+      cancelAnimationFrame(this.scrollFrame)
+      this.scrollFrame = requestAnimationFrame(this.onScrollFrame)
+    },
+    onScrollFrame() {
+      this.updateSummaryOffset()
+      this.updateActiveSection()
+      this.updateBrandStuck()
+    },
+    observeLayout() {
+      const layout = this.$refs.layout
+      if (layout && layout !== this.observedLayout) {
+        this.resizeObserver.disconnect()
+        this.resizeObserver.observe(layout)
+        this.observedLayout = layout
+      }
+    },
+    // The summary sits in the same column as the company, but starts level with the content
+    updateSummaryOffset() {
+      const { brand, content } = this.$refs
+      const summary = brand?.nextElementSibling
+      let offset = null
+      if (brand && content && summary && getComputedStyle(summary).position === 'sticky') {
+        // Measured from the column, not the brand: once stuck, the brand's box moves
+        const column = brand.parentElement.getBoundingClientRect()
+        offset = Math.max(0, Math.round(content.getBoundingClientRect().top - column.top - brand.offsetHeight))
+      }
+      if (offset !== this.summaryOffset) this.summaryOffset = offset
+    },
+    updateBrandStuck() {
+      const brand = this.$refs.brand
+      if (!brand) return
+      const style = getComputedStyle(brand)
+      // Not sticky (tablet & mobile): the back link just stays visible
+      const stuck = style.position !== 'sticky' || brand.getBoundingClientRect().top <= parseFloat(style.top) + 1
+      if (stuck !== this.brandStuck) this.brandStuck = stuck
+    },
+    // Active = last summarised section whose top has passed a line a third of the way down
+    updateActiveSection() {
+      const line = window.innerHeight / 3
+      let activeId = null
+      for (const { id } of this.summary) {
+        const element = document.getElementById(id)
+        if (element && element.getBoundingClientRect().top <= line) activeId = id
+      }
+      // At the very bottom, the last section is the one being read even if it's short
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2
+      if (atBottom && this.summary.length) activeId = this.summary.at(-1).id
+      if (activeId !== this.activeId) this.activeId = activeId
+    },
     updateDocumentTitle() {
       document.title = `${this.title} | Tanguy DELEAGE`
     },
@@ -321,10 +338,12 @@ export default {
 
 <style scoped>
   .project-page {
+    --brand-top: 5.5rem; /* room for the back link above the company */
+    --brand-height: 2.5rem;
     color: var(--primary-brand-highest);
+    overflow-x: clip; /* full-bleed bands use 100vw, which includes any scrollbar */
   }
 
-  /* Reading width; images and bands go wider */
   .container {
     width: 100%;
     max-width: 75rem;
@@ -332,10 +351,12 @@ export default {
     padding-inline: var(--padding-h);
   }
 
+  /* Hero, meta row and the reading layout share these edges */
   .wide {
     width: 100%;
     max-width: 87.5rem;
     margin-inline: auto;
+    padding-inline: var(--padding-h);
   }
 
   /* Type */
@@ -349,30 +370,25 @@ export default {
 
   .page-title {
     font-family: 'Eklektyk';
-    font-size: 5.25rem;
+    font-size: 3rem;
     font-weight: 300;
     line-height: 100%;
-    max-width: 16ch;
     text-wrap: balance;
   }
 
-  .section-title {
+  .display-title {
     font-family: 'Eklektyk';
-    font-size: 2.5rem;
+    font-size: 4rem;
     font-weight: 300;
-    line-height: 120%;
+    line-height: 100%;
     text-wrap: balance;
   }
 
-  .section-title.narrow {
-    max-width: 22ch;
-  }
-
-  .subsection-title {
-    font-family: 'Eklektyk';
-    font-size: 2rem;
-    font-weight: 300;
-    line-height: 100%;
+  .lead {
+    font-size: 1.375rem;
+    font-weight: var(--semi-bold);
+    line-height: 140%;
+    text-wrap: pretty;
   }
 
   .text {
@@ -383,30 +399,6 @@ export default {
   }
 
   .text.muted {
-    color: #3D3D3D;
-  }
-
-  .measure {
-    max-width: 60ch;
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .stat-value {
-    font-family: 'Eklektyk';
-    font-size: 2.5rem;
-    font-weight: 300;
-    line-height: 100%;
-  }
-
-  .stat-label {
-    font-size: 0.875rem;
-    font-weight: 300;
-    line-height: 130%;
     color: #3D3D3D;
   }
 
@@ -423,25 +415,12 @@ export default {
     white-space: nowrap;
   }
 
-  .btn.primary,
-  .btn.secondary {
-    mix-blend-mode: normal;
-    border: 1px solid var(--primary-brand-highest);
-  }
-
   .btn.primary {
     align-self: flex-start;
+    mix-blend-mode: normal;
+    border: 1px solid var(--primary-brand-highest);
     background-color: var(--primary-brand-highest);
     color: var(--primary-brand-lowest);
-  }
-
-  .btn.secondary {
-    background-color: var(--primary-brand-lowest);
-    color: var(--primary-brand-highest);
-  }
-
-  .back-link {
-    display: inline-flex;
   }
 
   /* Gate */
@@ -449,12 +428,15 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 4rem;
-    min-height: 100vh;
-    padding-block: 7.5rem var(--padding-v);
+    min-height: 80vh;
+    padding-bottom: var(--padding-v);
   }
 
-  .gate .back-link {
-    align-self: flex-start;
+  /* The link's bottom edge lands where the stuck company starts, as in .brand-back */
+  .gate-nav {
+    display: flex;
+    align-items: flex-end;
+    height: var(--brand-top);
   }
 
   .gate-content {
@@ -463,230 +445,315 @@ export default {
     gap: 2rem;
   }
 
-  /* Intro */
-  .intro {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-block: 7.5rem 3rem;
-  }
-
-  .intro .back-link {
-    margin-bottom: 3rem;
-  }
-
-  .intro-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
-
-  .intro-stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem;
-    align-self: stretch;
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid #D1D1D1;
-  }
-
-  .intro-stats .stat-value {
-    font-size: 3.4rem;
-  }
-
+  /* Hero */
   .hero {
-    padding-inline: var(--padding-h);
+    position: relative;
+    width: 100%;
   }
 
-  .hero img {
+  .hero img,
+  .hero video {
     display: block;
+    /* Scales with the viewport width and never crops; capped to the screen height on very wide windows */
     width: 100%;
     height: auto;
-    border-radius: 0.5rem;
-    border: 1px solid #D1D1D1;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+    max-height: 100vh;
+    max-height: 100svh;
+    object-fit: contain;
   }
 
-  /* Role & team */
-  .facts {
+  /*
+    Reading layout
+      company + summary | info row ------------------
+                        | title, sections | back to top
+  */
+  .case-layout {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem;
-    padding-top: 4rem;
+    grid-template-columns: 12rem minmax(0, 1fr) 10rem;
+    gap: 6rem 3rem;
+    padding-top: 3rem;
+    /* Back to top stops right as the company reaches its sticky spot, so "Back to projects" fades in */
+    scroll-margin-top: calc(var(--brand-top) - 3rem);
   }
 
+  .rail-left {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  /* Info row also takes the right rail's width */
+  .meta {
+    grid-column: 2 / span 2;
+    grid-row: 1;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .case-content {
+    grid-column: 2;
+    grid-row: 2;
+    container-type: inline-size;
+  }
+
+  .rail-right {
+    grid-column: 3;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  /* Info row */
   .fact {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #D1D1D1;
   }
 
   .fact dd {
     font-size: 0.9375rem;
     font-weight: 300;
     line-height: 150%;
+    text-wrap: pretty;
   }
 
-  /* Sections */
-  .section {
-    padding-top: 7.5rem;
+  /* Company: sticks first, the back link fades in above it */
+  .brand {
+    position: sticky;
+    top: var(--brand-top);
+    z-index: 1;
+    padding-top: 1.25rem; /* level with the info row labels */
   }
 
-  .heading {
+  /* Tertiary link: back to projects, back to top */
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-block: 0.25rem;
+    font-size: 0.9375rem;
+    color: #3D3D3D;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+
+  .text-link:hover {
+    color: var(--primary-brand-highest);
+  }
+
+  .text-link .work-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .brand-back {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out, color 0.15s;
+  }
+
+  .brand.stuck .brand-back {
+    opacity: 1;
+    transform: none;
+  }
+
+  .company-name {
+    font-family: 'Eklektyk';
+    font-size: 2rem;
+    line-height: var(--brand-height);
+  }
+
+  .company-logo {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: var(--brand-height);
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  /* Summary: starts level with the content (offset set in JS), then sticks under the company */
+  .summary {
+    position: sticky;
+    top: calc(var(--brand-top) + 1.25rem + var(--brand-height) + 3rem);
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  .heading .text {
-    margin-top: 0.5rem;
+  .summary-list {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #D1D1D1;
+  }
+
+  .summary-link {
+    position: relative;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    padding: 0.5rem 0 0.5rem 1rem;
+    color: #6B6B6B;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  /* Indicator over the rail line */
+  .summary-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1px;
+    width: 2px;
+    background-color: var(--primary-brand-highest);
+    transform: scaleY(0);
+    transition: transform 0.2s ease-out;
+  }
+
+  .summary-link:hover,
+  .summary-link.active {
+    color: var(--primary-brand-highest);
+  }
+
+  .summary-link.active::before {
+    transform: scaleY(1);
+  }
+
+  .summary-index {
+    font-size: 0.75rem;
+    font-weight: 300;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .summary-title {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 130%;
+  }
+
+  .summary-link.active .summary-title {
+    font-weight: var(--semi-bold);
+  }
+
+  /* Back to top: pinned to the bottom of the viewport while the content scrolls */
+  .to-top {
+    position: sticky;
+    bottom: 2rem;
+  }
+
+  /* Sections */
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    padding-top: 7.5rem;
+    scroll-margin-top: 1.5rem;
   }
 
   .split {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6rem;
+    gap: 3rem;
     align-items: start;
+    padding-top: 1.75rem;
+    border-top: 1px solid #D1D1D1;
   }
 
+  /* Without a big title, text keeps its column */
   .body {
+    grid-column: 2;
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  .section-figure {
-    margin-top: 3.5rem;
+  /* Continuation of the previous section: no divider, closer to it */
+  .section.continued {
+    padding-top: 3.5rem;
   }
 
-  /* Research */
-  .stat-cards {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
+  .continued .split {
+    padding-top: 0;
+    border-top: none;
   }
 
-  .stat-card {
-    gap: 0.75rem;
-    padding: 1.75rem;
-    border-radius: 0.5rem;
-    background-color: #F1F0EC;
+  /* Text columns side by side (as many as given), each with its own title */
+  .split.columns {
+    grid-template-columns: repeat(var(--columns, 2), minmax(0, 1fr));
   }
 
-  .stat-card .stat-value {
-    font-size: 3.4rem;
+  .columns .body {
+    grid-column: auto;
   }
 
-  .quote {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    margin-block: 7.5rem;
+  /* Narrow reading column: big title above the text */
+  @container (max-width: 46rem) {
+    .split,
+    .split.columns {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2rem;
+    }
+
+    .body {
+      grid-column: auto;
+    }
+
+    .display-title {
+      font-size: 3rem;
+    }
   }
 
-  .quote blockquote p {
-    font-family: 'Eklektyk';
-    font-size: 2.5rem;
-    font-weight: 300;
-    line-height: 120%;
-    max-width: 26ch;
-    text-wrap: balance;
-  }
-
-  .quote figcaption {
-    font-size: 0.875rem;
-    font-weight: 300;
-    color: #3D3D3D;
-  }
-
-  /* Problem */
-  .problem {
-    margin-top: 7.5rem;
-    padding-block: 7.5rem;
-    background-color: #0A0A0A;
-    color: var(--primary-brand-lowest);
-  }
-
-  .problem .eyebrow {
-    color: #9b9a97;
-  }
-
-  .problem-title {
-    font-family: 'Eklektyk';
-    font-size: 4rem;
-    font-weight: 300;
-    line-height: 100%;
-    max-width: 20ch;
-    text-wrap: balance;
-  }
-
-  .points {
+  /* KPIs: three big figures inside a section, between its text and its images */
+  .closing-metrics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2.5rem;
-    margin-top: 4rem;
+    gap: 3rem;
   }
 
-  .point {
+  .closing-metric {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid #333;
   }
 
-  .point-title {
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 130%;
+  .closing-metric-value {
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 100%;
   }
 
-  .point-text {
-    font-size: 0.9375rem;
+  .closing-metric-label {
+    font-size: 1.125rem;
     font-weight: 300;
-    line-height: 150%;
-    color: #9b9a97;
-  }
-
-  /* Solution */
-  .features {
-    margin-top: 3.5rem;
-    border-top: 1px solid #D1D1D1;
-  }
-
-  .feature {
-    display: grid;
-    grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 1.4fr);
-    gap: 1.5rem;
-    padding-block: 1.375rem;
-    border-bottom: 1px solid #D1D1D1;
-  }
-
-  .feature-index {
-    font-size: 0.875rem;
-    font-weight: 300;
-    font-variant-numeric: tabular-nums;
+    line-height: 140%;
     color: #3D3D3D;
   }
 
-  .feature-title {
-    font-weight: 600;
-  }
+  @container (max-width: 46rem) {
+    .closing-metrics {
+      gap: 1.5rem;
+    }
 
-  .feature-text {
-    font-size: 0.9375rem;
-    font-weight: 300;
-    line-height: 150%;
-    color: #3D3D3D;
-  }
+    .closing-metric-value {
+      font-size: 2.25rem;
+    }
 
-  .subsection {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 7.5rem;
+    .closing-metric-label {
+      font-size: 1rem;
+    }
   }
 
   .pair {
@@ -695,53 +762,11 @@ export default {
     gap: 1.5rem;
   }
 
-  /* Gallery */
-  .gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding-top: 7.5rem;
-  }
-
-  .gallery-band {
-    padding: 3.5rem var(--padding-h);
+  /* Full-bleed: tint spans the viewport, the image keeps the reading width */
+  .band {
+    margin-inline: calc(50% - 50vw);
+    padding: 3.5rem calc(50vw - 50%);
     background-color: #FAFAFA;
-  }
-
-  .gallery-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-  }
-
-  .gallery-grid .pair {
-    gap: 1.75rem;
-  }
-
-  /* Impact */
-  .impact-stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1px;
-    margin-top: 3.5rem;
-    border: 1px solid #D1D1D1;
-    border-radius: 0.5rem;
-    background-color: #D1D1D1; /* shows through the gaps as dividers */
-    overflow: hidden;
-  }
-
-  .impact-stat {
-    gap: 0.75rem;
-    padding: 2rem 1.75rem;
-    background-color: var(--primary-brand-lowest);
-  }
-
-  .impact-stat .stat-value {
-    font-size: 4rem;
-  }
-
-  .impact-text {
-    margin-top: 2.5rem;
   }
 
   /* Previous / next */
@@ -784,8 +809,7 @@ export default {
   }
 
   /* Muted greys meant for white backgrounds would disappear on black */
-  .adjacent-link .eyebrow,
-  .adjacent-link .adjacent-text {
+  .adjacent-link .eyebrow {
     color: #9b9a97;
   }
 
@@ -797,6 +821,18 @@ export default {
     grid-column: 2;
     align-items: flex-end;
     text-align: right;
+  }
+
+  /* Unreleased neighbour: same footprint, dashed and muted, no hover */
+  .adjacent-link.disabled {
+    border: 1px dashed #8A8A8A;
+    background-color: transparent;
+    color: #6B6B6B;
+    cursor: not-allowed;
+  }
+
+  .adjacent-link.disabled .eyebrow {
+    color: #8A8A8A;
   }
 
   .adjacent-direction {
@@ -818,23 +854,6 @@ export default {
     text-wrap: balance;
   }
 
-  .adjacent-text {
-    max-width: 44ch;
-    font-size: 0.9375rem;
-    font-weight: 300;
-    line-height: 150%;
-    color: #3D3D3D;
-    text-wrap: pretty;
-  }
-
-  .footer-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 2.5rem;
-  }
-
   .visually-hidden {
     position: absolute;
     width: 1px;
@@ -850,7 +869,9 @@ export default {
   @media (prefers-reduced-motion: reduce) {
     /* Still inverts on hover, just without the slide */
     .adjacent-link::before,
-    .adjacent-link::after {
+    .adjacent-link::after,
+    .summary-link::before,
+    .brand-back {
       transition: none;
     }
   }
@@ -858,66 +879,88 @@ export default {
   /* Tablet & Mobile */
   @media screen and (max-width: 1199px) {
     .page-title {
-      font-size: 4rem;
-    }
-
-    .section-title,
-    .quote blockquote p {
-      font-size: 2rem;
-    }
-
-    .problem-title {
       font-size: 2.5rem;
     }
 
-    .section,
-    .gallery {
+    .display-title {
+      font-size: 2.5rem;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+    }
+
+    .section {
       padding-top: 6rem;
-    }
-
-    .problem {
-      margin-top: 6rem;
-      padding-block: 4rem;
-    }
-
-    .quote,
-    .subsection {
-      margin-block: 4rem;
-    }
-
-    .subsection {
-      margin-bottom: 0;
     }
 
     .page-footer {
       margin-top: 6rem;
     }
 
-    .intro {
-      padding-top: 4rem;
-    }
-
-    .gate {
-      padding-top: 4rem;
-    }
-
-    .split {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 2rem;
-    }
-
-    .intro-stats,
-    .facts,
-    .impact-stats {
+    .meta {
+      grid-auto-flow: row;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .points {
+    /*
+      No room for the sidebar: just the main column (company, info row, content).
+      The left rail dissolves so the company can sit above the info row; the
+      back link and summary go away, and nothing sticks.
+    */
+    .case-layout {
       grid-template-columns: minmax(0, 1fr);
-      gap: 1.5rem;
+      gap: 0;
+      padding-top: 2.5rem;
+      scroll-margin-top: 0; /* nothing sticks here: land on the info strip */
     }
 
-    .gallery-band {
+    .rail-left {
+      display: contents;
+    }
+
+    .brand,
+    .meta,
+    .case-content {
+      grid-column: 1;
+      grid-row: auto;
+    }
+
+    .brand {
+      order: 1;
+      position: static;
+      display: flex;
+      flex-direction: column;
+      padding-top: 0;
+      margin-bottom: 2rem;
+    }
+
+    .brand-back,
+    .summary {
+      display: none;
+    }
+
+    .meta {
+      order: 2;
+      grid-auto-flow: row;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Static, so the JS knows the summary isn't laid out next to the content */
+    .summary {
+      position: static;
+    }
+
+    .case-content {
+      order: 3;
+      margin-top: 4rem;
+    }
+
+    .rail-right {
+      display: none;
+    }
+
+    .band {
       padding-block: 2rem;
     }
 
@@ -925,13 +968,8 @@ export default {
       padding: 1.5rem;
     }
 
-    .adjacent-title,
-    .subsection-title {
+    .adjacent-title {
       font-size: 1.5rem;
-    }
-
-    .impact-stat .stat-value {
-      font-size: 3rem;
     }
 
     .btn {
@@ -942,52 +980,17 @@ export default {
   /* Mobile */
   @media screen and (max-width: 768px) {
     .page-title {
-      font-size: 2.8rem;
+      font-size: 2rem;
     }
 
     .text {
       font-size: 1rem;
     }
 
-    .intro {
-      padding-top: 1rem;
-    }
-
-    .intro .back-link {
-      margin-bottom: 2rem;
-    }
-
-    .intro-stats {
-      margin-top: 2.5rem;
-    }
-
-    .intro-stats .stat-value,
-    .stat-card .stat-value {
-      font-size: 2.5rem;
-    }
-
-    .facts,
-    .impact-stats,
+    .meta,
     .pair,
     .adjacent {
       grid-template-columns: minmax(0, 1fr);
-    }
-
-    .stat-cards {
-      gap: 1rem;
-    }
-
-    .stat-card {
-      padding: 1.25rem;
-    }
-
-    .feature {
-      grid-template-columns: 2rem minmax(0, 1fr);
-      gap: 0.25rem 1rem;
-    }
-
-    .feature-text {
-      grid-column: 2;
     }
 
     .adjacent-link.previous,

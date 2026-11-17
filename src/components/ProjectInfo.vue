@@ -40,31 +40,40 @@
     </div>
 
     <div class="cta" :class="{ 'cta-stacked': hasTwoCtas }">
-      <!-- While the full page is in progress, the overview is the only way in, so it leads -->
-      <a v-if="project.links?.overview" :href="project.links.overview" target="_blank" rel="noopener" class="btn" :class="project.inProgress ? 'primary' : 'secondary'">
+      <!-- With nowhere for "View project" to go, the overview is the way in, so it leads -->
+      <a v-if="project.links?.overview" :href="project.links.overview" target="_blank" rel="noopener" class="btn" :class="link ? 'secondary' : 'primary'">
         Read overview
         <span class="visually-hidden">of {{ project.title }} (opens in a new tab)</span>
         <WorkIcon name="external-link" />
       </a>
-      <!-- Status, not an action: a plain element so it isn't announced as an unusable button -->
-      <p v-if="project.inProgress" class="btn in-progress">
-        <span class="visually-hidden">Full </span>Case study soon
-        <WorkIcon name="clock" />
-      </p>
+      <!--
+        Page not public yet. aria-disabled (not disabled) keeps it focusable so keyboard and
+        screen reader users still get the explanation; a tap toggles it on touch, where there's no hover.
+      -->
+      <span v-if="!link && project.inProgress" class="soon" :class="{ 'tip-open': tipOpen }" @mouseleave="tipOpen = false">
+        <button
+          type="button"
+          class="btn in-progress"
+          aria-disabled="true"
+          :aria-describedby="tipId"
+          @click="tipOpen = !tipOpen"
+          @blur="tipOpen = false"
+        >
+          View project
+          <span class="visually-hidden">: {{ project.title }}</span>
+          <WorkIcon name="clock" />
+        </button>
+        <span :id="tipId" role="tooltip" class="tooltip">Case study still in the works, read the overview meanwhile</span>
+      </span>
       <!-- The parent owns the password dialog -->
       <button v-else-if="isLocked" type="button" class="btn primary" @click="$emit('unlock', project)">
         Unlock projects
         <WorkIcon name="lock-open" />
       </button>
-      <a v-else-if="project.links?.page" :href="project.links.page" class="btn primary">
+      <a v-else-if="link" :href="link.href" class="btn primary" v-bind="link.external ? { target: '_blank', rel: 'noopener' } : {}">
         View project
-        <span class="visually-hidden">: {{ project.title }}</span>
-        <WorkIcon name="arrow-right" />
-      </a>
-      <a v-else-if="project.links?.caseStudy" :href="project.links.caseStudy" target="_blank" rel="noopener" class="btn primary">
-        Read case study
-        <span class="visually-hidden">of {{ project.title }} (opens in a new tab)</span>
-        <WorkIcon name="external-link" />
+        <span class="visually-hidden">: {{ project.title }}<template v-if="link.external"> (opens in a new tab)</template></span>
+        <WorkIcon :name="link.external ? 'external-link' : 'arrow-right'" />
       </a>
     </div>
   </div>
@@ -73,6 +82,7 @@
 <script>
 import WorkIcon from './WorkIcon.vue'
 import { isProjectLocked } from '../data/privateAccess.js'
+import { projectLink } from '../data/projects.js'
 
 export default {
   name: 'ProjectInfo',
@@ -81,12 +91,22 @@ export default {
     project: { type: Object, required: true },
   },
   emits: ['unlock'],
+  data() {
+    return { tipOpen: false }
+  },
   computed: {
+    // Info renders twice (desktop sidebar + mobile block), so the id needs more than the project id
+    tipId() {
+      return `soon-tip-${this.project.id}-${this.$.uid}`
+    },
     hasTwoCtas() {
       return Boolean(this.project.links?.overview)
     },
     isLocked() {
       return isProjectLocked(this.project)
+    },
+    link() {
+      return projectLink(this.project)
     },
     initials() {
       return this.project.testimonial.author
@@ -291,8 +311,53 @@ export default {
     border: 1px dashed #8A8A8A;
     background-color: transparent;
     color: #6B6B6B;
-    cursor: default;
+    cursor: not-allowed;
+  }
+
+  .btn.in-progress:hover {
+    background-color: transparent;
+    color: #6B6B6B;
+  }
+
+  .soon {
+    position: relative;
+    display: flex;
+  }
+
+  .soon .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .tooltip {
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    z-index: 2;
+    width: max-content;
+    max-width: 16rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    background-color: var(--primary-brand-highest);
+    color: var(--primary-brand-lowest);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 140%;
+    text-align: center;
+    white-space: normal;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 0.25rem);
+    transition: opacity 150ms ease, transform 150ms ease, visibility 150ms;
     pointer-events: none;
+  }
+
+  .soon:hover .tooltip,
+  .soon:focus-within .tooltip,
+  .soon.tip-open .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
   }
 
   .visually-hidden {

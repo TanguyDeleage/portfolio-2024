@@ -1,6 +1,28 @@
 <template>
   <figure class="case-figure" :class="{ elevated }">
+    <!-- No source yet: a grey box at the planned ratio, labelled with what goes there -->
+    <div
+      v-if="!figure.src"
+      class="placeholder"
+      :style="{ aspectRatio: `${figure.width ?? 16} / ${figure.height ?? 9}` }"
+    >
+      {{ figure.alt || 'Media placeholder' }}
+    </div>
+    <video
+      v-else-if="/\.(mp4|webm)$/i.test(figure.src)"
+      :src="figure.src"
+      :poster="figure.poster"
+      :aria-label="figure.alt"
+      :width="figure.width"
+      :height="figure.height"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+    />
     <img
+      v-else
       :src="figure.src"
       :alt="figure.alt"
       :width="figure.width"
@@ -36,7 +58,9 @@ export default {
     min-width: 0;
   }
 
-  img {
+  img,
+  video,
+  .placeholder {
     display: block;
     width: 100%;
     height: auto;
@@ -44,7 +68,20 @@ export default {
     border: 1px solid #D1D1D1;
   }
 
-  .elevated img {
+  .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #8A8A8A;
+    background-color: #F2F2F2;
+    border-style: dashed;
+  }
+
+  .elevated img,
+  .elevated video {
     border: none;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
   }

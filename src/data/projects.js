@@ -16,9 +16,11 @@
 //                blurred: { src, width, height }, pre-blurred image shown while the project is locked
 //                (the real image is never requested until unlock)
 //   access:      { locked: boolean }  (private: password-gated, see privateAccess.js)
-//   links:       { caseStudy?, overview?, page? }  (page: dedicated project page, /work/<id>, content in caseStudies.js)
+//   links:       { caseStudy?, overview?, page? }  (page: dedicated project page, /work/<id>, content in caseStudies.js;
+//                caseStudy: external case study, "View project" opens it while there's no released page)
 //   inProgress:  optional boolean, the dedicated page is still being written: its CTA shows as
-//                "in progress" and /work/<id> is only served in dev
+//                disabled with a tooltip (unless caseStudy is set), /work/<id> is only served in dev, and other pages'
+//                previous/next footer shows it as a disabled card in prod. Delete the flag to release the page.
 // }
 //
 // Asset paths are root-absolute so they also resolve on project pages.
@@ -44,14 +46,14 @@ export const projects = [
     },
     tags: ['B2B SaaS', 'Insurtech', 'Machine learning'],
     cover: {
-      src: '/assets/images/work/graph.png',
-      alt: 'Akur8 modelling workspace showing a coefficient table and chart',
-      width: 6000,
-      height: 4500,
+      src: '/assets/images/projects/akur8-core-redesign/intro.mp4',
+      poster: '/assets/images/projects/akur8-core-redesign/hero.png',
+      alt: 'Rebuilt Rate product showing a model block coefficient table',
+      width: 1920,
+      height: 1080,
       blurred: { src: '/assets/images/work/occam-blur.webp', width: 1472, height: 932 },
     },
     access: { locked: true },
-    inProgress: true,
     links: {
       overview: 'https://www.behance.net/gallery/255945815/Confidential-Rebuilding-a-product-from-scratch',
       page: '/work/akur8-core-redesign',
@@ -77,10 +79,11 @@ export const projects = [
     },
     tags: ['B2B SaaS', 'Insurtech', 'Agentic'],
     cover: {
-      src: '/assets/images/work/node.png',
+      src: '/assets/images/work/node.mp4',
+      poster: '/assets/images/work/node.png',
       alt: 'Node-based canvas with an AI assistant panel proposing coefficient changes',
-      width: 2462,
-      height: 1739,
+      width: 1280,
+      height: 720,
       blurred: { src: '/assets/images/work/agent-blur.webp', width: 1472, height: 932 },
     },
     access: { locked: true },
@@ -117,8 +120,17 @@ export const projects = [
     access: { locked: false },
     inProgress: true,
     links: {
-      overview: 'https://www.behance.net/gallery/200784759/KLS-Notification-settings',
+      // Behance is the one way in until the dedicated page ships
+      caseStudy: 'https://www.behance.net/gallery/200784759/KLS-Notification-settings',
       page: '/work/kls-notification-settings', // TODO: case study content in caseStudies.js
     },
   },
 ]
+
+// Where "View project" leads: the dedicated page once released, the external case study
+// otherwise, or nowhere (null) while the page is in progress with nothing else to show
+export function projectLink(project) {
+  if (project.links?.page && !project.inProgress) return { href: project.links.page, external: false }
+  if (project.links?.caseStudy) return { href: project.links.caseStudy, external: true }
+  return null
+}
