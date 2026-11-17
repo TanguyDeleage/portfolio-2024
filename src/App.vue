@@ -1,23 +1,22 @@
 <template>
 
+  <!-- Site header; hidden on case studies so the hero runs full bleed. Kept mounted so the mobile menu state survives navigation -->
+  <header v-show="!currentProject">
+    <Header />
+  </header>
+
   <main v-if="currentProject">
     <!-- Keyed so moving between projects starts a fresh page -->
     <ProjectPage :key="currentProject.id" :project="currentProject" />
   </main>
 
-  <template v-else>
-    <header>
-      <Header />
-    </header>
-
-    <main>
-      <Hero />
-      <Showreel />
-      <Work />
-      <About />
-      <Contact />
-    </main>
-  </template>
+  <main v-else>
+    <Hero />
+    <Showreel />
+    <Work />
+    <About />
+    <Contact />
+  </main>
 
   <!-- <footer>
   </footer> -->
