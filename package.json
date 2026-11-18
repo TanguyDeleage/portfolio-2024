@@ -8,8 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "posters": "node scripts/make-posters.mjs",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "predeploy": "npm run build && cp CNAME dist/CNAME && cp dist/index.html dist/404.html",
+    "predeploy": "npm run posters && npm run build && cp CNAME dist/CNAME && cp dist/index.html dist/404.html",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

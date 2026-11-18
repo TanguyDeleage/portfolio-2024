@@ -23,6 +23,8 @@
 // }
 //
 // image: { src, alt, width, height }, figure: image + { caption }
+// Videos (.mp4/.webm) work wherever an image does. Their poster is the first frame,
+// <name>.poster.webp next to the video: run `npm run posters` after adding or changing one.
 
 const AKUR8_CORE = '/assets/images/projects/akur8-core-redesign'
 
@@ -31,7 +33,6 @@ export const caseStudies = {
     title: 'Rebuild a core product from scratch to enable the company’s end-to-end vision',
     hero: {
       src: `${AKUR8_CORE}/intro.mp4`,
-      poster: `${AKUR8_CORE}/hero.png`,
       alt: 'Rebuilt Rate product showing a model block coefficient table',
       width: 1920,
       height: 1080,

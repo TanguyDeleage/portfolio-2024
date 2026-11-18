@@ -9,9 +9,9 @@
       {{ figure.alt || 'Media placeholder' }}
     </div>
     <video
-      v-else-if="/\.(mp4|webm)$/i.test(figure.src)"
+      v-else-if="isVideo(figure.src)"
       v-lazy-video="figure.src"
-      :poster="figure.poster"
+      :poster="videoPoster(figure)"
       :aria-label="figure.alt"
       :width="figure.width"
       :height="figure.height"
@@ -38,6 +38,7 @@
 
 <script>
 import { lazyVideo } from '../directives/lazyVideo.js'
+import { isVideo, videoPoster } from '../utils/videoPoster.js'
 export default {
   name: 'CaseFigure',
   directives: { lazyVideo },
@@ -48,6 +49,7 @@ export default {
     // Shadow instead of outline, for images sitting on a tinted band
     elevated: { type: Boolean, default: false },
   },
+  methods: { isVideo, videoPoster },
 }
 </script>
 

@@ -24,9 +24,9 @@
       <!-- Hero: full bleed picture or video at the very top (no site header on case studies) -->
       <div class="hero">
         <video
-          v-if="/\.(mp4|webm)$/i.test(hero.src)"
+          v-if="isVideo(hero.src)"
           :src="hero.src"
-          :poster="hero.poster"
+          :poster="heroPoster"
           :aria-label="hero.alt"
           :width="hero.width"
           :height="hero.height"
@@ -186,6 +186,7 @@ import WorkIcon from './WorkIcon.vue'
 import { projects, projectLink } from '../data/projects.js'
 import { caseStudies } from '../data/caseStudies.js'
 import { isProjectLocked } from '../data/privateAccess.js'
+import { isVideo, videoPoster } from '../utils/videoPoster.js'
 
 function slugify(text) {
   return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -221,6 +222,11 @@ export default {
     },
     hero() {
       return this.caseStudy.hero ?? this.project.cover
+    },
+    // First-frame poster, so the swap to the playing video is seamless. When the hero falls back
+    // to the cover, the cover's own poster (made for the Work card) is not used here
+    heroPoster() {
+      return videoPoster(this.caseStudy.hero ?? { src: this.hero.src })
     },
     sections() {
       return (this.caseStudy.sections ?? []).map((section, index) => ({
@@ -279,6 +285,7 @@ export default {
     this.resizeObserver.disconnect()
   },
   methods: {
+    isVideo,
     onScroll() {
       cancelAnimationFrame(this.scrollFrame)
       this.scrollFrame = requestAnimationFrame(this.onScrollFrame)
