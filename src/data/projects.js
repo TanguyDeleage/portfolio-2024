@@ -80,7 +80,7 @@ export const projects = [
     tags: ['B2B SaaS', 'Insurtech', 'Agentic'],
     cover: {
       src: '/assets/images/work/node.mp4',
-      poster: '/assets/images/work/node.png',
+      poster: '/assets/images/work/node.webp',
       alt: 'Node-based canvas with an AI assistant panel proposing coefficient changes',
       width: 1280,
       height: 720,
@@ -108,14 +108,14 @@ export const projects = [
       quote: 'His mastery of Figma enabled us to produce high-quality deliverables, his autonomy and pro-activity allowed us to quickly propose improvements in terms of user flows and processes, particularly regarding our Design System.',
       author: 'Romain Giroud',
       job: 'Head of Design',
-      avatar: '/assets/images/testimonials/romain.jpg'
+      avatar: '/assets/images/testimonials/romain.webp'
     },
     tags: ['B2B SaaS', 'Fintech', 'Startup'],
     cover: {
-      src: '/assets/images/work/kls.png',
+      src: '/assets/images/work/kls.webp',
       alt: 'KLS notification settings screens on desktop and mobile',
-      width: 4488,
-      height: 3434,
+      width: 1800,
+      height: 1378,
     },
     access: { locked: false },
     inProgress: true,

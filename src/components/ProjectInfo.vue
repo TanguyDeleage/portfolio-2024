@@ -414,14 +414,19 @@ export default {
     }
   }
 
-  /* Mobile */
+  /* Mobile: CTAs stack and take the full width, whether there's one or two */
   @media screen and (max-width: 768px) {
-    .cta-stacked {
+    .cta {
       flex-direction: column;
+      align-items: stretch;
     }
 
-    .cta-stacked .btn {
+    .cta .btn {
       flex: none;
+    }
+
+    .cta .soon .btn {
+      flex: 1;
     }
   }
 </style>

@@ -121,8 +121,8 @@ export default {
   name: 'About',
   data() {
     return {
-      albumCover: 'assets/images/about/album.png',
-      photo: 'assets/images/about/paris.jpg',
+      albumCover: 'assets/images/about/album.webp',
+      photo: 'assets/images/about/paris.webp',
       pipeline: [
         { label: '01 Research', tools: [{ name: 'Dust', src: dust }, { name: 'Dovetail', src: dovetail }] },
         { label: '02 Explore', tools: [{ name: 'Pen & paper', src: penPaper }, { name: 'Figma', src: figma }, { name: 'Cursor', src: cursor }] },

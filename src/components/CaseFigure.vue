@@ -10,16 +10,15 @@
     </div>
     <video
       v-else-if="/\.(mp4|webm)$/i.test(figure.src)"
-      :src="figure.src"
+      v-lazy-video="figure.src"
       :poster="figure.poster"
       :aria-label="figure.alt"
       :width="figure.width"
       :height="figure.height"
-      autoplay
       loop
       muted
       playsinline
-      preload="metadata"
+      preload="none"
     />
     <img
       v-else
@@ -38,8 +37,10 @@
 </template>
 
 <script>
+import { lazyVideo } from '../directives/lazyVideo.js'
 export default {
   name: 'CaseFigure',
+  directives: { lazyVideo },
   props: {
     figure: { type: Object, required: true },
     // Optional lead-in shown before the caption (e.g. Before / After)

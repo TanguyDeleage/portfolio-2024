@@ -77,7 +77,8 @@ import Hero from'./components/Hero.vue';
 
   @font-face {
     font-family: 'Eklektyk';
-    src: url(@/assets/fonts/Eklektyk-Stencil.otf);
+    /* Same URL as the preload in index.html, so the font is fetched once */
+    src: url(/assets/fonts/Eklektyk-Stencil.woff2) format("woff2");
     font-display: swap;
   }
 

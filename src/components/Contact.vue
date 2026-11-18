@@ -67,16 +67,6 @@
             logo: "assets/icons/figma.svg",
             url : "https://www.figma.com/@tanguydeleage",
           },
-          // {
-          //   name: "Medium",
-          //   logo: "assets/icons/medium.svg",
-          //   url : "",
-          // },
-          // {
-          //   name: "Bento",
-          //   logo: "assets/icons/bento.svg",
-          //   url : "https://bento.me/tanguy-deleage",
-          // },
           {
             name: "Github",
             logo: "assets/icons/github.svg",

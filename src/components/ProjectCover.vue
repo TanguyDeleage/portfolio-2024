@@ -13,16 +13,15 @@
     >
       <video
         v-if="isVideo"
-        :src="coverImage.src"
+        v-lazy-video="coverImage.src"
         :poster="coverImage.poster"
         :aria-label="coverAlt"
         :width="coverImage.width"
         :height="coverImage.height"
-        autoplay
         loop
         muted
         playsinline
-        preload="metadata"
+        preload="none"
       />
       <img
         v-else
@@ -42,12 +41,14 @@
 </template>
 
 <script>
+import { lazyVideo } from '../directives/lazyVideo.js'
 import WorkIcon from './WorkIcon.vue'
 import { isProjectLocked } from '../data/privateAccess.js'
 import { projectLink } from '../data/projects.js'
 
 export default {
   name: 'ProjectCover',
+  directives: { lazyVideo },
   components: { WorkIcon },
   props: {
     project: { type: Object, required: true },
